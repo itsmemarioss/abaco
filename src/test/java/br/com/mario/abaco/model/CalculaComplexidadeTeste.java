@@ -94,16 +94,38 @@ public class CalculaComplexidadeTeste {
 		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(1, 6)));
 		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(1, 19)));
 		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(1, 19)));
+		
+		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(2, 5)));
+		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(2, 4)));
+		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(3, 5)));
+		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(3, 4)));
 	}
 	
 	@Test
-	@Ignore
 	public void deveRetornarComplexidadeMediaParaSaidasEConsultasExternas(){
+		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(1, 20)));
+		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(1, 21)));
+		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(1, 21)));
+		
+		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(2, 6)));
+		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(3, 17)));
+		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(2, 19)));
+		
+		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(4, 4)));
+		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(4, 4)));
+		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(5, 5)));
+		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(7, 5)));
 	}
 	
 	@Test
-	@Ignore
 	public void deveRetornarComplexidadeAltaParaSaidasEConsultasExternas(){
+		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(2, 20)));
+		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(3, 21)));
+		
+		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(4, 6)));
+		assertEquals(Complexidade.ALTA, calcula(new CosultaExterna(4, 7)));
+		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(5, 8)));
+		assertEquals(Complexidade.ALTA, calcula(new CosultaExterna(7, 19)));
 	}
 
 }

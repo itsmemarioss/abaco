@@ -1,4 +1,4 @@
-package br.com.mario;
+package br.com.mario.abaco;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

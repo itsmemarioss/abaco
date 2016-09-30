@@ -19,15 +19,8 @@ public class EntradaExterna extends FuncaoDeTransacao {
 	}
 	
 	@Override
-	public Complexidade getComplexidade() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int getContribuicao() {
-		// TODO Auto-generated method stub
-		return 0;
+		return contribuicao.get(getComplexidade());
 	}
 
 }
