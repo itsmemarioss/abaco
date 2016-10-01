@@ -9,4 +9,5 @@ public class AbacoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AbacoApplication.class, args);
 	}
+	
 }

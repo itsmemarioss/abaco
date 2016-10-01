@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Nova Análise</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"> <img alt="Abaco"
+					src="/images/abacus_32.png" />
+				</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		<span th:text="${mensagem}"></span>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Nova Análise</h3>
+		</div>
+		<div class="panel-body">
+			<form action="/analise/salvar" method="post">
+
+				<div class="form-group">
+					<label for="prop">Propósito</label> <input type="text"
+						class="form-control" placeholder="Propósito" id="prop"
+						name="proposito" />
+				</div>
+				<div class="form-group">
+					<label>Fronteira</label>
+					<textarea class="form-control" rows="4" cols="50" name="fronteira"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Escopo</label>
+					<textarea class="form-control" rows="4" cols="50" name="escopo"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Tipo de Contagem</label>
+					<select class="form-control" name="tipoDeContagem">
+						<option th:each="tipo : ${tipoContagemList}" th:value="${tipo}" th:text="${tipo.descricao}"></option>
+					</select>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</form>
+		</div>
+	</div>
+
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
