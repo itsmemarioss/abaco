@@ -1,4 +1,7 @@
-# Abaco
+Abaco
+===
+[![Build Status](https://travis-ci.org/sharpmario/abaco.svg?branch=develop)](https://travis-ci.org/sharpmario/abaco)
+
 Sistema para auxiliar na análise de pontos de função no serviço público.
 O sistema é baseado no Manual de Práticas de Contagem do SISP e no CPM 4.3. 
 Tem como objetivo fornecer funcionalidades específicas para atender recomendações do SISP. 

@@ -1,5 +1,6 @@
 package br.com.mario.abaco.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,18 +12,27 @@ import javax.persistence.OneToMany;
 public class Instituicao {
 	
 	@Id
-	private String name;
+	private Long id;
 	
-	@OneToMany
-	@JoinColumn(name="instituicao_id")
+	private String nome;
+	
+	@OneToMany(mappedBy="instituicao")
 	private List<Sistema> sistemas;
 
-	public String getName() {
-		return name;
+	public Long getId() {
+		return id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public List<Sistema> getSistemas() {
@@ -32,6 +42,11 @@ public class Instituicao {
 	public void setSistemas(List<Sistema> sistemas) {
 		this.sistemas = sistemas;
 	}
-	
+
+	public void addSistema(Sistema sistema) {
+		if(sistemas==null)sistemas = new ArrayList<>();
+		sistema.setInstituicao(this);
+		sistemas.add(sistema);
+	}
 
 }

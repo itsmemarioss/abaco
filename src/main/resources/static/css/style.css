@@ -11,3 +11,13 @@
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
+.link-panel{
+	float:right;
+	padding: 0px;
+}
+
+.titulo-panel{
+	float:left;
+	padding-top: 2px;
+}

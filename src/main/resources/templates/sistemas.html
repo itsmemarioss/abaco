@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
 <head>
-<meta charset="UTF-8" />
 <title>Sistemas</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
-<body>
 
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#"> <img alt="Abaco"
-					src="/images/abacus_32.png" />
-				</a>
-			</div>
-		</div>
-
-	</nav>
-
+<section layout:fragment="conteudo">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Sistemas</h3>
+			<div class="clearfix">
+				<h3 class="panel-title titulo-panel">Sistemas</h3>
+				<a class="btn btn-link link-panel" href="/sistema/novo">Cadastrar
+					novo sistema</a>
+			</div>
 		</div>
 		<div class="panel-body">
 			<table class="table table-bordered table-striped">
@@ -42,10 +35,5 @@
 			</table>
 		</div>
 	</div>
-
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/jquery-3.1.1.min.js"></script>
-
-
-</body>
+</section>
 </html>

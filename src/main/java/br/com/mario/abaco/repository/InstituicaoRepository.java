@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.mario.abaco.model.Instituicao;
 
-public interface InstituicoesRepository extends JpaRepository<Instituicao, String> {
+public interface InstituicaoRepository extends JpaRepository<Instituicao, Long> {
 
 }
