@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>Nova Análise</title>
+<title>Novo Sistema</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
@@ -25,29 +25,20 @@
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Nova Análise</h3>
+			<h3 class="panel-title">Novo Sistema</h3>
 		</div>
 		<div class="panel-body">
-			<form action="/analise/salvar" method="post">
+			<form action="/sistema/salvar" method="post">
 
 				<div class="form-group">
-					<label for="prop">Propósito</label> <input type="text"
-						class="form-control" placeholder="Propósito" id="prop"
-						name="proposito" />
+					<label for="nome">Nome</label> 
+					<input type="text"
+						class="form-control" placeholder="Nome" id="nome" name="nome" />
 				</div>
 				<div class="form-group">
-					<label>Fronteira</label>
-					<textarea class="form-control" rows="4" cols="50" name="fronteira"></textarea>
-				</div>
-				<div class="form-group">
-					<label>Escopo</label>
-					<textarea class="form-control" rows="4" cols="50" name="escopo"></textarea>
-				</div>
-				<div class="form-group">
-					<label>Tipo de Contagem</label>
-					<select class="form-control" name="tipoDeContagem">
-						<option th:each="tipo : ${tipoContagemList}" th:value="${tipo}" th:text="${tipo.descricao}"></option>
-					</select>
+					<label for="descricao">Descricao</label> 
+					<input type="text"
+						class="form-control" placeholder="Descricao" id="descricao" name="descricao" />
 				</div>
 
 				<button type="submit" class="btn btn-primary">Cadastrar</button>

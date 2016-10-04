@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import br.com.mario.abaco.model.sisp2_2.TipoContagemSISP;
+
 @Entity
 public class Analise {
 	
@@ -27,7 +29,7 @@ public class Analise {
 	private LocalDate data;
 	
 	@Enumerated(EnumType.STRING)
-	private TipoContagem tipoDeContagem;
+	private TipoContagemSISP tipoDeContagem;
 
 	public Long getId() {
 		return id;
@@ -69,11 +71,11 @@ public class Analise {
 		this.data = data;
 	}
 
-	public TipoContagem getTipoDeContagem() {
+	public TipoContagemSISP getTipoDeContagem() {
 		return tipoDeContagem;
 	}
 
-	public void setTipoDeContagem(TipoContagem tipoDeContagem) {
+	public void setTipoDeContagem(TipoContagemSISP tipoDeContagem) {
 		this.tipoDeContagem = tipoDeContagem;
 	}
 

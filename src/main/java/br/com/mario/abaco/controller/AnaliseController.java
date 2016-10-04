@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.mario.abaco.model.Analise;
-import br.com.mario.abaco.model.TipoContagem;
+import br.com.mario.abaco.model.sisp2_2.TipoContagemSISP;
 import br.com.mario.abaco.repository.AnaliseRepository;
 
 @Controller
@@ -38,7 +38,7 @@ public class AnaliseController {
 	}
 	
 	@ModelAttribute
-	public List<TipoContagem> tiposContagem(){
-		return Arrays.asList(TipoContagem.values());
+	public List<TipoContagemSISP> tiposContagem(){
+		return Arrays.asList(TipoContagemSISP.values());
 	}
 }

@@ -1,4 +1,4 @@
-package br.com.mario;
+package br.com.mario.abaco;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

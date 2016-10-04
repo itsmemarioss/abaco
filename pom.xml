@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>abaco</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Sistema para auxíliar na análise de pontos de função</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
