@@ -1,5 +1,7 @@
 package br.com.mario.abaco.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +21,12 @@ public class SistemaController {
 	@Autowired
 	private SistemaRepository repo;
 	
-	@Autowired
-	private InstituicaoRepository instituicaoRepo;
-	
 	@GetMapping
-	public String pesquisar(){
-		return "sistemas";
+	public ModelAndView pesquisar(){
+		List<Sistema> sistemas = repo.findAll();
+		ModelAndView mv = new ModelAndView("sistemas");
+		mv.addObject("sistemas",sistemas);
+		return mv;
 	}
 	
 	@RequestMapping("/novo")
@@ -36,12 +38,6 @@ public class SistemaController {
 	@PostMapping("/salvar")
 	public ModelAndView salvar(Sistema sistema){
 		ModelAndView mv = new ModelAndView("novo-sistema");
-		
-		Instituicao inst = instituicaoRepo.getOne(1l);
-		
-		if(inst!=null){
-			inst.addSistema(sistema);
-		}
 		
 		repo.save(sistema);
 		

@@ -37,7 +37,7 @@ public class AnaliseController {
 		return mv;
 	}
 	
-	@ModelAttribute
+	@ModelAttribute(name="tipoContagemList")
 	public List<TipoContagemSISP> tiposContagem(){
 		return Arrays.asList(TipoContagemSISP.values());
 	}

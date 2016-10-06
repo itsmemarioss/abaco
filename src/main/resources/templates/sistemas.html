@@ -28,8 +28,14 @@
 					</tr>
 				</thead>
 				<tbody>
+					<tr th:each="sistema : ${sistemas}">
+						<td class="text-center" th:text="${sistema.id}"></td>
+						<td th:text="${sistema.nome}"></td>
+						<td th:text="${sistema.descricao}"></td>
+						<td class="text-center"></td>
+					</tr>
 					<tr>
-						<td colspan="4">Nenhum sistema cadastrado</td>
+						<td colspan="4" th:if="${#lists.isEmpty(sistemas)}">Nenhum sistema cadastrado</td>
 					</tr>
 				</tbody>
 			</table>
