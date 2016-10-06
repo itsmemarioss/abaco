@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -30,6 +31,9 @@ public class Analise {
 	
 	@Enumerated(EnumType.STRING)
 	private TipoContagemSISP tipoDeContagem;
+	
+	@ManyToOne
+	private Sistema sistema;
 
 	public Long getId() {
 		return id;
@@ -77,6 +81,14 @@ public class Analise {
 
 	public void setTipoDeContagem(TipoContagemSISP tipoDeContagem) {
 		this.tipoDeContagem = tipoDeContagem;
+	}
+
+	public Sistema getSistema() {
+		return sistema;
+	}
+
+	public void setSistema(Sistema sistema) {
+		this.sistema = sistema;
 	}
 
 }

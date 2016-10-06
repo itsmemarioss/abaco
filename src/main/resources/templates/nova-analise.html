@@ -33,6 +33,13 @@
 					<textarea class="form-control" rows="4" cols="50" name="escopo"></textarea>
 				</div>
 				<div class="form-group">
+					<label>Sistema</label> 
+						<select class="form-control" name="sistema">
+						<option th:each="sistema : ${sistemaList}" th:value="${sistema.nome}"
+							th:text="${sistema.nome}"></option>
+						</select>
+				</div>
+				<div class="form-group">
 					<label>Tipo de Contagem</label> <select class="form-control"
 						name="tipoDeContagem">
 						<option th:each="tipo : ${tipoContagemList}" th:value="${tipo}"

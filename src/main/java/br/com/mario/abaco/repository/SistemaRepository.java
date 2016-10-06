@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.mario.abaco.model.Sistema;
 
 public interface SistemaRepository extends JpaRepository<Sistema, Long> {
+	
+	Sistema findByNome(String nome);
 
 }

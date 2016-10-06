@@ -1,5 +1,6 @@
 package br.com.mario.abaco.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,12 +15,9 @@ public class Sistema {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(unique=true)
 	private String nome;
 	private String descricao;
-	
-	@ManyToOne
-	@JoinColumn(name = "instituicao_id")
-	private Instituicao instituicao;
 
 	public Long getId() {
 		return id;
@@ -45,13 +43,4 @@ public class Sistema {
 		this.descricao = descricao;
 	}
 
-	public Instituicao getInstituicao() {
-		return instituicao;
-	}
-
-	public void setInstituicao(Instituicao instituicao) {
-		this.instituicao = instituicao;
-	}
-	
-		
 }
