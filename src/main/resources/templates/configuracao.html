@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout">
 <head>
-<title>Instituição</title>
+<title>Configuração</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -14,15 +14,15 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Instituição</h3>
+			<h3 class="panel-title">Configuração</h3>
 		</div>
 		<div class="panel-body">
-			<form action="/instituicao/salvar" method="post">
+			<form action="/configuracao/salvar" method="post">
 
 				<div class="form-group">
-					<label for="nome">Nome</label> <input type="text"
-						class="form-control" id="nome" name="nome"
-						th:text="${instituicao.nome}" />
+					<label for="instituicao">Instituição</label>
+					<input type="text" class="form-control" id="instituicao" name="instituicao"
+						th:text="${conf.instituicao}" />
 				</div>
 
 				<button type="submit" class="btn btn-primary">Salvar</button>

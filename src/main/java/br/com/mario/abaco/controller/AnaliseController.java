@@ -56,4 +56,11 @@ public class AnaliseController {
 	public List<Sistema> sistemas(){
 		return sistemaRepo.findAll();
 	}
+	
+	@RequestMapping("/contagem")
+	public ModelAndView contagem(){
+		ModelAndView mv = new ModelAndView("contagem-aplicacao");
+		
+		return mv;
+	}
 }

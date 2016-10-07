@@ -12,6 +12,15 @@
 		<span th:text="${mensagem}"></span>
 	</div>
 
+	<div>
+		<ol class="breadcrumb">
+			<li class="active">Dados Gerais</li>
+			<li><a href="#">Contagem</a></li>
+			<li><a href="#">Finalizar</a></li>
+			<li><a href="#">Reportar</a></li>
+		</ol>
+	</div>
+	
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Nova Análise</h3>
@@ -33,11 +42,10 @@
 					<textarea class="form-control" rows="4" cols="50" name="escopo"></textarea>
 				</div>
 				<div class="form-group">
-					<label>Sistema</label> 
-						<select class="form-control" name="sistema">
-						<option th:each="sistema : ${sistemaList}" th:value="${sistema.nome}"
-							th:text="${sistema.nome}"></option>
-						</select>
+					<label>Sistema</label> <select class="form-control" name="sistema">
+						<option th:each="sistema : ${sistemaList}"
+							th:value="${sistema.nome}" th:text="${sistema.nome}"></option>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Tipo de Contagem</label> <select class="form-control"
@@ -51,6 +59,10 @@
 			</form>
 		</div>
 	</div>
+	<ul class="pager">
+		<li class="previous"><a href="#">Previous</a></li>
+		<li class="next"><a href="#">Next</a></li>
+	</ul>
 
 </section>
 </html>
