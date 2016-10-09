@@ -2,37 +2,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout">
+	layout:decorator="layout/layout">
 <head>
 <title>Novo Sistema</title>
 </head>
 
 <section layout:fragment="conteudo">
-	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-		<span th:text="${mensagem}"></span>
-	</div>
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Novo Sistema</h3>
-		</div>
-		<div class="panel-body">
-			<form action="/sistema/salvar" method="post">
-
-				<div class="form-group">
-					<label for="nome">Nome</label> <input type="text"
-						class="form-control" placeholder="Nome" id="nome" name="nome" />
+	<form action="/sistema/salvar" method="post" th:object="${sistema}">
+		<div layout:include="layout/mensagem"></div>
+		
+		<!-- panel -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h3 class="panel-title titulo-panel">Novo Sistema</h3>
+					<a class="btn btn-link link-panel" href="/sistema/">Listar
+						sistemas</a>
 				</div>
-				<div class="form-group">
-					<label for="descricao">Descricao</label> <input type="text"
-						class="form-control" placeholder="Descricao" id="descricao"
-						name="descricao" />
+			</div>
+			<div class="panel-body">
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('nome')}? has-error">
+					<label class="control-label" for="nome">Nome</label> <input
+						type="text" class="form-control" placeholder="Nome" id="nome"
+						th:field="*{nome}" />
+				</div>
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('descricao')}? has-error">
+					<label class="control-label" for="descricao">Descricao</label> <input
+						type="text" class="form-control" placeholder="Descricao"
+						id="descricao" th:field="*{descricao}" />
 				</div>
 
 				<button type="submit" class="btn btn-primary">Cadastrar</button>
-			</form>
+			</div>
 		</div>
-	</div>
+	</form>
 </section>
 
 </html>

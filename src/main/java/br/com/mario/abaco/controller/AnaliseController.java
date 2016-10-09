@@ -6,12 +6,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.mario.abaco.model.Analise;
 import br.com.mario.abaco.model.Sistema;
@@ -34,19 +36,44 @@ public class AnaliseController {
 		return mv;
 	}
 
-	@PostMapping("/salvar")
-	public ModelAndView salvar(Analise analise){
-		ModelAndView mv = new ModelAndView("nova-analise");
+	@PostMapping("/next")
+	public ModelAndView salvar(@ModelAttribute("analise") @Validated Analise analise, 
+								RedirectAttributes redirect){
+		
+		String pagina = proximaPagina(analise.getTipoDeContagem());
+		
+		ModelAndView mv = new ModelAndView(pagina);
 		
 		analise.setData(LocalDate.now());
+		redirect.addFlashAttribute("analise", analise);
+		//repo.save(analise);
 		
-		repo.save(analise);
-		
-		mv.addObject("mensagem","Análise salva com sucesso!");
-		
+		//mv.addObject("mensagem","Análise salva com sucesso!");
 		return mv;
 	}
 	
+	private String proximaPagina(TipoContagemSISP tipoDeContagem) {
+		String pagina = "redirect:/contagem";
+		switch (tipoDeContagem) {
+		case APLICACAO:
+			pagina += "/aplicacao";
+			break;
+		case DESENVOLVIMENTO:
+			pagina += "/desenvolvimento";
+			break;
+		case MANUTENCAO_CORRETIVA:
+			pagina += "/manutencao/corretiva";
+			break;
+		case MELHORIA:
+			pagina += "/melhoria";
+			break;
+		case MIGRACAO:
+			pagina += "/migracao";
+			break;
+		}
+		return pagina;
+	}
+
 	@ModelAttribute(name="tipoContagemList")
 	public List<TipoContagemSISP> tiposContagem(){
 		return Arrays.asList(TipoContagemSISP.values());

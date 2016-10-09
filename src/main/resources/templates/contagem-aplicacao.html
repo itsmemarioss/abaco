@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout">
+	layout:decorator="layout/layout">
 <head>
 <title>Contagem de Aplicação</title>
 </head>
@@ -25,7 +25,8 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Contagem de aplicação</h3>
+			<h3 class="panel-title"
+				th:text="|Contagem de aplicação - ${analise.sistema.nome}|"></h3>
 		</div>
 		<div class="panel-body">
 			<button type="button" class="btn btn-info" data-toggle="collapse"
@@ -36,45 +37,88 @@
 				exercitation ullamco laboris nisi ut aliquip ex ea commodo
 				consequat.</div>
 			<hr />
+
 			<!-- pontos de função instalados -->
 			<p class="lead">Pontos de Função Instalados</p>
+
 			<div class="panel-group" id="accordion">
+
+				<!-- Funções de Dados -->
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion"
-								href="#collapse1"> Funções de Dados</a>
-						</h4>
+						<div class="clearfix">
+							<h3 class="panel-title titulo-panel">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse1"> Funções de Dados</a>
+							</h3>
+							<a class="btn btn-link link-panel" href="#">Adicionar</a>
+						</div>
 					</div>
 					<div id="collapse1" class="panel-collapse collapse in">
-						<div class="panel-body">Lorem ipsum dolor sit amet,
-							consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-							nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-							commodo consequat.</div>
+						<div class="panel-body">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th class="text-center col-md-1">#</th>
+										<th>Nome</th>
+										<th>Complexidade</th>
+										<th class="col-md-1">Opções</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4">Nenhuma função adicionada</td>
+										<!-- th:if="${#lists.isEmpty(sistemas)}" -->
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
 					</div>
 				</div>
+
+				<!-- Funções de Transação -->
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion"
-								href="#collapse2"> Funções de Transação</a>
-						</h4>
+						<div class="clearfix">
+
+							<h3 class="panel-title titulo-panel">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse2"> Funções de Transação</a>
+							</h3>
+							<a class="btn btn-link link-panel" href="#">Adicionar</a>
+						</div>
 					</div>
 					<div id="collapse2" class="panel-collapse collapse">
-						<div class="panel-body">Lorem ipsum dolor sit amet,
-							consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-							nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-							commodo consequat.</div>
+						<div class="panel-body">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th class="text-center col-md-1">#</th>
+										<th>Nome</th>
+										<th>Complexidade</th>
+										<th class="col-md-1">Opções</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4">Nenhuma função adicionada</td>
+										<!-- th:if="${#lists.isEmpty(sistemas)}" -->
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
 	<ul class="pager">
-		<li class="previous"><a href="#">Previous</a></li>
-		<li class="next"><a href="#">Next</a></li>
+		<li class="previous"><a href="javascript:history.back()">Voltar</a></li>
+		<li class="next"><a href="#">Avançar</a></li>
 	</ul>
 </section>
 

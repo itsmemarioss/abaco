@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Sistema {
@@ -15,8 +19,11 @@ public class Sistema {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty(message="Nome não pode ser vazio")
 	@Column(unique=true)
 	private String nome;
+	
+	@Size(max=60, message="Descrição não pode ser maior que 60 caracteres")
 	private String descricao;
 
 	public Long getId() {

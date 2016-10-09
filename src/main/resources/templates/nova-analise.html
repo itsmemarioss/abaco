@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout">
+	layout:decorator="layout/layout">
 <head>
 <title>Nova Análise</title>
 </head>
@@ -20,13 +20,13 @@
 			<li><a href="#">Reportar</a></li>
 		</ol>
 	</div>
-	
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Nova Análise</h3>
-		</div>
-		<div class="panel-body">
-			<form action="/analise/salvar" method="post">
+
+	<form action="/analise/next" method="post" id="formAnalise">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Nova Análise</h3>
+			</div>
+			<div class="panel-body">
 
 				<div class="form-group">
 					<label for="prop">Propósito</label> <input type="text"
@@ -55,14 +55,13 @@
 					</select>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Cadastrar</button>
-			</form>
+
+			</div>
 		</div>
-	</div>
-	<ul class="pager">
-		<li class="previous"><a href="#">Previous</a></li>
-		<li class="next"><a href="#">Next</a></li>
-	</ul>
+		<ul class="pager">
+			<li class="next"><a href="#" onClick="document.getElementById('formAnalise').submit();">Avançar</a></li>
+		</ul>
+	</form>
 
 </section>
 </html>
