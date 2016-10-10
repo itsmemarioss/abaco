@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -48,6 +50,20 @@ public class SistemaController {
 		
 		attributes.addFlashAttribute("mensagem","Sistema salvo com sucesso!");
 		return retorno;
+	}
+	
+	@RequestMapping("/{id}")
+	public ModelAndView editar(@PathVariable Long id){
+		ModelAndView mv = new ModelAndView("novo-sistema");
+		mv.addObject(repo.findOne(id));
+		return mv;
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public String excluir(@PathVariable Long id, RedirectAttributes attributes){
+		repo.delete(id);
+		attributes.addFlashAttribute("mensagem","Sistema excluído com sucesso!");
+		return "redirect:/sistema";
 	}
 	
 

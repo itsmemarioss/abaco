@@ -11,6 +11,7 @@
 
 	<form action="/sistema/salvar" method="post" th:object="${sistema}">
 		<div layout:include="layout/mensagem"></div>
+		<div layout:include="layout/mensagensCampos"></div>
 		
 		<!-- panel -->
 		<div class="panel panel-default">
@@ -22,7 +23,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-
+				<input type="hidden" th:field="*{id}"/>
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('nome')}? has-error">
 					<label class="control-label" for="nome">Nome</label> <input
