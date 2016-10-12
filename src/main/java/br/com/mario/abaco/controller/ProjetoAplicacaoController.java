@@ -11,7 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.mario.abaco.model.Analise;
 import br.com.mario.abaco.model.Contagem;
 import br.com.mario.abaco.model.FuncaoDeDado;
+import br.com.mario.abaco.model.FuncaoDeTransacao;
 import br.com.mario.abaco.model.TipoFuncaoDado;
+import br.com.mario.abaco.model.TipoFuncaoTransacao;
 import br.com.mario.abaco.model.sisp2_2.Aplicacao;
 
 @Controller
@@ -31,6 +33,7 @@ public class ProjetoAplicacaoController {
 		
 		mv.addObject("analise", analise);
 		mv.addObject("funcaoDeDado", new FuncaoDeDado());
+		mv.addObject("funcaoDeTransacao", new FuncaoDeTransacao());
 		
 		return mv;
 	}
@@ -40,9 +43,27 @@ public class ProjetoAplicacaoController {
 		ModelAndView mv = new ModelAndView("contagem-aplicacao");
 
 		aplicacao.addFuncaoDeDado(funcao);
+		addObjects(mv);
+		
+		return mv;
+	}
+	
+	private void addObjects(ModelAndView mv) {
 		mv.addObject("analise", analise);
+		
 		mv.addObject("arquivos", aplicacao.getArquivos());
 		mv.addObject("funcaoDeDado", new FuncaoDeDado());
+		
+		mv.addObject("transacoes", aplicacao.getTransacoes());
+		mv.addObject("funcaoDeTransacao", new FuncaoDeTransacao());		
+	}
+
+	@RequestMapping("/funcaoDeTransacao")
+	public ModelAndView addFuncaoDeTransacao(FuncaoDeTransacao funcao){
+		ModelAndView mv = new ModelAndView("contagem-aplicacao");
+
+		aplicacao.addFuncaoDeTransacao(funcao);
+		addObjects(mv);
 		
 		return mv;
 	}
@@ -50,6 +71,11 @@ public class ProjetoAplicacaoController {
 	@ModelAttribute
 	public List<TipoFuncaoDado> tipoFuncaoDado(){
 		return Arrays.asList(TipoFuncaoDado.values());
+	}
+	
+	@ModelAttribute
+	public List<TipoFuncaoTransacao> tipoFuncaoTransacao(){
+		return Arrays.asList(TipoFuncaoTransacao.values());
 	}
 	
 }

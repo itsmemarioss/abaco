@@ -28,4 +28,8 @@ public class Aplicacao extends Projeto{
 		return pfInstalados.getArquivos();
 	}
 	
+	public List<FuncaoDeTransacao> getTransacoes(){
+		return pfInstalados.getFuncoesDeTransacao();
+	}
+	
 }

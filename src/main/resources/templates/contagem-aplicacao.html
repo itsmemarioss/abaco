@@ -63,12 +63,18 @@
 								<thead>
 									<tr>
 										<th>Descrição</th>
+										<th>Tipo</th>
+										<th>Complexidade</th>
+										<th>Contribuição</th>
 										<th class="col-md-1">Opções</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="arquivo : ${arquivos}">
 										<td th:text="${arquivo.descricao}"></td>
+										<td th:text="${arquivo.tipo}"></td>
+										<td th:text="${arquivo.complexidade}"></td>
+										<td th:text="|${arquivo.contribuicao} PF|"></td>
 										<!-- Opções -->
 										<td class="text-center">
 											<a class="btn btn-link btn-xs" href="#" title="Editar"
@@ -82,7 +88,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td colspan="3" th:if="${#lists.isEmpty(arquivos)}">
+										<td colspan="5" th:if="${#lists.isEmpty(arquivos)}">
 											Nenhuma função de dado adicionada
 										</td>
 									</tr>
@@ -103,7 +109,9 @@
 								<a data-toggle="collapse" data-parent="#accordion"
 									href="#collapse2"> Funções de Transação</a>
 							</h3>
-							<a class="btn btn-link link-panel" href="#">Adicionar</a>
+							<a class="btn btn-link link-panel" data-toggle="modal"
+								data-target="#modalFuncaoDeTransacao"
+								th:attr="data-action='funcaoDeTransacao'">Adicionar</a>
 						</div>
 					</div>
 					<div id="collapse2" class="panel-collapse collapse">
@@ -111,16 +119,35 @@
 							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th class="text-center col-md-1">#</th>
-										<th>Nome</th>
+										<th>Descrição</th>
+										<th>Tipo</th>
 										<th>Complexidade</th>
+										<th>Contribuição</th>
 										<th class="col-md-1">Opções</th>
 									</tr>
 								</thead>
 								<tbody>
+									<tr th:each="transacao : ${transacoes}">
+										<td th:text="${transacao.descricao}"></td>
+										<td th:text="${transacao.tipo}"></td>
+										<td th:text="${transacao.complexidade}"></td>
+										<td th:text="|${transacao.contribuicao} PF|"></td>
+										<!-- Opções -->
+										<td class="text-center">
+											<a class="btn btn-link btn-xs" href="#" title="Editar"
+												rel="tooltip" data-placement="top"> 
+												<span class="glyphicon glyphicon-pencil"></span>
+											</a> 
+											<a class="btn btn-link btn-xs" data-toggle="modal"
+												title="Excluir" rel="tooltip" data-placement="top"> 
+												<span class="glyphicon glyphicon-remove"></span>
+											</a>
+										</td>
+									</tr>
 									<tr>
-										<td colspan="4">Nenhuma função adicionada</td>
-										<!-- th:if="${#lists.isEmpty(sistemas)}" -->
+										<td colspan="5" th:if="${#lists.isEmpty(transacoes)}">
+											Nenhuma função de transação adicionada
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -131,6 +158,7 @@
 			</div>
 		</div>
 		<div layout:include="modal/funcao-de-dado"></div>
+		<div layout:include="modal/funcao-de-transacao"></div>
 	</div>
 	<ul class="pager">
 		<li class="previous"><a href="javascript:history.back()">Voltar</a></li>

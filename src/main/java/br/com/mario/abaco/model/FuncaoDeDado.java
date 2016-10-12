@@ -7,10 +7,11 @@ public class FuncaoDeDado extends Funcao {
 	
 	public FuncaoDeDado(){}
 	
-	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados) {
+	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados, TipoFuncaoDado tipo) {
 		super();
 		this.tipoDeRegistros = tipoDeRegistros;
 		this.tipoDeDados = tipoDeDados;
+		this.tipo = tipo;
 	}
 
 	@Override
@@ -19,7 +20,7 @@ public class FuncaoDeDado extends Funcao {
 	}
 
 	public int getContribuicao(){
-		return 0;
+		return CalculaContribuicao.calcula(this);
 	}
 
 	public int getTipoDeRegistros() {
