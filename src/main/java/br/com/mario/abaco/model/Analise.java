@@ -28,6 +28,8 @@ public class Analise {
 	private String fronteira;
 	private String escopo;
 	
+	private transient Projeto projeto;
+	
 	@DateTimeFormat(iso=ISO.DATE)
 	private LocalDate data;
 	
@@ -83,6 +85,8 @@ public class Analise {
 
 	public void setTipoDeContagem(TipoContagemSISP tipoDeContagem) {
 		this.tipoDeContagem = tipoDeContagem;
+		this.projeto = tipoDeContagem.getProjeto();
+		
 	}
 
 	public Sistema getSistema() {
@@ -92,5 +96,16 @@ public class Analise {
 	public void setSistema(Sistema sistema) {
 		this.sistema = sistema;
 	}
+
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+
+	
+	
 
 }

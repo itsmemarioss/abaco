@@ -34,11 +34,13 @@
 						<td th:text="${sistema.nome}"></td>
 						<td th:text="${sistema.descricao}"></td>
 						<td class="text-center">
-							<a class="btn btn-link btn-xs" th:href="@{/sistema/{id}(id=${sistema.id})}">
+							<a class="btn btn-link btn-xs" th:href="@{/sistema/{id}(id=${sistema.id})}"
+								title="Editar" rel="tooltip" data-placement="top">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>
 							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalExcluir" 
-								th:attr="data-id=${sistema.id}, data-nome=${sistema.nome}">
+								th:attr="data-id=${sistema.id}, data-nome=${sistema.nome}"
+								title="Excluir" rel="tooltip" data-placement="top">
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>
 						</td>

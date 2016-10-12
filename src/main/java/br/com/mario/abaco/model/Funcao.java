@@ -11,10 +11,14 @@ public abstract class Funcao {
 	public String getDescricao() {
 		return descricao;
 	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public void setTipoDeDados(int tipoDeDados) {
+		this.tipoDeDados = tipoDeDados;
+	}
 	public int getTipoDeDados() {
 		return tipoDeDados;
 	}
 	
-	
-
 }

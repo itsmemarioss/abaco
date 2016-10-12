@@ -5,10 +5,10 @@ import br.com.mario.abaco.model.Projeto;
 public enum TipoContagemSISP {
 	
 	APLICACAO("Aplicação",new Aplicacao()),
-	DESENVOLVIMENTO("Desenvolvimento", new Desenvolvimento()),
-	MELHORIA("Melhoria", new Melhoria()),
-	MIGRACAO("Migração",new ProjetoDeMigracao()),
-	MANUTENCAO_CORRETIVA("Manutenção Corretiva",new ProjetoDeManutencaoCorretiva());
+	DESENVOLVIMENTO("Desenvolvimento", null),
+	MELHORIA("Melhoria", null),
+	MIGRACAO("Migração", null),
+	MANUTENCAO_CORRETIVA("Manutenção Corretiva", null);
 	
 	private String descricao;
 	private Projeto projeto;

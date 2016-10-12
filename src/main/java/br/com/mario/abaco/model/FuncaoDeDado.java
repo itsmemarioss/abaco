@@ -1,10 +1,11 @@
 package br.com.mario.abaco.model;
 
-public abstract class FuncaoDeDado extends Funcao {
+public class FuncaoDeDado extends Funcao {
 
 	private int tipoDeRegistros;
+	private TipoFuncaoDado tipo;
 	
-	FuncaoDeDado(){}
+	public FuncaoDeDado(){}
 	
 	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados) {
 		super();
@@ -17,10 +18,24 @@ public abstract class FuncaoDeDado extends Funcao {
 		return CalculaComplexidade.calcula(this);
 	}
 
-	public abstract int getContribuicao();
+	public int getContribuicao(){
+		return 0;
+	}
 
 	public int getTipoDeRegistros() {
 		return tipoDeRegistros;
+	}
+
+	public TipoFuncaoDado getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoFuncaoDado tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setTipoDeRegistros(int tipoDeRegistros) {
+		this.tipoDeRegistros = tipoDeRegistros;
 	}
 
 }
