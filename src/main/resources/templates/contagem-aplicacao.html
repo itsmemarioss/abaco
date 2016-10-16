@@ -29,13 +29,19 @@
 				th:text="|Contagem de aplicação - ${analise.sistema.nome}|"></h3>
 		</div>
 		<div class="panel-body">
-			<button type="button" class="btn btn-info" data-toggle="collapse"
-				data-target="#demo">Ajuda</button>
-			<div id="demo" class="collapse">Lorem ipsum dolor sit amet,
-				consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat.</div>
+			<a class="btn btn-link btn-xs" data-toggle="collapse" data-target="#demo"
+				title="Ajuda" rel="tooltip" data-placement="top"> 
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</a>
+			<div id="demo" class="collapse">
+				<blockquote class="blockquote-reverse">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat.</p>
+					<footer>Manual SISP</footer>
+				</blockquote>
+			</div>
 			<hr />
 
 			<!-- pontos de função instalados -->
@@ -76,21 +82,17 @@
 										<td th:text="${arquivo.complexidade}"></td>
 										<td th:text="|${arquivo.contribuicao} PF|"></td>
 										<!-- Opções -->
-										<td class="text-center">
-											<a class="btn btn-link btn-xs" href="#" title="Editar"
-												rel="tooltip" data-placement="top"> 
+										<td class="text-center"><a class="btn btn-link btn-xs"
+											href="#" title="Editar" rel="tooltip" data-placement="top">
 												<span class="glyphicon glyphicon-pencil"></span>
-											</a> 
-											<a class="btn btn-link btn-xs" data-toggle="modal"
-												title="Excluir" rel="tooltip" data-placement="top"> 
-												<span class="glyphicon glyphicon-remove"></span>
-											</a>
-										</td>
+										</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+											title="Excluir" rel="tooltip" data-placement="top"> <span
+												class="glyphicon glyphicon-remove"></span>
+										</a></td>
 									</tr>
 									<tr>
 										<td colspan="5" th:if="${#lists.isEmpty(arquivos)}">
-											Nenhuma função de dado adicionada
-										</td>
+											Nenhuma função de dado adicionada</td>
 									</tr>
 								</tbody>
 							</table>
@@ -133,21 +135,17 @@
 										<td th:text="${transacao.complexidade}"></td>
 										<td th:text="|${transacao.contribuicao} PF|"></td>
 										<!-- Opções -->
-										<td class="text-center">
-											<a class="btn btn-link btn-xs" href="#" title="Editar"
-												rel="tooltip" data-placement="top"> 
+										<td class="text-center"><a class="btn btn-link btn-xs"
+											href="#" title="Editar" rel="tooltip" data-placement="top">
 												<span class="glyphicon glyphicon-pencil"></span>
-											</a> 
-											<a class="btn btn-link btn-xs" data-toggle="modal"
-												title="Excluir" rel="tooltip" data-placement="top"> 
-												<span class="glyphicon glyphicon-remove"></span>
-											</a>
-										</td>
+										</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+											title="Excluir" rel="tooltip" data-placement="top"> <span
+												class="glyphicon glyphicon-remove"></span>
+										</a></td>
 									</tr>
 									<tr>
 										<td colspan="5" th:if="${#lists.isEmpty(transacoes)}">
-											Nenhuma função de transação adicionada
-										</td>
+											Nenhuma função de transação adicionada</td>
 									</tr>
 								</tbody>
 							</table>
@@ -162,7 +160,7 @@
 	</div>
 	<ul class="pager">
 		<li class="previous"><a href="javascript:history.back()">Voltar</a></li>
-		<li class="next"><a href="#">Avançar</a></li>
+		<li class="next"><a href="/contagem/next">Avançar</a></li>
 	</ul>
 </section>
 

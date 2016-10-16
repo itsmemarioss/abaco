@@ -7,7 +7,7 @@ import br.com.mario.abaco.model.FuncaoDeDado;
 import br.com.mario.abaco.model.FuncaoDeTransacao;
 import br.com.mario.abaco.model.Projeto;
 
-public class Aplicacao extends Projeto{
+public class ProjetoDeAplicacao extends Projeto{
 	
 	private transient Contagem pfInstalados = new Contagem("Pontos de Função instalados");
 
@@ -30,6 +30,11 @@ public class Aplicacao extends Projeto{
 	
 	public List<FuncaoDeTransacao> getTransacoes(){
 		return pfInstalados.getFuncoesDeTransacao();
+	}
+
+	@Override
+	public double total() {
+		return getContagens().stream().mapToDouble(Contagem::total).sum();
 	}
 	
 }

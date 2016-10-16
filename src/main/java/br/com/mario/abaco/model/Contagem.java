@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 public class Contagem {
 	
 	private String descricao;
+	private double fatorDeImpacto = 1;
 	
 	public Contagem(String descricao) {
 		super();
@@ -22,7 +23,7 @@ public class Contagem {
 		int result = 0;
 		Stream<Funcao> funcoes = Stream.concat(arquivos.stream(), funcoesDeTransacao.stream());
 		result = funcoes.mapToInt(Funcao::getContribuicao).sum();
-		return result;
+		return result * fatorDeImpacto;
 	}
 	
 	public String getDescricao() {
@@ -44,4 +45,26 @@ public class Contagem {
 	public void addFuncaoDeTransacao(FuncaoDeTransacao funcao){
 		funcoesDeTransacao.add(funcao);
 	}
+
+	public double getFatorDeImpacto() {
+		return fatorDeImpacto;
+	}
+
+	public void setFatorDeImpacto(double fatorDeImpacto) {
+		this.fatorDeImpacto = fatorDeImpacto;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setArquivos(List<FuncaoDeDado> arquivos) {
+		this.arquivos = arquivos;
+	}
+
+	public void setFuncoesDeTransacao(List<FuncaoDeTransacao> funcoesDeTransacao) {
+		this.funcoesDeTransacao = funcoesDeTransacao;
+	}
+	
+	
 }

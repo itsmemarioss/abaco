@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import br.com.mario.abaco.model.sisp2_2.ProjetoFactory;
 import br.com.mario.abaco.model.sisp2_2.TipoContagemSISP;
 
 @Entity
@@ -38,6 +39,10 @@ public class Analise {
 	
 	@ManyToOne
 	private Sistema sistema;
+	
+	public String getDescricao(){
+		return "Projeto de "+tipoDeContagem.getDescricao()+" "+sistema.getNome();
+	}
 
 	public Long getId() {
 		return id;
@@ -56,7 +61,7 @@ public class Analise {
 	}
 
 	public String getFronteira() {
-		return fronteira;
+		return fronteira==null || fronteira.isEmpty()?"Não informado":fronteira;
 	}
 
 	public void setFronteira(String fronteira) {
@@ -64,7 +69,7 @@ public class Analise {
 	}
 
 	public String getEscopo() {
-		return escopo;
+		return escopo==null || escopo.isEmpty()?"Não informado":escopo;
 	}
 
 	public void setEscopo(String escopo) {
@@ -85,7 +90,7 @@ public class Analise {
 
 	public void setTipoDeContagem(TipoContagemSISP tipoDeContagem) {
 		this.tipoDeContagem = tipoDeContagem;
-		this.projeto = tipoDeContagem.getProjeto();
+		this.projeto = ProjetoFactory.criar(tipoDeContagem);
 		
 	}
 

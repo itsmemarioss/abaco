@@ -61,9 +61,6 @@ public class AnaliseController {
 		case DESENVOLVIMENTO:
 			pagina += "/desenvolvimento";
 			break;
-		case MANUTENCAO_CORRETIVA:
-			pagina += "/manutencao/corretiva";
-			break;
 		case MELHORIA:
 			pagina += "/melhoria";
 			break;

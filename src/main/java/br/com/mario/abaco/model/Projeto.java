@@ -1,5 +1,6 @@
 package br.com.mario.abaco.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -7,6 +8,11 @@ public abstract class Projeto {
 
 	private Long id;
 	private List<Contagem> contagens;
+	
+	public Projeto() {
+		super();
+		contagens = new ArrayList<>();
+	}
 
 	public Long getId() {
 		return id;
@@ -25,5 +31,7 @@ public abstract class Projeto {
 	}
 
 	public abstract void encerrarContagem();
+	
+	public abstract double total();
 
 }
