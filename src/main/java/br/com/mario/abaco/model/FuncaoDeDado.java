@@ -1,5 +1,8 @@
 package br.com.mario.abaco.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class FuncaoDeDado extends Funcao {
 
 	private int tipoDeRegistros;

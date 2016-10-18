@@ -80,7 +80,8 @@ public class ProjetoAplicacaoController {
 	@RequestMapping("/next")
 	public ModelAndView next(RedirectAttributes attr){
 		ModelAndView mv = new ModelAndView("redirect:/contagem/resumo");
-		attr.addFlashAttribute(analise);
+		attr.addFlashAttribute("analise", analise);
+		attr.addFlashAttribute("urlAnterior", "/contagem/aplicacao");
 		aplicacao.encerrarContagem();
 		return mv;
 	}

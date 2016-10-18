@@ -2,18 +2,25 @@ package br.com.mario.abaco.model.sisp2_2;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import br.com.mario.abaco.model.Contagem;
 import br.com.mario.abaco.model.FuncaoDeDado;
 import br.com.mario.abaco.model.FuncaoDeTransacao;
 import br.com.mario.abaco.model.Projeto;
 
+@Entity
 public class ProjetoDeAplicacao extends Projeto{
 	
 	private transient Contagem pfInstalados = new Contagem("Pontos de Função instalados");
+	private boolean encerrado;
 
 	@Override
 	public void encerrarContagem() {
-		addContagem(pfInstalados);
+		if (!encerrado) {
+			addContagem(pfInstalados);
+			encerrado = true;
+		}
 	}
 	
 	public void addFuncaoDeDado(FuncaoDeDado funcao){

@@ -4,11 +4,14 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+
+@Entity
 public class FuncaoDeTransacao extends Funcao {
 	
 	//remover e usar tamanho do Set
 	private int arquivosReferenciados;
-	private Set<FuncaoDeDado> arquivos = new HashSet<>();
+	private transient Set<FuncaoDeDado> arquivos = new HashSet<>();
 	private TipoFuncaoTransacao tipo;
 	
 	public FuncaoDeTransacao(){}

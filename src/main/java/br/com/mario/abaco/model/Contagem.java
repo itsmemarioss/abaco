@@ -4,8 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Contagem {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String descricao;
 	private double fatorDeImpacto = 1;
 	
@@ -16,7 +28,12 @@ public class Contagem {
 		funcoesDeTransacao = new ArrayList<>();
 	}
 
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="contagem_id")
 	private List<FuncaoDeDado> arquivos;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="contagem_id")
 	private List<FuncaoDeTransacao> funcoesDeTransacao;
 	
 	public double total(){
