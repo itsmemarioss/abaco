@@ -8,18 +8,7 @@
 </head>
 
 <section layout:fragment="conteudo">
-	<!-- mensagens -->
-	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-		<span th:text="${mensagem}"></span>
-	</div>
 
-	<div>
-		<ol class="breadcrumb">
-			<li><a href="#">Dados Gerais</a></li>
-			<li><a href="#">Contagem</a></li>
-			<li class="active">Confirmar</li>
-		</ol>
-	</div>
 	<div class="panel panel-default" th:object="${analise}">
 		<div class="panel-heading">
 			<h3 class="panel-title">Resumo</h3>
@@ -104,10 +93,5 @@
 		</div><!-- fim panel body -->
 
 	</div><!-- fim panel -->
-	
-	<ul class="pager">
-		<li class="previous"><a href="/contagem/resumo/back">Voltar</a></li>
-		<li class="next"><a href="/contagem/resumo/next">Salvar</a></li>
-	</ul>
 </section>
 </html>

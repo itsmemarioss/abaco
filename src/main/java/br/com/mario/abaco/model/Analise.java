@@ -45,6 +45,11 @@ public class Analise {
 	@ManyToOne
 	private Sistema sistema;
 	
+	@Override
+	public String toString() {
+		return "Analise [tipoDeContagem=" + tipoDeContagem.getDescricao() + ", sistema=" + sistema.getNome() + "]";
+	}
+	
 	public String getDescricao(){
 		return "Projeto de "+tipoDeContagem.getDescricao()+" "+sistema.getNome();
 	}

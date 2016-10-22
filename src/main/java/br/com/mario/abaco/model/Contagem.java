@@ -27,7 +27,9 @@ public class Contagem {
 		arquivos = new ArrayList<>();
 		funcoesDeTransacao = new ArrayList<>();
 	}
-
+	
+	Contagem() {}
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="contagem_id")
 	private List<FuncaoDeDado> arquivos;
