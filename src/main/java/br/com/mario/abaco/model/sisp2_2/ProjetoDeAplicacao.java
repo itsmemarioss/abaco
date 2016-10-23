@@ -12,31 +12,24 @@ import br.com.mario.abaco.model.Projeto;
 @Entity
 public class ProjetoDeAplicacao extends Projeto{
 	
-	private transient Contagem pfInstalados = new Contagem("Pontos de Função instalados");
-	private boolean encerrado;
-
-	@Override
-	public void encerrarContagem() {
-		if (!encerrado) {
-			addContagem(pfInstalados);
-			encerrado = true;
-		}
+	public ProjetoDeAplicacao() {
+		getContagens().add(new Contagem("Pontos de Função instalados"));
 	}
-	
+
 	public void addFuncaoDeDado(FuncaoDeDado funcao){
-		pfInstalados.addFuncaoDeDado(funcao);
+		getContagens().get(0).addFuncaoDeDado(funcao);
 	}
 	
 	public void addFuncaoDeTransacao(FuncaoDeTransacao funcao){
-		pfInstalados.addFuncaoDeTransacao(funcao);
+		getContagens().get(0).addFuncaoDeTransacao(funcao);
 	}
 
 	public List<FuncaoDeDado> getArquivos(){
-		return pfInstalados.getArquivos();
+		return getContagens().get(0).getArquivos();
 	}
 	
 	public List<FuncaoDeTransacao> getTransacoes(){
-		return pfInstalados.getFuncoesDeTransacao();
+		return getContagens().get(0).getFuncoesDeTransacao();
 	}
 
 	@Override

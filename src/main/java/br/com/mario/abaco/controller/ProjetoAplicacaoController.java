@@ -1,11 +1,9 @@
 package br.com.mario.abaco.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -13,59 +11,49 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.mario.abaco.model.Analise;
 import br.com.mario.abaco.model.FuncaoDeDado;
 import br.com.mario.abaco.model.FuncaoDeTransacao;
-import br.com.mario.abaco.model.TipoFuncaoDado;
-import br.com.mario.abaco.model.TipoFuncaoTransacao;
 import br.com.mario.abaco.model.sisp2_2.ProjetoDeAplicacao;
 
 @Controller
 @Scope("session")
 @RequestMapping("/contagem")
-public class ProjetoAplicacaoController {
+public class ProjetoAplicacaoController extends ProjetoController<ProjetoDeAplicacao>{
 	
-	private Analise analise;
-	private ProjetoDeAplicacao aplicacao;
-	//TODO: criar sevirce
-
+	@Override
 	@RequestMapping("/aplicacao")
 	public ModelAndView pagina(@ModelAttribute("analise") Analise analise){
-		ModelAndView mv = new ModelAndView("contagem-aplicacao");
+		ModelAndView mv = new ModelAndView(PAG_CONTAGEM);
 		
 		this.analise = analise;
-		this.aplicacao = (ProjetoDeAplicacao) analise.getProjeto();
+		this.projeto = (ProjetoDeAplicacao) analise.getProjeto();
 		
 		addObjects(mv);
 		
 		return mv;
 	}
 	
-	private void addObjects(ModelAndView mv) {
-		mv.addObject("analise", analise);
-		
-		mv.addObject("arquivos", aplicacao.getArquivos());
-		mv.addObject("funcaoDeDado", new FuncaoDeDado());
-		
-		mv.addObject("transacoes", aplicacao.getTransacoes());
-		mv.addObject("funcaoDeTransacao", new FuncaoDeTransacao());
-		
-		mv.addObject("projeto", aplicacao);
-	}
+	@RequestMapping("/funcaoDeDado/{tab}")
+	public ModelAndView addFuncaoDeDado(@PathVariable int tab, FuncaoDeDado funcao){
+		ModelAndView mv = new ModelAndView(PAG_CONTAGEM);
 
-	@RequestMapping("/funcaoDeDado")
-	public ModelAndView addFuncaoDeDado(FuncaoDeDado funcao){
-		ModelAndView mv = new ModelAndView("contagem-aplicacao");
-
-		aplicacao.addFuncaoDeDado(funcao);
+		System.out.println(tab);
+		projeto.addFuncaoDeDado(tab, funcao);
 		addObjects(mv);
 		
 		return mv;
 	}
 	
+	@Override
+	void addObjects(ModelAndView mv) {
+		super.addObjects(mv);
+		mv.addObject("arquivos", projeto.getArquivos());
+		mv.addObject("transacoes", projeto.getTransacoes());
+	}
 
 	@RequestMapping("/funcaoDeTransacao")
 	public ModelAndView addFuncaoDeTransacao(FuncaoDeTransacao funcao){
-		ModelAndView mv = new ModelAndView("contagem-aplicacao");
+		ModelAndView mv = new ModelAndView(PAG_CONTAGEM);
 
-		aplicacao.addFuncaoDeTransacao(funcao);
+		projeto.addFuncaoDeTransacao(funcao);
 		addObjects(mv);
 		
 		return mv;
@@ -82,18 +70,7 @@ public class ProjetoAplicacaoController {
 		ModelAndView mv = new ModelAndView("redirect:/contagem/resumo");
 		attr.addFlashAttribute("analise", analise);
 		attr.addFlashAttribute("urlAnterior", "/contagem/aplicacao");
-		aplicacao.encerrarContagem();
 		return mv;
-	}
-	
-	@ModelAttribute
-	public List<TipoFuncaoDado> tipoFuncaoDado(){
-		return Arrays.asList(TipoFuncaoDado.values());
-	}
-	
-	@ModelAttribute
-	public List<TipoFuncaoTransacao> tipoFuncaoTransacao(){
-		return Arrays.asList(TipoFuncaoTransacao.values());
 	}
 	
 }

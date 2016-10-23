@@ -40,15 +40,21 @@ public abstract class Projeto {
 	}
 
 	public List<Contagem> getContagens() {
-		return Collections.unmodifiableList(contagens);
+		return contagens;
 	}
 
 	public void addContagem(Contagem contagem){
 		contagens.add(contagem);
 	}
-
-	public abstract void encerrarContagem();
 	
+	public void addFuncaoDeDado(int idLista, FuncaoDeDado funcao){
+		getContagens().get(idLista).addFuncaoDeDado(funcao);
+	}
+	
+	public void addFuncaoDeTransacao(int idLista, FuncaoDeTransacao funcao){
+		getContagens().get(idLista).addFuncaoDeTransacao(funcao);
+	}
+
 	public abstract double total();
 
 }

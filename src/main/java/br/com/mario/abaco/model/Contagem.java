@@ -20,16 +20,23 @@ public class Contagem {
 	private Long id;
 	private String descricao;
 	private double fatorDeImpacto = 1;
-	
-	public Contagem(String descricao) {
-		super();
-		this.descricao = descricao;
+
+	Contagem() {
 		arquivos = new ArrayList<>();
 		funcoesDeTransacao = new ArrayList<>();
 	}
 	
-	Contagem() {}
+	public Contagem(String descricao) {
+		this();
+		this.descricao = descricao;
+	}
 	
+	public Contagem(String descricao, double fatorDeImpacto) {
+		this();
+		this.descricao = descricao;
+		this.fatorDeImpacto = fatorDeImpacto;
+	}
+
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="contagem_id")
 	private List<FuncaoDeDado> arquivos;

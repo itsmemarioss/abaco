@@ -25,11 +25,12 @@ $('#modalFuncaoDeDados').on('show.bs.modal', function(event){
 	
 	var form = modal.find('form');
 	var action = form.data('url-base');
+	//var input = $('#idtab').attr(button.data('idtab'));//pegando valor do index do tab para passar para o spring
 	
 	if(!action.endsWith('/')){
 		action+='/';
 	}
-	form.attr('action',action+button.data('action'));
+	form.attr('action',action+button.data('action')+'/'+button.data('idtab'));
 	
 });
 

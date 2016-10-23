@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+<head>
+<title>Contagem de Aplicação</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<!-- mensagens -->
+	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		<span th:text="${mensagem}"></span>
+	</div>
+
+
+	<div>
+		<ol class="breadcrumb">
+			<li><a href="#">Dados Gerais</a></li>
+			<li class="active">Contagem</li>
+			<li><a href="#">Finalizar</a></li>
+		</ol>
+	</div>
+
+	<div class="panel panel-default" th:object="${analise}">
+		<div class="panel-heading">
+			<h3 class="panel-title"
+				th:text="|Contagem de *{tipoDeContagem.descricao} - *{sistema.nome}|"></h3>
+		</div>
+		<div class="panel-body">
+			<a class="btn btn-link btn-xs" data-toggle="collapse"
+				data-target="#demo" title="Ajuda" rel="tooltip" data-placement="top">
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</a>
+			<div id="demo" class="collapse in">
+				<blockquote class="blockquote-reverse">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat.</p>
+					<footer>Manual SISP</footer>
+				</blockquote>
+			</div>
+			<hr />
+
+			<!-- Abas -->
+			<ul class="nav nav-tabs">
+				<li th:each="contagem,stat: *{projeto.contagens}"><a
+					th:text="${contagem.descricao}" data-toggle="tab"
+					th:href="|#tab${stat.index}|"> </a></li>
+			</ul>
+
+			<!-- conteúdo abas -->
+			<div class="tab-content"
+				th:each="contagem,stat: *{projeto.contagens}">
+				<div th:id="|tab${stat.index}|" class="tab-pane fade">
+					<br/>
+					<div class="panel-group" id="accordion">
+
+						<!-- Funções de Dados -->
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="clearfix">
+									<h3 class="panel-title titulo-panel">
+										<a data-toggle="collapse" data-parent="#accordion"
+											href="#collapse1"> Funções de Dados</a>
+									</h3>
+									<a class="btn btn-link link-panel" data-toggle="modal"
+										data-target="#modalFuncaoDeDados" 
+										th:attr="data-action='funcaoDeDado', data-idtab=${stat.index}">Adicionar</a>
+								</div>
+							</div>
+							<div id="collapse1" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<table class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Descrição</th>
+												<th>Tipo</th>
+												<th>Complexidade</th>
+												<th>Contribuição</th>
+												<th class="col-md-1">Opções</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="arquivo : ${arquivos}">
+												<td th:text="${arquivo.descricao}"></td>
+												<td th:text="${arquivo.tipo}"></td>
+												<td th:text="${arquivo.complexidade}"></td>
+												<td th:text="|${arquivo.contribuicao} PF|"></td>
+												<!-- Opções -->
+												<td class="text-center"><a class="btn btn-link btn-xs"
+													href="#" title="Editar" rel="tooltip" data-placement="top">
+														<span class="glyphicon glyphicon-pencil"></span>
+												</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+													title="Excluir" rel="tooltip" data-placement="top"> <span
+														class="glyphicon glyphicon-remove"></span>
+												</a></td>
+											</tr>
+											<tr>
+												<td colspan="5" th:if="${#lists.isEmpty(arquivos)}">
+													Nenhuma função de dado adicionada</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- Funções de Transação -->
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="clearfix">
+
+									<h3 class="panel-title titulo-panel">
+										<a data-toggle="collapse" data-parent="#accordion"
+											href="#collapse2"> Funções de Transação</a>
+									</h3>
+									<a class="btn btn-link link-panel" data-toggle="modal"
+										data-target="#modalFuncaoDeTransacao"
+										th:attr="data-action='funcaoDeTransacao'">Adicionar</a>
+								</div>
+							</div>
+							<div id="collapse2" class="panel-collapse collapse">
+								<div class="panel-body">
+									<table class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Descrição</th>
+												<th>Tipo</th>
+												<th>Complexidade</th>
+												<th>Contribuição</th>
+												<th class="col-md-1">Opções</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="transacao : ${transacoes}">
+												<td th:text="${transacao.descricao}"></td>
+												<td th:text="${transacao.tipo}"></td>
+												<td th:text="${transacao.complexidade}"></td>
+												<td th:text="|${transacao.contribuicao} PF|"></td>
+												<!-- Opções -->
+												<td class="text-center"><a class="btn btn-link btn-xs"
+													href="#" title="Editar" rel="tooltip" data-placement="top">
+														<span class="glyphicon glyphicon-pencil"></span>
+												</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+													title="Excluir" rel="tooltip" data-placement="top"> <span
+														class="glyphicon glyphicon-remove"></span>
+												</a></td>
+											</tr>
+											<tr>
+												<td colspan="5" th:if="${#lists.isEmpty(transacoes)}">
+													Nenhuma função de transação adicionada</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div layout:include="modal/funcao-de-dado"></div>
+		<div layout:include="modal/funcao-de-transacao"></div>
+	</div>
+	<ul class="pager">
+		<li class="previous"><a href="javascript:history.back()">Voltar</a></li>
+		<li class="next"><a href="/contagem/next">Avançar</a></li>
+	</ul>
+</section>
+
+</html>
