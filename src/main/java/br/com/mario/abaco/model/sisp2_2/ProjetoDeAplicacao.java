@@ -13,7 +13,7 @@ import br.com.mario.abaco.model.Projeto;
 public class ProjetoDeAplicacao extends Projeto{
 	
 	public ProjetoDeAplicacao() {
-		getContagens().add(new Contagem("Pontos de Função instalados"));
+		getContagens().add(new Contagem("Pontos de Função Instalados"));
 	}
 
 	public void addFuncaoDeDado(FuncaoDeDado funcao){
@@ -32,9 +32,4 @@ public class ProjetoDeAplicacao extends Projeto{
 		return getContagens().get(0).getFuncoesDeTransacao();
 	}
 
-	@Override
-	public double total() {
-		return getContagens().stream().mapToDouble(Contagem::total).sum();
-	}
-	
 }

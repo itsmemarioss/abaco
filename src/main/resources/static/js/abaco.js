@@ -19,21 +19,21 @@ $('#modalExcluir').on('show.bs.modal', function(event){
 	modal.find('.modal-body span').html('Deseja excluir o sistema <strong>'+nome+'</strong>?');
 });
 
-$('#modalFuncaoDeDados').on('show.bs.modal', function(event){
+$('.js-modalFuncao').on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);	
 	var modal = $(this);
 	
 	var form = modal.find('form');
 	var action = form.data('url-base');
-	//var input = $('#idtab').attr(button.data('idtab'));//pegando valor do index do tab para passar para o spring
 	
 	if(!action.endsWith('/')){
 		action+='/';
 	}
-	form.attr('action',action+button.data('action')+'/'+button.data('idtab'));
+	
+	form.attr('action',action+button.data('controller')+'/'+button.data('action')+'/'+button.data('idtab'));
 	
 });
-
+/*
 $('#modalFuncaoDeTransacao').on('show.bs.modal', function(event){
 	var button = $(event.relatedTarget);	
 	var modal = $(this);
@@ -46,7 +46,7 @@ $('#modalFuncaoDeTransacao').on('show.bs.modal', function(event){
 	}
 	form.attr('action',action+button.data('action'));
 	
-});
+});*/
 
 $(function(){
 	$('[rel="tooltip"]').tooltip();

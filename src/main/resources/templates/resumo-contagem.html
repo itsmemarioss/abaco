@@ -45,9 +45,9 @@
 					th:href="|#tab${stat.index}|"> </a></li>
 			</ul>
 
-			<div class="tab-content"
-				th:each="contagem,stat: *{projeto.contagens}">
-				<div th:id="|tab${stat.index}|" class="tab-pane fade">
+			<div class="tab-content">
+				<div th:id="|tab${stat.index}|" class="tab-pane fade"
+					th:each="contagem,stat: *{projeto.contagens}">
 
 					<!-- Funções de Dados -->
 					<h4>Funções de Dados</h4>

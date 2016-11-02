@@ -15,13 +15,15 @@ import br.com.mario.abaco.model.sisp2_2.ProjetoDeAplicacao;
 
 @Controller
 @Scope("session")
-@RequestMapping("/contagem")
+@RequestMapping("/contagem/aplicacao")
 public class ProjetoAplicacaoController extends ProjetoController<ProjetoDeAplicacao>{
 	
+	private static final String NOME = "aplicacao";
+
 	@Override
-	@RequestMapping("/aplicacao")
+	@RequestMapping
 	public ModelAndView pagina(@ModelAttribute("analise") Analise analise){
-		ModelAndView mv = new ModelAndView(PAG_CONTAGEM);
+		ModelAndView mv = new ModelAndView(pagina());
 		
 		this.analise = analise;
 		this.projeto = (ProjetoDeAplicacao) analise.getProjeto();
@@ -30,33 +32,12 @@ public class ProjetoAplicacaoController extends ProjetoController<ProjetoDeAplic
 		
 		return mv;
 	}
-	
-	@RequestMapping("/funcaoDeDado/{tab}")
-	public ModelAndView addFuncaoDeDado(@PathVariable int tab, FuncaoDeDado funcao){
-		ModelAndView mv = new ModelAndView(PAG_CONTAGEM);
 
-		System.out.println(tab);
-		projeto.addFuncaoDeDado(tab, funcao);
-		addObjects(mv);
-		
-		return mv;
-	}
-	
 	@Override
 	void addObjects(ModelAndView mv) {
 		super.addObjects(mv);
 		mv.addObject("arquivos", projeto.getArquivos());
 		mv.addObject("transacoes", projeto.getTransacoes());
-	}
-
-	@RequestMapping("/funcaoDeTransacao")
-	public ModelAndView addFuncaoDeTransacao(FuncaoDeTransacao funcao){
-		ModelAndView mv = new ModelAndView(PAG_CONTAGEM);
-
-		projeto.addFuncaoDeTransacao(funcao);
-		addObjects(mv);
-		
-		return mv;
 	}
 	
 	@RequestMapping("/voltar")
@@ -65,12 +46,9 @@ public class ProjetoAplicacaoController extends ProjetoController<ProjetoDeAplic
 		return null;
 	}
 	
-	@RequestMapping("/next")
-	public ModelAndView next(RedirectAttributes attr){
-		ModelAndView mv = new ModelAndView("redirect:/contagem/resumo");
-		attr.addFlashAttribute("analise", analise);
-		attr.addFlashAttribute("urlAnterior", "/contagem/aplicacao");
-		return mv;
+	@Override
+	public String getControllerName() {
+		return NOME;
 	}
 	
 }

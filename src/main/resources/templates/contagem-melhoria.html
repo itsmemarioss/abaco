@@ -54,8 +54,34 @@
 			<div class="tab-content">
 
 				<div th:each="contagem,stat: *{projeto.contagens}"
-					th:id="|tab${stat.index}|" class="tab-pane fade" th:classappend="${stat.index==0}? 'in active':'' ">
+					th:id="|tab${stat.index}|" class="tab-pane fade"
+					th:classappend="${stat.index==0}? 'in active':'' ">
 					<br />
+
+					<!-- forms fator de impacto-->
+					<div th:if="${stat.index}==1">
+						<form class="form-inline" action="/contagem/melhoria/fi" method="post">
+							<div class="form-group">
+								<label for="fatorDeImpacto">FI: </label>
+								<select class="form-control" id="fatorDeImpacto" name="fatorDeImpacto">
+									<option th:each="fi : ${fatorDeImpactoList}" th:value="${fi.valor}" 
+										th:text="${fi.descricao}">
+									</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-default">Atualizar</button>
+						</form>
+					</div>
+					
+					<!-- form -->
+					<div th:if="${stat.index==2}">
+						<form class="form-inline" action="#" method="post">
+							<div class="form-group">
+								<label for="fatorDeImpacto">FI: </label>
+								<input type="text" th:value="${contagem.fatorDeImpacto}" disabled="disabled" class="form-control"/>
+							</div>
+						</form>
+					</div>
 
 					<!-- Funções de Dados -->
 					<h3>Funções de Dados</h3>
@@ -128,7 +154,8 @@
 								</a></td>
 							</tr>
 							<tr>
-								<td colspan="5" th:if="${#lists.isEmpty(contagem.funcoesDeTransacao)}">
+								<td colspan="5"
+									th:if="${#lists.isEmpty(contagem.funcoesDeTransacao)}">
 									Nenhuma função de transação adicionada</td>
 							</tr>
 						</tbody>

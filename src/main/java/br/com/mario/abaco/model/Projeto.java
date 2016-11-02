@@ -13,6 +13,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
@@ -48,6 +49,8 @@ public abstract class Projeto {
 	}
 	
 	public void addFuncaoDeDado(int idLista, FuncaoDeDado funcao){
+		System.out.println(idLista+"-"+funcao);
+		
 		getContagens().get(idLista).addFuncaoDeDado(funcao);
 	}
 	
@@ -55,6 +58,8 @@ public abstract class Projeto {
 		getContagens().get(idLista).addFuncaoDeTransacao(funcao);
 	}
 
-	public abstract double total();
+	public double total() {
+		return getContagens().stream().mapToDouble(Contagem::total).sum();
+	}
 
 }

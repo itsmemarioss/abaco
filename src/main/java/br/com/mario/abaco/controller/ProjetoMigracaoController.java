@@ -15,10 +15,12 @@ import br.com.mario.abaco.model.sisp2_2.ProjetoDeMigracao;
 @RequestMapping("/contagem/migracao")
 public class ProjetoMigracaoController extends ProjetoController<ProjetoDeMigracao>{
 	
+	private static final String NOME = "migracao";
+
 	@Override
 	@GetMapping
 	public ModelAndView pagina(@ModelAttribute("analise") Analise analise){
-		ModelAndView mv = new ModelAndView(PAG_CONTAGEM);
+		ModelAndView mv = new ModelAndView(pagina());
 		
 		this.analise = analise;
 		this.projeto = (ProjetoDeMigracao) analise.getProjeto();
@@ -26,6 +28,11 @@ public class ProjetoMigracaoController extends ProjetoController<ProjetoDeMigrac
 		addObjects(mv);
 		
 		return mv;
+	}
+
+	@Override
+	public String getControllerName() {
+		return NOME;
 	}
 	
 }
