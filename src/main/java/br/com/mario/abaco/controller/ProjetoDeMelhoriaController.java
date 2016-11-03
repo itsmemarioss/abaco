@@ -26,11 +26,6 @@ public class ProjetoDeMelhoriaController extends ProjetoController<ProjetoDeMelh
 	private static final String NOME = "melhoria";
 	
 	@Override
-	public String redirectPagina() {
-		return "redirect:/"+pagina();
-	}
-
-	@Override
 	public String pagina() {
 		return "contagem-melhoria";
 	}
@@ -47,12 +42,17 @@ public class ProjetoDeMelhoriaController extends ProjetoController<ProjetoDeMelh
 		
 		return mv;
 	}
+	
+	@Override
+	void addObjects(ModelAndView mv) {
+		super.addObjects(mv);
+		mv.addObject("melhoria", projeto.getContagens().get(1));
+	}
 
 	@PostMapping("fi")
 	public ModelAndView mudaFatorDeImpactoAlterado(double fatorDeImpacto){
 		ModelAndView mv = new ModelAndView(pagina());
 		
-		System.out.println(">>> "+fatorDeImpacto);
 		this.projeto.getContagens().get(1).setFatorDeImpacto(fatorDeImpacto);
 		addObjects(mv);
 		

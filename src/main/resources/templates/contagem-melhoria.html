@@ -60,10 +60,11 @@
 
 					<!-- forms fator de impacto-->
 					<div th:if="${stat.index}==1">
-						<form class="form-inline" action="/contagem/melhoria/fi" method="post">
+						<form class="form-inline" action="/contagem/melhoria/fi" 
+							method="post" th:object="${melhoria}">
 							<div class="form-group">
 								<label for="fatorDeImpacto">FI: </label>
-								<select class="form-control" id="fatorDeImpacto" name="fatorDeImpacto">
+								<select class="form-control" id="fatorDeImpacto" th:field="*{fatorDeImpacto}">
 									<option th:each="fi : ${fatorDeImpactoList}" th:value="${fi.valor}" 
 										th:text="${fi.descricao}">
 									</option>
