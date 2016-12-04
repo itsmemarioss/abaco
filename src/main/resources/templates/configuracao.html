@@ -19,9 +19,15 @@
 			<div class="panel-body">
 
 				<div class="form-group">
-					<label for="instituicao">Instituição</label> <input type="text"
-						class="form-control" id="instituicao" name="instituicao"
+					<label for="instituicao">Instituição</label>
+					<input type="text" class="form-control" id="instituicao" name="instituicao"
 						th:field="*{instituicao}" />
+				</div>
+				
+				<div class="form-group">
+					<label for="instituicao">Destino de arquivos</label>
+					<input type="text" class="form-control"	id="instituicao"
+						name="instituicao" th:field="*{pasta}" />
 				</div>
 
 				<button type="submit" class="btn btn-primary">Salvar</button>

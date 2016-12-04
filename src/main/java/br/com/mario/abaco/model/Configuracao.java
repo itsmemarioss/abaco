@@ -14,6 +14,7 @@ public class Configuracao {
 	private String instituicao;
 	private String email;
 	private String senha;
+	private String pasta;
 	
 	public Long getId() {
 		return id;
@@ -51,7 +52,11 @@ public class Configuracao {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
+	public String getPasta() {
+		return pasta;
+	}
+	public void setPasta(String pasta) {
+		this.pasta = pasta;
+	}
 	
 }

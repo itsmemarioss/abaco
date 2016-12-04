@@ -50,5 +50,10 @@ public class ProjetoAplicacaoController extends ProjetoController<ProjetoDeAplic
 	public String getControllerName() {
 		return NOME;
 	}
+
+	@Override
+	public String ajuda() {
+		return "Contagem de solução desenvolvida e em uso, a fim de identificar a quantidade de pontos de função instalados";
+	}
 	
 }

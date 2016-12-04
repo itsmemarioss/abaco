@@ -15,7 +15,6 @@ public class SistemaConverter implements Converter<String, Sistema>{
 	
 	@Override
 	public Sistema convert(String nome) {
-		System.out.println(nome);
 		Sistema s = service.findByNome(nome); 
 		return s;
 	}

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.mario.abaco.model.ConfiguracaoException;
 import br.com.mario.abaco.model.Sistema;
 import br.com.mario.abaco.repository.SistemaRepository;
+import br.com.mario.abaco.service.SistemaService;
 
 @Controller
 @RequestMapping("/sistema")
@@ -23,6 +25,9 @@ public class SistemaController {
 	
 	@Autowired
 	private SistemaRepository repo;
+	
+	@Autowired
+	private SistemaService service;
 	
 	@GetMapping
 	public ModelAndView pesquisar(){
@@ -43,12 +48,17 @@ public class SistemaController {
 	public String salvar(@Validated Sistema sistema, Errors err, RedirectAttributes attributes){
 		String retorno = "novo-sistema";
 		
-		if(!err.hasErrors()){		
-			repo.save(sistema);
-			retorno="redirect:/sistema/novo";
+		if(!err.hasErrors()){
+			try {
+				service.save(sistema);
+				
+				attributes.addFlashAttribute("mensagem","Sistema salvo com sucesso!");
+				retorno="redirect:/sistema/novo";
+			} catch (ConfiguracaoException e) {
+				err.reject("Upload", e.getMessage());
+			}
+			
 		}
-		
-		attributes.addFlashAttribute("mensagem","Sistema salvo com sucesso!");
 		return retorno;
 	}
 	

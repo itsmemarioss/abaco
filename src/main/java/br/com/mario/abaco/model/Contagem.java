@@ -20,6 +20,7 @@ public class Contagem {
 	private Long id;
 	private String descricao;
 	private double fatorDeImpacto = 1;
+	private boolean conversao;
 
 	Contagem() {
 		arquivos = new ArrayList<>();
@@ -36,6 +37,13 @@ public class Contagem {
 		this.descricao = descricao;
 		this.fatorDeImpacto = fatorDeImpacto;
 	}
+	
+	public Contagem(String descricao, boolean conversao) {
+		this(descricao);
+		this.conversao = conversao;
+	}
+
+
 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="contagem_id")
@@ -90,6 +98,10 @@ public class Contagem {
 
 	public void setFuncoesDeTransacao(List<FuncaoDeTransacao> funcoesDeTransacao) {
 		this.funcoesDeTransacao = funcoesDeTransacao;
+	}
+
+	public boolean isConversao() {
+		return conversao;
 	}
 	
 	

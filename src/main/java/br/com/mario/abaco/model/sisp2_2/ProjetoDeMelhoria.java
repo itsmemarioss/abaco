@@ -34,7 +34,7 @@ public class ProjetoDeMelhoria extends Projeto{
 		getContagens().add(new Contagem("PF Incluídos"));
 		getContagens().add(new Contagem("PF Alterados"));
 		getContagens().add(new Contagem("PF Excluídos",0.3));
-		getContagens().add(new Contagem("PF de Conversão"));
+		getContagens().add(new Contagem("PF de Conversão",true));
 	}
 
 }

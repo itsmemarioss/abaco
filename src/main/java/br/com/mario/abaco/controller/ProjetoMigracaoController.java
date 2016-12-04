@@ -34,5 +34,15 @@ public class ProjetoMigracaoController extends ProjetoController<ProjetoDeMigrac
 	public String getControllerName() {
 		return NOME;
 	}
+
+	@Override
+	public String ajuda() {
+		return "Os projetos de migração de dados devem ser contados como um novo projeto de "
+				+ "desenvolvimento de um sistema. Um projeto de migração deve contemplar minimamente: os ALI mantidos pela "
+				+ "migração, as Entradas Externas – considerando as cargas de dados nos ALI – e, caso "
+				+ "seja solicitado pelo usuário, os relatórios gerenciais das cargas, que serão contados como "
+				+ "Saídas Externas. Todas as contagens de PF devem ser realizadas com base nas "
+				+ "funcionalidades requisitadas e recebidas pelo usuário.";
+	}
 	
 }

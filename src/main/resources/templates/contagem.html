@@ -32,12 +32,9 @@
 				data-target="#demo" title="Ajuda" rel="tooltip" data-placement="top">
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</a>
-			<div id="demo" class="collapse in">
+			<div id="demo" class="collapse">
 				<blockquote class="blockquote-reverse">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+					<p th:text="${ajuda}"></p>
 					<footer>Manual SISP</footer>
 				</blockquote>
 			</div>
@@ -56,7 +53,12 @@
 				<div th:each="contagem,stat: *{projeto.contagens}"
 					th:id="|tab${stat.index}|" class="tab-pane fade" th:classappend="${stat.index==0}? 'in active':'' ">
 					<br />
-
+					
+					<!-- Alerta Conversão -->
+					<div th:if="${contagem.isConversao()}" class="alert alert-warning" role="alert">
+							É recomenda a supressão do <strong>PF_CONVERSÃO</strong> das fórmulas quando for caracterizado um esforço relativamente maior dessa atividade, conforme descrito na seção 3.3. do manual.
+					</div>
+					
 					<!-- Funções de Dados -->
 					<h3>Funções de Dados</h3>
 					<a class="btn btn-link link-panel" data-toggle="modal"

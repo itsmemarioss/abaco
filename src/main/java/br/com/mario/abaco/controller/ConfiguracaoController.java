@@ -29,12 +29,12 @@ public class ConfiguracaoController {
 	public ModelAndView pagina() {
 		ModelAndView mv = new ModelAndView(PAG);
 
-		try {
-			conf = repo.getOne(1l);
-		} catch (EntityNotFoundException e) {
-			conf = new Configuracao();
-		}
-		mv.addObject("conf", conf);
+		conf = repo.findOne(1l);
+		
+		if(conf==null)
+			mv.addObject("conf", new Configuracao());
+		else
+			mv.addObject("conf", conf);
 
 		return mv;
 	}
@@ -47,13 +47,12 @@ public class ConfiguracaoController {
 		attr.addFlashAttribute("mensagem", "Configuração salva com sucesso!");
 		return mv;
 	}
-	
-	 @ExceptionHandler(value = Exception.class)
-	  public ModelAndView
-	  defaultErrorHandler(HttpServletRequest req, Exception e){
-	    ModelAndView mav = new ModelAndView(PAG);
-	    mav.addObject("conf", new Configuracao());
-	    return mav;
-	  }
+
+	@ExceptionHandler(value = EntityNotFoundException.class)
+	public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) {
+		ModelAndView mav = new ModelAndView(PAG);
+		mav.addObject("conf", new Configuracao());
+		return mav;
+	}
 
 }

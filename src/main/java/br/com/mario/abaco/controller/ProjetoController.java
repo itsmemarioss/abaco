@@ -31,6 +31,10 @@ public abstract class ProjetoController<T extends Projeto> {
 	 */
 	public abstract ModelAndView pagina(Analise analise);
 	
+	public abstract String getControllerName();
+	
+	public abstract String ajuda();
+	
 	public String redirectPagina(){
 		return "redirect:/contagem/";
 	}
@@ -39,14 +43,13 @@ public abstract class ProjetoController<T extends Projeto> {
 		return "contagem";
 	}
 	
-	public abstract String getControllerName();
-	
 	void addObjects(ModelAndView mv) {
 		mv.addObject("analise", analise);
 		mv.addObject("funcaoDeDado", new FuncaoDeDado());
 		mv.addObject("funcaoDeTransacao", new FuncaoDeTransacao());
 		mv.addObject("projeto", projeto);
 		mv.addObject("controller", getControllerName());
+		mv.addObject("ajuda",ajuda());
 	}
 
 	@ModelAttribute

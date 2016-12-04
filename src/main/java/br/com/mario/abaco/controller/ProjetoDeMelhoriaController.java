@@ -69,4 +69,11 @@ public class ProjetoDeMelhoriaController extends ProjetoController<ProjetoDeMelh
 		return Arrays.asList(ProjetoDeMelhoria.FatorDeImpacto.values());
 	}
 	
+	@Override
+	public String ajuda() {
+		return "O Projeto de Melhoria (enhancement), também denominado de projeto de melhoria"
+				+ " funcional ou manutenção evolutiva, está associado às mudanças em requisitos funcionais"
+				+ " da aplicação, ou seja, à inclusão de novas funcionalidades, alteração ou exclusão de "
+				+ " funcionalidades em aplicações implantadas.";
+	}	
 }
