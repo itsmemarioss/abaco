@@ -33,7 +33,8 @@
 			<p th:text="${analise.fronteira}"></p>
 			<strong>Escopo: </strong>
 			<p th:text="${analise.escopo}"></p>
-
+			<strong>Responsável: </strong>
+			<p th:text="${analise.responsavel}"></p>
 			<hr />
 			<h3>
 				Contagens <span class="badge"
@@ -48,7 +49,14 @@
 			<div class="tab-content">
 				<div th:id="|tab${stat.index}|" class="tab-pane fade"
 					th:each="contagem,stat: *{projeto.contagens}">
-
+					
+					<!-- Fator de Impacto -->
+					<div th:if="${contagem.fatorDeImpacto!=1}"
+						class="alert alert-warning" role="alert">
+						<strong>Fator de Impacto</strong> = 
+						<span th:text="${contagem.fatorDeImpacto}" th:remove="tag"></span>
+					</div>
+					
 					<!-- Funções de Dados -->
 					<h4>Funções de Dados</h4>
 					<table class="table table-striped">

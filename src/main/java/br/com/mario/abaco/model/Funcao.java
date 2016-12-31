@@ -15,6 +15,7 @@ public abstract class Funcao {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Long id;
 	private String descricao;
+	private String observacao;
 	int tipoDeDados;
 	
 	public abstract Complexidade getComplexidade();
@@ -31,6 +32,12 @@ public abstract class Funcao {
 	}
 	public int getTipoDeDados() {
 		return tipoDeDados;
+	}
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 	
 }

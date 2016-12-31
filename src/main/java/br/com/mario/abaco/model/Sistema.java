@@ -22,6 +22,8 @@ public class Sistema {
 	
 	@Size(max=60, message="Descrição não pode ser maior que 60 caracteres")
 	private String descricao;
+	
+	private String tecnologias;
 
 	public Long getId() {
 		return id;
@@ -45,6 +47,18 @@ public class Sistema {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getTecnologias() {
+		return tecnologias;
+	}
+	
+	/**
+	 * Nome das tecnologias utilizadas no sistema separadas por vírgula
+	 * @param tecnologias
+	 */
+	public void setTecnologias(String tecnologias) {
+		this.tecnologias = tecnologias;
 	}
 
 }

@@ -9,7 +9,7 @@
 
 <section layout:fragment="conteudo">
 
-	<form action="/sistema/salvar" method="post" th:object="${sistema}">
+	<form th:action="@{/sistema/salvar}" method="post" th:object="${sistema}">
 		<div layout:include="layout/mensagem"></div>
 		<div layout:include="layout/mensagensCampos"></div>
 		
@@ -35,6 +35,11 @@
 					<label class="control-label" for="descricao">Descricao</label> 
 					<textarea class="form-control" placeholder="Descricao" rows="5"
 						id="descricao" th:field="*{descricao}" ></textarea>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="techs">Tecnologias</label> 
+					<input type="text" class="form-control" placeholder="Tecnologias" 
+						id="techs" th:field="*{tecnologias}" />
 				</div>
 
 				<button type="submit" class="btn btn-primary">Cadastrar</button>

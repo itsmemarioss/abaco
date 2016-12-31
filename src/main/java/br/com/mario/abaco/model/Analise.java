@@ -31,6 +31,7 @@ public class Analise {
 	private String proposito;
 	private String fronteira;
 	private String escopo;
+	private String responsavel;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="analise_id")
@@ -84,6 +85,14 @@ public class Analise {
 
 	public void setEscopo(String escopo) {
 		this.escopo = escopo;
+	}
+
+	public String getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(String responsavel) {
+		this.responsavel = responsavel;
 	}
 
 	public LocalDate getData() {

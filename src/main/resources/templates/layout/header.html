@@ -6,15 +6,15 @@
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/"> <img alt="Abaco"
-					src="/images/abacus_32.png" />
+				<a class="navbar-brand" href="/">
+				<img alt="Abaco" th:src="@{/images/abacus_32.png}" />
 				</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/analise/nova">Nova Análise</a></li>
-					<li><a href="/sistema">Sistemas</a></li>
-					<li><a href="/configuracao">Configuração</a></li>
+					<li><a th:href="@{/analise/nova}">Nova Análise</a></li>
+					<li><a th:href="@{/sistema}">Sistemas</a></li>
+					<li><a th:href="@{/configuracao}">Configuração</a></li>
 				</ul>
 			</div>
 		</div>

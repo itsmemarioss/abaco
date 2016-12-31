@@ -5,7 +5,7 @@
 
 <div class="modal fade js-modalFuncao" id="modalFuncaoDeTransacao" tabindex="-1">
 	<div class="modal-dialog">
-		<form th:attr="data-url-base='/contagem'" method="post" 
+		<form th:attr="data-url-base=@{/contagem}" method="post" 
 			th:object="${funcaoDeTransacao}">
 
 			<div class="modal-content">
@@ -36,6 +36,11 @@
 						<label class="control-label" for="tipoDeDados">Tipo de Dados</label> 
 							<input type="text" class="form-control" id="tipoDeDados"
 							th:field="*{tipoDeDados}" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="obs">Observação</label> 
+							<input type="text" class="form-control" id="obs"
+							th:field="*{observacao}" />
 					</div>
 				</div>
 				<div class="modal-footer">
