@@ -56,7 +56,7 @@ public class AnaliseController {
 		ModelAndView mv = new ModelAndView(pagina);
 		
 		Long id =analise.getId(); 
-		if(id>0)
+		if(id!=null)
 			analise.setProjeto(repo.getOne(id).getProjeto());
 		
 		analise.setData(LocalDate.now());
