@@ -14,9 +14,9 @@
 	</div>
 	<div class="row">
 		<div class="bs-callout bs-callout-default " th:each="analise: ${analiseList}" >
-			<h4> <a th:text="|Analise #${analise.id}|" th:href="@{/analise/resumo/{id}(id=${analise.id})}"></a></h4>
+			<h4> <a th:text="|Analise #${analise.id} - ${analise.sistema.nome}" th:href="@{/analise/resumo/{id}(id=${analise.id})}"></a></h4>
 			<span class="badge pull-right" th:text="|${analise.projeto.total()} PF|"></span>
-			<p th:text="${analise.proposito}"></p>
+			<p th:text="|Propósito: ${analise.proposito}|"></p>
 		</div>
 	</div>
 </section>

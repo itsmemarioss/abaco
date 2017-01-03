@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import br.com.mario.abaco.controller.converter.SistemaConverter;
+import br.com.mario.abaco.controller.converter.SistemaFormatter;
 import br.com.mario.abaco.service.SistemaService;
 import br.com.mario.abaco.storage.StorageProperties;
 import br.com.mario.abaco.storage.StorageService;
@@ -32,7 +32,7 @@ public class AbacoApplication extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(new SistemaConverter(sistemaService()));
+		registry.addFormatter(new SistemaFormatter(sistemaService()));
 	}
 
 	public static void main(String[] args) {

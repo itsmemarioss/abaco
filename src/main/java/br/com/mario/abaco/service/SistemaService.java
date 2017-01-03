@@ -26,6 +26,10 @@ public class SistemaService {
 		return repo.findByNome(nome);
 	}
 	
+	public Sistema findById(Long id){
+		return repo.getOne(id);
+	}
+	
 	public void save(Sistema sistema) throws ConfiguracaoException{
 
 		String root = null;

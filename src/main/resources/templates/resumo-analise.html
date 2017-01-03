@@ -11,7 +11,10 @@
 
 	<div class="panel panel-default" th:object="${analise}">
 		<div class="panel-heading">
-			<h3 class="panel-title">Resumo</h3>
+			<div class="clearfix">
+				<h3 class="panel-title titulo-panel">Resumo</h3>
+				<a class="btn btn-link link-panel" th:href="@{/analise/editar/{id}(id=${analise.id})}">Editar</a>
+			</div>
 		</div>
 		<div class="panel-body">
 			<p class="lead" th:text="${analise.descricao}"></p>

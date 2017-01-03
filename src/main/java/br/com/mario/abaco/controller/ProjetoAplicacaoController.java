@@ -3,14 +3,10 @@ package br.com.mario.abaco.controller;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.mario.abaco.model.Analise;
-import br.com.mario.abaco.model.FuncaoDeDado;
-import br.com.mario.abaco.model.FuncaoDeTransacao;
 import br.com.mario.abaco.model.sisp2_2.ProjetoDeAplicacao;
 
 @Controller
@@ -42,7 +38,6 @@ public class ProjetoAplicacaoController extends ProjetoController<ProjetoDeAplic
 	
 	@RequestMapping("/voltar")
 	public ModelAndView voltar(){
-		//TODO
 		return null;
 	}
 	

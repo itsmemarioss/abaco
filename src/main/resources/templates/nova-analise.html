@@ -20,40 +20,43 @@
 		</ol>
 	</div>
 
-	<form action="/analise/next" method="post" id="formAnalise">
+	<form action="/analise/next" method="post" id="formAnalise" th:object="${analise}">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Nova Análise</h3>
 			</div>
 			<div class="panel-body">
+				<input type="hidden" th:field="*{id}"/>
+				
 				<div class="form-group">
-					<label>Sistema</label> <select class="form-control" name="sistema">
+					<label>Sistema</label>
+					<select class="form-control" name="sistema" th:field="*{sistema}">
 						<option th:each="sistema : ${sistemaList}"
-							th:value="${sistema.nome}" th:text="${sistema.nome}"></option>
+							th:value="${{sistema}}" th:text="${sistema.nome}"></option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Tipo de Contagem</label> <select class="form-control"
-						name="tipoDeContagem">
+					<label>Tipo de Contagem</label>
+					<select class="form-control" name="tipoDeContagem" th:field="*{tipoDeContagem}">
 						<option th:each="tipo : ${tipoContagemList}" th:value="${tipo}"
 							th:text="${tipo.descricao}"></option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="resp">Responsável</label> <input type="text"
-						class="form-control" id="resp" name="responsavel" />
+					<label for="resp">Responsável</label>
+					<input type="text" class="form-control" id="resp" th:field="*{responsavel}" />
 				</div>
 				<div class="form-group">
-					<label for="prop">Propósito</label> <input type="text"
-						class="form-control" id="prop" name="proposito" />
+					<label for="prop">Propósito</label>
+					<input type="text" class="form-control" id="prop" th:field="*{proposito}" />
 				</div>
 				<div class="form-group">
 					<label>Fronteira</label>
-					<textarea class="form-control" rows="4" cols="50" name="fronteira"></textarea>
+					<textarea class="form-control" rows="4" cols="50" th:field="*{fronteira}"></textarea>
 				</div>
 				<div class="form-group">
 					<label>Escopo</label>
-					<textarea class="form-control" rows="4" cols="50" name="escopo"></textarea>
+					<textarea class="form-control" rows="4" cols="50" th:field="*{escopo}"></textarea>
 				</div>
 			</div>
 		</div>

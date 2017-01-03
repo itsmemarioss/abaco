@@ -5,14 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,27 +33,40 @@ public class AnaliseController {
 	@RequestMapping("/nova")
 	public ModelAndView nova(){
 		ModelAndView mv = new ModelAndView("nova-analise");
+		mv.addObject("analise", new Analise());
+		return mv;
+	}
+	
+	@RequestMapping("/editar/{id}")
+	public ModelAndView editar(@PathVariable Long id){
+		ModelAndView mv = new ModelAndView("nova-analise");
+		Analise a = repo.findOne(id);
+		
+		mv.addObject(a);
+		mv.addObject("projeto", a.getProjeto());
+		
 		return mv;
 	}
 
 	@PostMapping("/next")
-	public ModelAndView salvar(@ModelAttribute("analise") @Validated Analise analise, 
+	public ModelAndView next(@ModelAttribute("analise") @Validated Analise analise, 
 								RedirectAttributes redirect){
 		
 		String pagina = proximaPagina(analise.getTipoDeContagem());
-		
 		ModelAndView mv = new ModelAndView(pagina);
 		
-		analise.setData(LocalDate.now());
-		redirect.addFlashAttribute("analise", analise);
-		//repo.save(analise);
+		Long id =analise.getId(); 
+		if(id>0)
+			analise.setProjeto(repo.getOne(id).getProjeto());
 		
-		//mv.addObject("mensagem","Análise salva com sucesso!");
+		analise.setData(LocalDate.now());
+		
+		redirect.addFlashAttribute("analise", analise);
 		return mv;
 	}
 	
 	@RequestMapping("/resumo/{id}")
-	public ModelAndView editar(@PathVariable Long id){
+	public ModelAndView resumo(@PathVariable Long id){
 		ModelAndView mv = new ModelAndView("resumo-analise");
 		mv.addObject(repo.findOne(id));
 		return mv;

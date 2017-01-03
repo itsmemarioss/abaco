@@ -72,7 +72,7 @@ public class Analise {
 	}
 
 	public String getFronteira() {
-		return fronteira==null || fronteira.isEmpty()?"Não informado":fronteira;
+		return fronteira;
 	}
 
 	public void setFronteira(String fronteira) {
@@ -80,7 +80,7 @@ public class Analise {
 	}
 
 	public String getEscopo() {
-		return escopo==null || escopo.isEmpty()?"Não informado":escopo;
+		return escopo;
 	}
 
 	public void setEscopo(String escopo) {
@@ -108,9 +108,10 @@ public class Analise {
 	}
 
 	public void setTipoDeContagem(TipoContagemSISP tipoDeContagem) {
-		this.tipoDeContagem = tipoDeContagem;
-		this.projeto = ProjetoFactory.criar(tipoDeContagem);
+		if(projeto == null || tipoDeContagem != this.tipoDeContagem)
+			this.projeto = ProjetoFactory.criar(tipoDeContagem);
 		
+		this.tipoDeContagem = tipoDeContagem;
 	}
 
 	public Sistema getSistema() {
@@ -128,8 +129,5 @@ public class Analise {
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
 	}
-
-	
-	
 
 }
