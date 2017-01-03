@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+<head>
+<title>Contagem de Aplicação</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<!-- mensagens -->
+	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		<span th:text="${mensagem}"></span>
+	</div>
+
+	<div>
+		<ol class="breadcrumb">
+			<li><a href="#">Dados Gerais</a></li>
+			<li class="active">Contagem</li>
+			<li><a href="#">Finalizar</a></li>
+		</ol>
+	</div>
+
+	<div class="panel panel-default" th:object="${analise}">
+		<div class="panel-heading">
+			<h3 class="panel-title"
+				th:text="|Contagem de *{tipoDeContagem.descricao} - *{sistema.nome}|"></h3>
+		</div>
+		<div class="panel-body">
+			<a class="btn btn-link btn-xs" data-toggle="collapse"
+				data-target="#demo" title="Ajuda" rel="tooltip" data-placement="top">
+				<span class="glyphicon glyphicon-info-sign"></span>
+			</a>
+			<div id="demo" class="collapse">
+				<blockquote class="blockquote-reverse">
+					<p th:text="${ajuda}"></p>
+					<footer>Manual SISP</footer>
+				</blockquote>
+			</div>
+			<hr />
+
+			<!-- Abas -->
+			<ul class="nav nav-tabs">
+				<li th:each="contagem,stat: *{projeto.contagens}"><a
+					th:text="${contagem.descricao}" data-toggle="tab"
+					th:href="|#tab${stat.index}|"> </a></li>
+			</ul>
+
+			<!-- conteúdo abas -->
+			<div class="tab-content">
+
+				<div th:each="contagem,stat: *{projeto.contagens}"
+					th:id="|tab${stat.index}|" class="tab-pane fade" th:classappend="${stat.index==0}? 'in active':'' ">
+					<br />
+					
+					<!-- Alerta Conversão -->
+					<div th:if="${contagem.isConversao()}" class="alert alert-warning" role="alert">
+							É recomenda a supressão do <strong>PF_CONVERSÃO</strong> das fórmulas quando for caracterizado um esforço relativamente maior dessa atividade, conforme descrito na seção 3.3. do manual.
+					</div>
+					
+					<!-- Funções de Dados -->
+					<h3>Funções de Dados</h3>
+					<a class="btn btn-link link-panel" data-toggle="modal"
+						data-target="#modalFuncaoDeDados"
+						th:attr="data-action='funcaoDeDado', data-idtab=${stat.index}, data-controller=${controller}">
+						Adicionar </a>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Descrição</th>
+								<th>Tipo</th>
+								<th>Complexidade</th>
+								<th>Contribuição</th>
+								<th class="col-md-1">Opções</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="arquivo : ${contagem.arquivos}">
+								<td th:text="${arquivo.descricao}"></td>
+								<td th:text="${arquivo.tipo}"></td>
+								<td th:text="${arquivo.complexidade}"></td>
+								<td th:text="|${arquivo.contribuicao} PF|"></td>
+								<!-- Opções -->
+								<td class="text-center"><a class="btn btn-link btn-xs"
+									href="#" title="Editar" rel="tooltip" data-placement="top">
+										<span class="glyphicon glyphicon-pencil"></span>
+								</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+									title="Excluir" rel="tooltip" data-placement="top"> <span
+										class="glyphicon glyphicon-remove"></span>
+								</a></td>
+							</tr>
+							<tr>
+								<td colspan="5" th:if="${#lists.isEmpty(contagem.arquivos)}">
+									Nenhuma função de dado adicionada</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<br />
+					<!-- Funções de Transação -->
+					<h3>Funções de Transação</h3>
+					<a class="btn btn-link link-panel" data-toggle="modal"
+						data-target="#modalFuncaoDeTransacao"
+						th:attr="data-action='funcaoDeTransacao', data-idtab=${stat.index}, data-controller=${controller}">
+						Adicionar </a>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Descrição</th>
+								<th>Tipo</th>
+								<th>Complexidade</th>
+								<th>Contribuição</th>
+								<th class="col-md-1">Opções</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="transacao : ${contagem.funcoesDeTransacao}">
+								<td th:text="${transacao.descricao}"></td>
+								<td th:text="${transacao.tipo}"></td>
+								<td th:text="${transacao.complexidade}"></td>
+								<td th:text="|${transacao.contribuicao} PF|"></td>
+								<!-- Opções -->
+								<td class="text-center"><a class="btn btn-link btn-xs"
+									href="#" title="Editar" rel="tooltip" data-placement="top">
+										<span class="glyphicon glyphicon-pencil"></span>
+								</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+									title="Excluir" rel="tooltip" data-placement="top"> <span
+										class="glyphicon glyphicon-remove"></span>
+								</a></td>
+							</tr>
+							<tr>
+								<td colspan="5" th:if="${#lists.isEmpty(contagem.funcoesDeTransacao)}">
+									Nenhuma função de transação adicionada</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<div layout:include="modal/funcao-de-dado"></div>
+		<div layout:include="modal/funcao-de-transacao"></div>
+	</div>
+	<ul class="pager">
+		<li class="previous"><a href="javascript:history.back()">Voltar</a></li>
+		<li class="next"><a th:href="|/contagem/${controller}/next|">Avançar</a></li>
+	</ul>
+</section>
+
+</html>

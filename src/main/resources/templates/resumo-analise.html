@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+<head>
+<title>Resumo Análise</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="panel panel-default" th:object="${analise}">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h3 class="panel-title titulo-panel">Resumo</h3>
+				<a class="btn btn-link link-panel" th:href="@{/analise/editar/{id}(id=${analise.id})}">Editar</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<p class="lead" th:text="${analise.descricao}"></p>
+			<hr />
+			<strong>Propósito: </strong>
+			<p th:text="${analise.proposito}"></p>
+			<strong>Fronteira: </strong>
+			<p th:text="${analise.fronteira}"></p>
+			<strong>Escopo: </strong>
+			<p th:text="${analise.escopo}"></p>
+			<strong>Responsável: </strong>
+			<p th:text="${analise.responsavel}"></p>
+
+			<hr />
+			<h3>
+				Contagens <span class="badge"
+					th:text="|${analise.projeto.total()} PF|"></span>
+			</h3>
+			<ul class="nav nav-tabs">
+				<li th:each="contagem,stat: *{projeto.contagens}"><a
+					th:text="${contagem.descricao}" data-toggle="tab"
+					th:href="|#tab${stat.index}|"> </a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div th:id="|tab${stat.index}|" class="tab-pane fade"
+					th:each="contagem,stat: *{projeto.contagens}">
+					
+					<!-- Fator de Impacto -->
+					<div th:if="${contagem.fatorDeImpacto!=1}"
+						class="alert alert-warning" role="alert">
+						<strong>Fator de Impacto</strong> = 
+						<span th:text="${contagem.fatorDeImpacto}" th:remove="tag"></span>
+					</div>
+
+					<!-- Funções de Dados -->
+					<h4>Funções de Dados</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Descrição</th>
+								<th>Tipo</th>
+								<th>Complexidade</th>
+								<th>Contribuição</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="arquivo : ${contagem.arquivos}">
+								<td th:text="${arquivo.descricao}"></td>
+								<td th:text="${arquivo.tipo}"></td>
+								<td th:text="${arquivo.complexidade}"></td>
+								<td th:text="|${arquivo.contribuicao} PF|"></td>
+							</tr>
+							<tr>
+								<td colspan="5" th:if="${#lists.isEmpty(contagem.arquivos)}">Nenhuma
+									função de dado adicionada</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h4>Funções de Transações</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Descrição</th>
+								<th>Tipo</th>
+								<th>Complexidade</th>
+								<th>Contribuição</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="transacao : ${contagem.funcoesDeTransacao}">
+								<td th:text="${transacao.descricao}"></td>
+								<td th:text="${transacao.tipo}"></td>
+								<td th:text="${transacao.complexidade}"></td>
+								<td th:text="|${transacao.contribuicao} PF|"></td>
+							</tr>
+							<tr>
+								<td colspan="5"
+									th:if="${#lists.isEmpty(contagem.funcoesDeTransacao)}">
+									Nenhuma função de transação adicionada</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div><!-- fim panel body -->
+
+	</div><!-- fim panel -->
+</section>
+</html>

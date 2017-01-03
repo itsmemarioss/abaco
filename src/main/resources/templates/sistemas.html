@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+
+<head>
+<title>Sistemas</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<div layout:include="layout/mensagem"></div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h3 class="panel-title titulo-panel">Sistemas</h3>
+				<a class="btn btn-link link-panel" th:href="@{/sistema/novo}">Cadastrar
+					novo sistema</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1">#</th>
+						<th>Nome</th>
+						<th>Descricao</th>
+						<th class="text-center">Opções</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="sistema : ${sistemas}">
+						<td class="text-center" th:text="${sistema.id}"></td>
+						<td th:text="${sistema.nome}"></td>
+						<td th:text="${sistema.descricao}"></td>
+						<td class="text-center">
+							<a class="btn btn-link btn-xs" th:href="@{/sistema/{id}(id=${sistema.id})}"
+								title="Editar" rel="tooltip" data-placement="top">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
+							<a class="btn btn-link btn-xs"
+								title="Arquivos" rel="tooltip" data-placement="top">
+								<span class="glyphicon glyphicon-folder-open"></span>
+							</a>
+							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalExcluir" 
+								th:attr="data-id=${sistema.id}, data-nome=${sistema.nome}"
+								title="Excluir" rel="tooltip" data-placement="top">
+								<span class="glyphicon glyphicon-remove"></span>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" th:if="${#lists.isEmpty(sistemas)}">Nenhum sistema cadastrado</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div layout:include="modal/excluir"></div>
+	</div>
+</section>
+</html>

@@ -1,15 +1,20 @@
 package br.com.mario.abaco.model;
 
-public abstract class FuncaoDeDado extends Funcao {
+import javax.persistence.Entity;
+
+@Entity
+public class FuncaoDeDado extends Funcao {
 
 	private int tipoDeRegistros;
+	private TipoFuncaoDado tipo;
 	
-	FuncaoDeDado(){}
+	public FuncaoDeDado(){}
 	
-	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados) {
+	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados, TipoFuncaoDado tipo) {
 		super();
 		this.tipoDeRegistros = tipoDeRegistros;
 		this.tipoDeDados = tipoDeDados;
+		this.tipo = tipo;
 	}
 
 	@Override
@@ -17,10 +22,24 @@ public abstract class FuncaoDeDado extends Funcao {
 		return CalculaComplexidade.calcula(this);
 	}
 
-	public abstract int getContribuicao();
+	public int getContribuicao(){
+		return CalculaContribuicao.calcula(this);
+	}
 
 	public int getTipoDeRegistros() {
 		return tipoDeRegistros;
+	}
+
+	public TipoFuncaoDado getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoFuncaoDado tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setTipoDeRegistros(int tipoDeRegistros) {
+		this.tipoDeRegistros = tipoDeRegistros;
 	}
 
 }

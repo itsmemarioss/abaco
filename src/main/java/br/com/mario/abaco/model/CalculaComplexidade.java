@@ -34,7 +34,7 @@ public class CalculaComplexidade {
 	public static Complexidade calcula (FuncaoDeTransacao funcao){
 		Complexidade complexidade = null;
 		
-		if(funcao instanceof EntradaExterna)
+		if(funcao.getTipo().equals(TipoFuncaoTransacao.EE))
 			complexidade = calculaParaEntradaExterna(funcao);
 		else
 			complexidade = calculaParaConsultaESaidaExterna(funcao);

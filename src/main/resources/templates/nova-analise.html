@@ -1,60 +1,69 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
 <head>
-<meta charset="UTF-8" />
 <title>Nova Análise</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
-<body>
 
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#"> <img alt="Abaco"
-					src="/images/abacus_32.png" />
-				</a>
-			</div>
-		</div>
-	</nav>
-
+<section layout:fragment="conteudo">
 	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 		<span th:text="${mensagem}"></span>
 	</div>
-	
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Nova Análise</h3>
-		</div>
-		<div class="panel-body">
-			<form action="/analise/salvar" method="post">
 
+	<div>
+		<ol class="breadcrumb">
+			<li class="active">Dados Gerais</li>
+			<li><a href="#">Contagem</a></li>
+			<li><a href="#">Finalizar</a></li>
+		</ol>
+	</div>
+
+	<form action="/analise/next" method="post" id="formAnalise" th:object="${analise}">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Nova Análise</h3>
+			</div>
+			<div class="panel-body">
+				<input type="hidden" th:field="*{id}"/>
+				
 				<div class="form-group">
-					<label for="prop">Propósito</label> <input type="text"
-						class="form-control" placeholder="Propósito" id="prop"
-						name="proposito" />
-				</div>
-				<div class="form-group">
-					<label>Fronteira</label>
-					<textarea class="form-control" rows="4" cols="50" name="fronteira"></textarea>
-				</div>
-				<div class="form-group">
-					<label>Escopo</label>
-					<textarea class="form-control" rows="4" cols="50" name="escopo"></textarea>
+					<label>Sistema</label>
+					<select class="form-control" name="sistema" th:field="*{sistema}">
+						<option th:each="sistema : ${sistemaList}"
+							th:value="${{sistema}}" th:text="${sistema.nome}"></option>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Tipo de Contagem</label>
-					<select class="form-control" name="tipoDeContagem">
-						<option th:each="tipo : ${tipoContagemList}" th:value="${tipo}" th:text="${tipo.descricao}"></option>
+					<select class="form-control" name="tipoDeContagem" th:field="*{tipoDeContagem}">
+						<option th:each="tipo : ${tipoContagemList}" th:value="${tipo}"
+							th:text="${tipo.descricao}"></option>
 					</select>
 				</div>
-
-				<button type="submit" class="btn btn-primary">Cadastrar</button>
-			</form>
+				<div class="form-group">
+					<label for="resp">Responsável</label>
+					<input type="text" class="form-control" id="resp" th:field="*{responsavel}" />
+				</div>
+				<div class="form-group">
+					<label for="prop">Propósito</label>
+					<input type="text" class="form-control" id="prop" th:field="*{proposito}" />
+				</div>
+				<div class="form-group">
+					<label>Fronteira</label>
+					<textarea class="form-control" rows="4" cols="50" th:field="*{fronteira}"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Escopo</label>
+					<textarea class="form-control" rows="4" cols="50" th:field="*{escopo}"></textarea>
+				</div>
+			</div>
 		</div>
-	</div>
+		<ul class="pager">
+			<li class="next"><a href="#" onClick="document.getElementById('formAnalise').submit();">Avançar</a></li>
+		</ul>
+	</form>
 
-	<script src="/js/bootstrap.min.js"></script>
-</body>
+</section>
 </html>

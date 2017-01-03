@@ -14,121 +14,121 @@ public class CalculaComplexidadeTeste {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deveRetornarExecaoParaTipoDeRegistroComValorZero(){
-		calcula(new ArquivoLogicoInterno(0, 1));
+		calcula(new FuncaoDeDado(0, 1, TipoFuncaoDado.ALI));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeBaixaParaArquivos(){
-		assertEquals(Complexidade.BAIXA, calcula(new ArquivoLogicoInterno(1, 19)));
-		assertEquals(Complexidade.BAIXA, calcula(new ArquivoDeInterfaceExterna(5, 19)));
-		assertEquals(Complexidade.BAIXA, calcula(new ArquivoLogicoInterno(2, 19)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeDado(1, 19, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeDado(5, 19, TipoFuncaoDado.AIE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeDado(2, 19, TipoFuncaoDado.ALI)));
 		
-		assertEquals(Complexidade.BAIXA, calcula(new ArquivoLogicoInterno(1, 20)));
-		assertEquals(Complexidade.BAIXA, calcula(new ArquivoDeInterfaceExterna(1, 25)));
-		assertEquals(Complexidade.BAIXA, calcula(new ArquivoLogicoInterno(1, 50)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeDado(1, 20, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeDado(1, 25, TipoFuncaoDado.AIE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeDado(1, 50, TipoFuncaoDado.ALI)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeMediaParaArquivos(){
-		assertEquals(Complexidade.MEDIA, calcula(new ArquivoLogicoInterno(1, 51)));
-		assertEquals(Complexidade.MEDIA, calcula(new ArquivoDeInterfaceExterna(1, 55)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeDado(1, 51, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeDado(1, 55, TipoFuncaoDado.AIE)));
 		
-		assertEquals(Complexidade.MEDIA, calcula(new ArquivoLogicoInterno(2, 30)));
-		assertEquals(Complexidade.MEDIA, calcula(new ArquivoDeInterfaceExterna(3, 21)));
-		assertEquals(Complexidade.MEDIA, calcula(new ArquivoLogicoInterno(4, 50)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeDado(2, 30, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeDado(3, 21, TipoFuncaoDado.AIE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeDado(4, 50, TipoFuncaoDado.ALI)));
 		
-		assertEquals(Complexidade.MEDIA, calcula(new ArquivoLogicoInterno(7, 19)));
-		assertEquals(Complexidade.MEDIA, calcula(new ArquivoDeInterfaceExterna(10, 1)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeDado(7, 19, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeDado(10, 1, TipoFuncaoDado.AIE)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeAltaParaArquivos(){
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoLogicoInterno(2, 51)));
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoDeInterfaceExterna(3, 51)));
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoDeInterfaceExterna(5, 60)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(2, 51, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(3, 51, TipoFuncaoDado.AIE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(5, 60, TipoFuncaoDado.AIE)));
 		
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoLogicoInterno(5, 60)));
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoLogicoInterno(5, 70)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(5, 60, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(5, 70, TipoFuncaoDado.ALI)));
 		
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoLogicoInterno(6, 20)));
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoLogicoInterno(6, 40)));
-		assertEquals(Complexidade.ALTA, calcula(new ArquivoLogicoInterno(8, 60)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(6, 20, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(6, 40, TipoFuncaoDado.ALI)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeDado(8, 60, TipoFuncaoDado.ALI)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeBaixaParaEntradasExternas(){
-		assertEquals(Complexidade.BAIXA, calcula(new EntradaExterna(1, 4)));
-		assertEquals(Complexidade.BAIXA, calcula(new EntradaExterna(1, 3)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 4, TipoFuncaoTransacao.EE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 3, TipoFuncaoTransacao.EE)));
 		
-		assertEquals(Complexidade.BAIXA, calcula(new EntradaExterna(2, 3)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(2, 3, TipoFuncaoTransacao.EE)));
 		
-		assertEquals(Complexidade.BAIXA, calcula(new EntradaExterna(1, 13)));
-		assertEquals(Complexidade.BAIXA, calcula(new EntradaExterna(1, 15)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 13, TipoFuncaoTransacao.EE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 15, TipoFuncaoTransacao.EE)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeMediaParaEntradasExternas(){
-		assertEquals(Complexidade.MEDIA, calcula(new EntradaExterna(1, 16)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(1, 16, TipoFuncaoTransacao.EE)));
 		
-		assertEquals(Complexidade.MEDIA, calcula(new EntradaExterna(2, 5)));
-		assertEquals(Complexidade.MEDIA, calcula(new EntradaExterna(2, 15)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(2, 5, TipoFuncaoTransacao.EE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(2, 15, TipoFuncaoTransacao.EE)));
 		
-		assertEquals(Complexidade.MEDIA, calcula(new EntradaExterna(3, 1)));
-		assertEquals(Complexidade.MEDIA, calcula(new EntradaExterna(5, 4)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(3, 1, TipoFuncaoTransacao.EE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(5, 4, TipoFuncaoTransacao.EE)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeAltaParaEntradasExternas(){
-		assertEquals(Complexidade.ALTA, calcula(new EntradaExterna(2, 16)));
-		assertEquals(Complexidade.ALTA, calcula(new EntradaExterna(2, 17)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(2, 16, TipoFuncaoTransacao.EE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(2, 17, TipoFuncaoTransacao.EE)));
 		
-		assertEquals(Complexidade.ALTA, calcula(new EntradaExterna(3, 5)));
-		assertEquals(Complexidade.ALTA, calcula(new EntradaExterna(4, 8)));
-		assertEquals(Complexidade.ALTA, calcula(new EntradaExterna(3, 16)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(3, 5, TipoFuncaoTransacao.EE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(4, 8, TipoFuncaoTransacao.EE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(3, 16, TipoFuncaoTransacao.EE)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeBaixaParaSaidasEConsultasExternas(){
-		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(1, 4)));
-		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(1, 4)));
-		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(1, 5)));
-		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(1, 5)));
-		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(1, 6)));
-		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(1, 6)));
-		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(1, 19)));
-		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(1, 19)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 4, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 4, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 5, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 5, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 6, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 6, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 19, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(1, 19, TipoFuncaoTransacao.CE)));
 		
-		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(2, 5)));
-		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(2, 4)));
-		assertEquals(Complexidade.BAIXA, calcula(new SaidaExterna(3, 5)));
-		assertEquals(Complexidade.BAIXA, calcula(new CosultaExterna(3, 4)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(2, 5, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(2, 4, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(3, 5, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.BAIXA, calcula(new FuncaoDeTransacao(3, 4, TipoFuncaoTransacao.CE)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeMediaParaSaidasEConsultasExternas(){
-		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(1, 20)));
-		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(1, 21)));
-		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(1, 21)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(1, 20, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(1, 21, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(1, 21, TipoFuncaoTransacao.CE)));
 		
-		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(2, 6)));
-		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(3, 17)));
-		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(2, 19)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(2, 6, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(3, 17, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(2, 19, TipoFuncaoTransacao.CE)));
 		
-		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(4, 4)));
-		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(4, 4)));
-		assertEquals(Complexidade.MEDIA, calcula(new SaidaExterna(5, 5)));
-		assertEquals(Complexidade.MEDIA, calcula(new CosultaExterna(7, 5)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(4, 4, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(4, 4, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(5, 5, TipoFuncaoTransacao.SE)));
+		assertEquals(Complexidade.MEDIA, calcula(new FuncaoDeTransacao(7, 5, TipoFuncaoTransacao.CE)));
 	}
 	
 	@Test
 	public void deveRetornarComplexidadeAltaParaSaidasEConsultasExternas(){
-		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(2, 20)));
-		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(3, 21)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(2, 20, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(3, 21, TipoFuncaoTransacao.CE)));
 		
-		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(4, 6)));
-		assertEquals(Complexidade.ALTA, calcula(new CosultaExterna(4, 7)));
-		assertEquals(Complexidade.ALTA, calcula(new SaidaExterna(5, 8)));
-		assertEquals(Complexidade.ALTA, calcula(new CosultaExterna(7, 19)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(4, 6, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(4, 7, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(5, 8, TipoFuncaoTransacao.CE)));
+		assertEquals(Complexidade.ALTA, calcula(new FuncaoDeTransacao(7, 19, TipoFuncaoTransacao.CE)));
 	}
 
 }

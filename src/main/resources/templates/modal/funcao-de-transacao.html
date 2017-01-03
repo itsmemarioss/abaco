@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="modal fade js-modalFuncao" id="modalFuncaoDeTransacao" tabindex="-1">
+	<div class="modal-dialog">
+		<form th:attr="data-url-base=@{/contagem}" method="post" 
+			th:object="${funcaoDeTransacao}">
+
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">Função de transação</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Tipo de Função</label> 
+						<select class="form-control" th:field="*{tipo}">
+							<option th:each="tipo : ${tipoFuncaoTransacaoList}" th:value="${tipo}"
+								th:text="${tipo.descricao}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="descricao">Descricao</label> 
+							<input type="text" class="form-control" id="descricao"
+							th:field="*{descricao}" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="arquivosReferenciados">Arquivos referenciados</label> 
+							<input type="text" class="form-control" id="arquivosReferenciados"
+							th:field="*{arquivosReferenciados}" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="tipoDeDados">Tipo de Dados</label> 
+							<input type="text" class="form-control" id="tipoDeDados"
+							th:field="*{tipoDeDados}" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="obs">Observação</label> 
+							<input type="text" class="form-control" id="obs"
+							th:field="*{observacao}" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Adicionar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+</html>
