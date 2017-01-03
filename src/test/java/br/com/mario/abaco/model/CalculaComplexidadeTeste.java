@@ -1,12 +1,15 @@
 package br.com.mario.abaco.model;
 
+import static br.com.mario.abaco.model.CalculaComplexidade.calcula;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import org.junit.Ignore;
-
-import static br.com.mario.abaco.model.CalculaComplexidade.*;
-
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class CalculaComplexidadeTeste {
 	
 	@Test(expected=IllegalArgumentException.class)
