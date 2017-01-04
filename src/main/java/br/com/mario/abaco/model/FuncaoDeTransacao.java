@@ -29,7 +29,10 @@ public class FuncaoDeTransacao extends Funcao {
 	
 	@Override
 	public Complexidade getComplexidade() {
-		return CalculaComplexidade.calcula(this);
+		if(arquivosReferenciados == 0 && tipoDeDados == 0)
+			return Complexidade.MEDIA;
+		else
+			return CalculaComplexidade.calcula(this);
 	}
 
 	public Set<FuncaoDeDado> getArquivos() {

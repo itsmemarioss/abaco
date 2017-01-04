@@ -19,7 +19,10 @@ public class FuncaoDeDado extends Funcao {
 
 	@Override
 	public Complexidade getComplexidade() {
-		return CalculaComplexidade.calcula(this);
+		if(tipoDeRegistros == 0 && tipoDeDados == 0)
+			return Complexidade.BAIXA;
+		else
+			return CalculaComplexidade.calcula(this);
 	}
 
 	public int getContribuicao(){

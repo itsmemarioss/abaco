@@ -18,6 +18,13 @@ public abstract class Funcao {
 	private String observacao;
 	int tipoDeDados;
 	
+	/**
+	 * Calcula a complexidade da função baseado nos valores dos tipos de dados e no 
+	 * tipo de registro/arquivos referenciados.
+	 * Caso não seja informado tais valores a complexidade retornada será BAIXA para funções de dados 
+	 * e MEDIA para funções de transação conforme regras da contagem antecipada da NESMA.
+	 * @return
+	 */
 	public abstract Complexidade getComplexidade();
 	public abstract int getContribuicao();
 	
