@@ -20,7 +20,6 @@ public class Sistema {
 	@Column(unique=true)
 	private String nome;
 	
-	@Size(max=60, message="Descrição não pode ser maior que 60 caracteres")
 	private String descricao;
 	
 	private String tecnologias;

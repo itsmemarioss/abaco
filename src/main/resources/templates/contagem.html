@@ -21,13 +21,19 @@
 		</ol>
 	</div>
 
+	<ul class="pager">
+		<li class="previous"><a href="javascript:history.back()">Voltar</a></li>
+		<li class="next"><a th:href="|/contagem/${controller}/next|">Avançar</a></li>
+	</ul>
+
 	<div class="panel panel-default" th:object="${analise}">
 		<div class="panel-heading">
 			<h3 class="panel-title"
-				th:text="|Contagem de *{tipoDeContagem.descricao} - *{sistema.nome}|"></h3>
+				th:text="|Contagem de *{tipoDeContagem.descricao} - *{sistema.nome}|">
+			</h3>
 		</div>
 		<div class="panel-body">
-			<a class="btn btn-link btn-xs" data-toggle="collapse"
+			<!-- <a class="btn btn-link btn-xs" data-toggle="collapse"
 				data-target="#demo" title="Ajuda" rel="tooltip" data-placement="top">
 				<span class="glyphicon glyphicon-info-sign"></span>
 			</a>
@@ -37,6 +43,13 @@
 					<footer>Manual SISP</footer>
 				</blockquote>
 			</div>
+			<hr />-->
+			
+			<strong>Propósito: </strong>
+			<p th:text="${analise.proposito}"></p>
+			<strong>Fronteira: </strong>
+			<p th:text="${analise.fronteira}"></p>
+			<strong>PF Parcial: </strong><span class="badge" th:text="|${analise.projeto.total()} PF|"></span>
 			<hr />
 
 			<!-- Abas -->
@@ -58,83 +71,93 @@
 							É recomenda a supressão do <strong>PF_CONVERSÃO</strong> das fórmulas quando for caracterizado um esforço relativamente maior dessa atividade, conforme descrito na seção 3.3. do manual.
 					</div>
 					
-					<!-- Funções de Dados -->
-					<h3>Funções de Dados</h3>
-					<a class="btn btn-link link-panel" data-toggle="modal"
-						data-target="#modalFuncaoDeDados"
-						th:attr="data-action='funcaoDeDado', data-idtab=${stat.index}, data-controller=${controller}">
-						Adicionar </a>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th>Descrição</th>
-								<th>Tipo</th>
-								<th>Complexidade</th>
-								<th>Contribuição</th>
-								<th class="col-md-1">Opções</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="arquivo : ${contagem.arquivos}">
-								<td th:text="${arquivo.descricao}"></td>
-								<td th:text="${arquivo.tipo}"></td>
-								<td th:text="${arquivo.complexidade}"></td>
-								<td th:text="|${arquivo.contribuicao} PF|"></td>
-								<!-- Opções -->
-								<td class="text-center"><a class="btn btn-link btn-xs"
-									href="#" title="Editar" rel="tooltip" data-placement="top">
-										<span class="glyphicon glyphicon-pencil"></span>
-								</a> <a class="btn btn-link btn-xs" data-toggle="modal"
-									title="Excluir" rel="tooltip" data-placement="top"> <span
-										class="glyphicon glyphicon-remove"></span>
-								</a></td>
-							</tr>
-							<tr>
-								<td colspan="5" th:if="${#lists.isEmpty(contagem.arquivos)}">
-									Nenhuma função de dado adicionada</td>
-							</tr>
-						</tbody>
-					</table>
-
+					<!-- div funções -->
+					<div class="row">
+						<!-- Funções de Dados -->
+						<div class="col-md-6">
+							<!-- Funções de Dados -->
+							<h3>Funções de Dados</h3>
+							<a id="shiftD" class="btn btn-link link-panel"
+								data-toggle="modal" data-target="#modalFuncaoDeDados"
+								th:attr="data-action='funcaoDeDado', data-idtab=${stat.index}, data-controller=${controller}">
+								Adicionar Função de Dado</a>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Descrição</th>
+										<th>Tipo</th>
+										<th>Complexidade</th>
+										<th>Contribuição</th>
+										<th class="col-md-1">Opções</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="arquivo : ${contagem.arquivos}">
+										<td th:text="${arquivo.descricao}"></td>
+										<td th:text="${arquivo.tipo}"></td>
+										<td th:text="${arquivo.complexidade}"></td>
+										<td th:text="|${arquivo.contribuicao} PF|"></td>
+										<!-- Opções -->
+										<td class="text-center"><a class="btn btn-link btn-xs"
+											href="#" title="Editar" rel="tooltip" data-placement="top">
+												<span class="glyphicon glyphicon-pencil"></span>
+										</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+											title="Excluir" rel="tooltip" data-placement="top"> <span
+												class="glyphicon glyphicon-remove"></span>
+										</a></td>
+									</tr>
+									<tr>
+										<td colspan="5" th:if="${#lists.isEmpty(contagem.arquivos)}">
+											Nenhuma função de dado adicionada</td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- fim div Funções de dado -->
+						
+						<!-- Funções de Transação -->
+						<div class="col-md-6">
+							<!-- Funções de Transação -->
+							<h3>Funções de Transação</h3>
+							<a id="shiftT" class="btn btn-link link-panel"
+								data-toggle="modal" data-target="#modalFuncaoDeTransacao"
+								th:attr="data-action='funcaoDeTransacao', data-idtab=${stat.index}, data-controller=${controller}">
+								Adicionar Função de Transação </a>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Descrição</th>
+										<th>Tipo</th>
+										<th>Complexidade</th>
+										<th>Contribuição</th>
+										<th class="col-md-1">Opções</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="transacao : ${contagem.funcoesDeTransacao}">
+										<td th:text="${transacao.descricao}"></td>
+										<td th:text="${transacao.tipo}"></td>
+										<td th:text="${transacao.complexidade}"></td>
+										<td th:text="|${transacao.contribuicao} PF|"></td>
+										<!-- Opções -->
+										<td class="text-center"><a class="btn btn-link btn-xs"
+											href="#" title="Editar" rel="tooltip" data-placement="top">
+												<span class="glyphicon glyphicon-pencil"></span>
+										</a> <a class="btn btn-link btn-xs" data-toggle="modal"
+											title="Excluir" rel="tooltip" data-placement="top"> <span
+												class="glyphicon glyphicon-remove"></span>
+										</a></td>
+									</tr>
+									<tr>
+										<td colspan="5"
+											th:if="${#lists.isEmpty(contagem.funcoesDeTransacao)}">
+											Nenhuma função de transação adicionada</td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- fim div Funções de Transação -->
+					</div><!-- fim div funções -->
+					
 					<br />
-					<!-- Funções de Transação -->
-					<h3>Funções de Transação</h3>
-					<a class="btn btn-link link-panel" data-toggle="modal"
-						data-target="#modalFuncaoDeTransacao"
-						th:attr="data-action='funcaoDeTransacao', data-idtab=${stat.index}, data-controller=${controller}">
-						Adicionar </a>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th>Descrição</th>
-								<th>Tipo</th>
-								<th>Complexidade</th>
-								<th>Contribuição</th>
-								<th class="col-md-1">Opções</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="transacao : ${contagem.funcoesDeTransacao}">
-								<td th:text="${transacao.descricao}"></td>
-								<td th:text="${transacao.tipo}"></td>
-								<td th:text="${transacao.complexidade}"></td>
-								<td th:text="|${transacao.contribuicao} PF|"></td>
-								<!-- Opções -->
-								<td class="text-center"><a class="btn btn-link btn-xs"
-									href="#" title="Editar" rel="tooltip" data-placement="top">
-										<span class="glyphicon glyphicon-pencil"></span>
-								</a> <a class="btn btn-link btn-xs" data-toggle="modal"
-									title="Excluir" rel="tooltip" data-placement="top"> <span
-										class="glyphicon glyphicon-remove"></span>
-								</a></td>
-							</tr>
-							<tr>
-								<td colspan="5" th:if="${#lists.isEmpty(contagem.funcoesDeTransacao)}">
-									Nenhuma função de transação adicionada</td>
-							</tr>
-						</tbody>
-					</table>
-
 				</div>
 			</div>
 		</div>
@@ -145,6 +168,12 @@
 		<li class="previous"><a href="javascript:history.back()">Voltar</a></li>
 		<li class="next"><a th:href="|/contagem/${controller}/next|">Avançar</a></li>
 	</ul>
+	
+	
+</section>
+
+<section layout:fragment="scripts">
+	<!--<script th:src="@{/js/shortcuts.js}"></script> -->
 </section>
 
 </html>

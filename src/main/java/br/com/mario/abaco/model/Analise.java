@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -30,7 +31,10 @@ public class Analise {
 	@NotNull
 	private String proposito;
 	private String fronteira;
+	
+	@Size(max=255, message="O texto do escopo não pode ser maior que 255 caracteres")
 	private String escopo;
+	
 	private String responsavel;
 	
 	@OneToOne(cascade=CascadeType.ALL)
