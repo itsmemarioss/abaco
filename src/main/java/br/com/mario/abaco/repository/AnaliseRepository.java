@@ -6,4 +6,5 @@ import br.com.mario.abaco.model.Analise;
 
 public interface AnaliseRepository extends JpaRepository<Analise, Long>{
 
+	Analise findByEscopo(String escopo);
 }
