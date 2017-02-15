@@ -1,6 +1,5 @@
 package br.com.mario.abaco.controller;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +9,6 @@ import br.com.mario.abaco.model.Analise;
 import br.com.mario.abaco.model.sisp2_2.ProjetoDeAplicacao;
 
 @Controller
-@Scope("session")
 @RequestMapping("/contagem/aplicacao")
 public class ProjetoAplicacaoController extends ProjetoController<ProjetoDeAplicacao>{
 	

@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+/**
+ * @author mario
+ *
+ */
 @Entity
 public class Contagem {
 	
@@ -44,8 +48,6 @@ public class Contagem {
 		this.conversao = conversao;
 	}
 
-
-
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="contagem_id")
 	private List<FuncaoDeDado> arquivos;
@@ -59,6 +61,10 @@ public class Contagem {
 		Stream<Funcao> funcoes = Stream.concat(arquivos.stream(), funcoesDeTransacao.stream());
 		result = funcoes.mapToInt(Funcao::getContribuicao).sum();
 		return result * fatorDeImpacto;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 	
 	public String getDescricao() {
@@ -105,5 +111,9 @@ public class Contagem {
 		return conversao;
 	}
 	
+	@Override
+	public String toString() {
+		return "Contagem [id=" + id + ", descricao=" + descricao + "]";
+	}
 	
 }

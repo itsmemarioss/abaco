@@ -1,6 +1,5 @@
 package br.com.mario.abaco.controller;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.mario.abaco.model.Analise;
 
 @Controller
-@Scope("session")
 @RequestMapping("/contagem/resumo")
 public class ResumoContagemController{
 	

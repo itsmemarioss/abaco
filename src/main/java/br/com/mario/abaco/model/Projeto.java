@@ -24,7 +24,7 @@ public abstract class Projeto {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Long id;
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="projeto_id")
 	private List<Contagem> contagens;
 	
@@ -60,7 +60,9 @@ public abstract class Projeto {
 	}
 
 	public double total() {
-		return getContagens().stream().mapToDouble(Contagem::total).sum();
+		return getContagens().stream()
+				.mapToDouble(Contagem::total)
+				.sum();
 	}
 
 }
