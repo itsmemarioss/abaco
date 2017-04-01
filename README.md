@@ -26,7 +26,6 @@ Para a primeira versão está previsto o desenvolvimento das seguintes funcional
 ### Tecnologias utilizadas
 
 - Java 8
-- Spring Boot 1.4
-- Spring Framework
+- vRaptor 4
 - PostgreSQL
 
