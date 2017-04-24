@@ -5,4 +5,4 @@
  * @author mario
  *
  */
-package br.edu.ufca.abaco.model;
+package br.edu.ufca.abaco.core;
