@@ -27,10 +27,6 @@ public class Analise {
 	
 	private String responsavel;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="analise_id")
-	private Projeto projeto;
-	
 	private LocalDate data;
 		
 	@ManyToOne

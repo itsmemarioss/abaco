@@ -19,7 +19,7 @@ public class FuncaoDeTransacao extends Funcao {
 	public FuncaoDeTransacao(int arquivosReferenciados, int tipoDeDados, TipoFuncaoTransacao tipo) {
 		super();
 		this.arquivosReferenciados = arquivosReferenciados;
-		this.tipoDeDados = tipoDeDados;
+		setTipoDeDados(tipoDeDados);
 		this.tipo = tipo;
 	}
 
@@ -29,7 +29,7 @@ public class FuncaoDeTransacao extends Funcao {
 	
 	@Override
 	public Complexidade getComplexidade() {
-		if(arquivosReferenciados == 0 && tipoDeDados == 0)
+		if(arquivosReferenciados == 0 && getTipoDeDados() == 0)
 			return Complexidade.MEDIA;
 		else
 			return CalculaComplexidade.calcula(this);
