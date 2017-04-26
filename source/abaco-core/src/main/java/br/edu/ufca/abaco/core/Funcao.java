@@ -16,7 +16,7 @@ public abstract class Funcao {
 	private Long id;
 	private String descricao;
 	private String observacao;
-	private int tipoDeDados;
+	int tiposDeDados;
 	
 	/**
 	 * Calcula a complexidade da função baseado nos valores dos tipos de dados e no 
@@ -53,12 +53,12 @@ public abstract class Funcao {
 		this.id = id;
 	}
 	
-	public int getTipoDeDados() {
-		return tipoDeDados;
+	public int getTiposDeDados() {
+		return tiposDeDados;
 	}
 	
-	public void setTipoDeDados(int tipoDeDados) {
-		this.tipoDeDados = tipoDeDados;
+	public void setTiposDeDados(int tiposDeDados) {
+		this.tiposDeDados = tiposDeDados;
 	}
 	
 }

@@ -22,14 +22,8 @@ public class Analise {
 	
 	private String proposito;
 	private String fronteira;
-	
 	private String escopo;
-	
 	private String responsavel;
-	
 	private LocalDate data;
 		
-	@ManyToOne
-	private Sistema sistema;
-	
 }

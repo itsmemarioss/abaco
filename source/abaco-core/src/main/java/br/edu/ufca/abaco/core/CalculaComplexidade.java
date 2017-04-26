@@ -3,25 +3,25 @@ package br.edu.ufca.abaco.core;
 public class CalculaComplexidade {
 
 	public static Complexidade calcula(FuncaoDeDado funcao) {
-		int tipoDeDados = funcao.getTipoDeDados();
-		int tipoDeRegistros = funcao.getTipoDeRegistros();
+		int tiposDeDados = funcao.getTiposDeDados();
+		int tiposDeRegistros = funcao.getTiposDeRegistros();
 		
 		Complexidade complexidade = Complexidade.BAIXA;
 		
-		if (tipoDeRegistros<=0)throw new IllegalArgumentException("O valo do tipo de dados deve ser maior que zero");
+		if (tiposDeRegistros<=0)throw new IllegalArgumentException("O valo do tipo de dados deve ser maior que zero");
 		
-		if (tipoDeRegistros == 1){
-			if(tipoDeDados>50){
+		if (tiposDeRegistros == 1){
+			if(tiposDeDados>50){
 				complexidade = Complexidade.MEDIA;
 			}
-		}else if (tipoDeRegistros <= 5){
-			if(tipoDeDados >20 && tipoDeDados<=50){
+		}else if (tiposDeRegistros <= 5){
+			if(tiposDeDados >20 && tiposDeDados<=50){
 				complexidade = Complexidade.MEDIA;
-			}else if(tipoDeDados>50){
+			}else if(tiposDeDados>50){
 				complexidade = Complexidade.ALTA;
 			}
 		}else{
-			if(tipoDeDados<20){
+			if(tiposDeDados<20){
 				complexidade = Complexidade.MEDIA;
 			}else{
 				complexidade = Complexidade.ALTA;
@@ -43,7 +43,7 @@ public class CalculaComplexidade {
 	}
 
 	private static Complexidade calculaParaConsultaESaidaExterna(FuncaoDeTransacao funcao) {
-		int tipoDeDados = funcao.getTipoDeDados();
+		int tipoDeDados = funcao.getTiposDeDados();
 		int arquivosReferenciados = funcao.getArquivosReferenciados();
 		
 		Complexidade complexidade = Complexidade.BAIXA;
@@ -73,7 +73,7 @@ public class CalculaComplexidade {
 	}
 
 	private static Complexidade calculaParaEntradaExterna(FuncaoDeTransacao funcao) {
-		int tipoDeDados = funcao.getTipoDeDados();
+		int tipoDeDados = funcao.getTiposDeDados();
 		int arquivosReferenciados = funcao.getArquivosReferenciados();
 		
 		Complexidade complexidade = Complexidade.BAIXA;

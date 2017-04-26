@@ -12,8 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 /**
- * Classe que representa o agrupamento de funções medidas.
- * Como pontos de função incluídos, alterados.
+ * Classe que representa o agrupamento de funções medidas,como pontos de função incluídos, excluídos ou alterados.
  * Cada {@link Projeto} define uma ou mais contagens.
  * 
  * @author mario
@@ -28,23 +27,19 @@ public class Contagem {
 	
 	@OneToMany
 	@JoinColumn(name="contagem_id")
-	private List<FuncaoDeDado> funcoesDeDado;
+	private List<FuncaoDeDado> funcoesDeDado = new ArrayList<>();
 	
 	@OneToMany
 	@JoinColumn(name="contagem_id")
-	private List<FuncaoDeTransacao> funcoesDeTransacao;
+	private List<FuncaoDeTransacao> funcoesDeTransacao = new ArrayList<>();
 	
-	public Contagem() {
-		super();
-		funcoesDeDado = new ArrayList<>();
-		funcoesDeTransacao = new ArrayList<>();
-	}
-
+	private float fatorDeImpacto = 1;
+	
 	public double total(){
 		int result = 0;
 		Stream<Funcao> funcoes = Stream.concat(funcoesDeDado.stream(), funcoesDeTransacao.stream());
 		result = funcoes.mapToInt(Funcao::getContribuicao).sum();
-		return result;
+		return result*fatorDeImpacto;
 	}
 
 	public Long getId() {
@@ -57,6 +52,14 @@ public class Contagem {
 
 	public List<FuncaoDeTransacao> getFuncoesDeTransacao() {
 		return funcoesDeTransacao;
+	}
+
+	public float getFatorDeImpacto() {
+		return fatorDeImpacto;
+	}
+
+	public void setFatorDeImpacto(float fatorDeImpacto) {
+		this.fatorDeImpacto = fatorDeImpacto;
 	}
 	
 	

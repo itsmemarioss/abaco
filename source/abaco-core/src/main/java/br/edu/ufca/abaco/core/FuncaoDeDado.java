@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 @Entity
 public class FuncaoDeDado extends Funcao {
 
-	private int tiposDeDados;
 	private int tiposDeRegistros;
 	private TipoFuncaoDado tipo;
 	
@@ -31,7 +30,7 @@ public class FuncaoDeDado extends Funcao {
 		return CalculaContribuicao.calcula(this);
 	}
 
-	public int getTipoDeRegistros() {
+	public int getTiposDeRegistros() {
 		return tiposDeRegistros;
 	}
 
@@ -43,8 +42,8 @@ public class FuncaoDeDado extends Funcao {
 		this.tipo = tipo;
 	}
 
-	public void setTipoDeRegistros(int tipoDeRegistros) {
-		this.tiposDeRegistros = tipoDeRegistros;
+	public void setTiposDeRegistros(int tiposDeRegistros) {
+		this.tiposDeRegistros = tiposDeRegistros;
 	}
 
 }
