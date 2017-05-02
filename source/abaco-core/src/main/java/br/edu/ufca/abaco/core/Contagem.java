@@ -1,7 +1,10 @@
 package br.edu.ufca.abaco.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.persistence.Entity;
@@ -27,11 +30,16 @@ public class Contagem {
 	
 	@OneToMany
 	@JoinColumn(name="contagem_id")
-	private List<FuncaoDeDado> funcoesDeDado = new ArrayList<>();
+	private Set<FuncaoDeDado> funcoesDeDado;
 	
 	@OneToMany
 	@JoinColumn(name="contagem_id")
-	private List<FuncaoDeTransacao> funcoesDeTransacao = new ArrayList<>();
+	private Set<FuncaoDeTransacao> funcoesDeTransacao;
+	
+	public Contagem() {
+		funcoesDeDado = new HashSet<>();
+		funcoesDeTransacao = new HashSet<>();
+	}
 	
 	private float fatorDeImpacto = 1;
 	
@@ -46,20 +54,41 @@ public class Contagem {
 		return id;
 	}
 
-	public List<FuncaoDeDado> getFuncoesDeDado() {
-		return funcoesDeDado;
+	/**
+	 * @return retorna um Set não-modificável das funções de dado
+	 */
+	public Set<FuncaoDeDado> getFuncoesDeDado() {
+		return Collections.unmodifiableSet(funcoesDeDado);
+	}
+	
+	public boolean addFuncaoDeDado(FuncaoDeDado funcao){
+		return funcoesDeDado.add(funcao);
 	}
 
-	public List<FuncaoDeTransacao> getFuncoesDeTransacao() {
-		return funcoesDeTransacao;
+	/**
+	 * @return retorna um Set não-modificável das funções de transação
+	 */
+	public Set<FuncaoDeTransacao> getFuncoesDeTransacao() {
+		return Collections.unmodifiableSet(funcoesDeTransacao);
 	}
 
+	public boolean addFuncaoDeTransacao(FuncaoDeTransacao funcao){
+		return funcoesDeTransacao.add(funcao);
+	}
 	public float getFatorDeImpacto() {
 		return fatorDeImpacto;
 	}
 
 	public void setFatorDeImpacto(float fatorDeImpacto) {
 		this.fatorDeImpacto = fatorDeImpacto;
+	}
+
+	public int totalFuncoesDeDado() {
+		return funcoesDeDado.size();
+	}
+
+	public int totalFuncoesDeTransacao() {
+		return funcoesDeTransacao.size();
 	}
 	
 	
