@@ -1,9 +1,5 @@
 package br.edu.ufca.abaco.core;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 
 @Entity
@@ -11,15 +7,18 @@ public class FuncaoDeTransacao extends Funcao {
 	
 	//remover e usar tamanho do Set
 	private int arquivosReferenciados;
-	private transient Set<FuncaoDeDado> arquivos = new HashSet<>();
 	private TipoFuncaoTransacao tipo;
+	private int tiposDeDados;
 	
-	public FuncaoDeTransacao(){}
+	/**
+	 * @deprecated usado apenas para JPA
+	 */
+	FuncaoDeTransacao(){}
 
-	public FuncaoDeTransacao(int arquivosReferenciados, int tipoDeDados, TipoFuncaoTransacao tipo) {
+	public FuncaoDeTransacao(int arquivosReferenciados, int tiposDeDados, TipoFuncaoTransacao tipo) {
 		super();
 		this.arquivosReferenciados = arquivosReferenciados;
-		setTiposDeDados(tipoDeDados);
+		this.tiposDeDados = tiposDeDados;
 		this.tipo = tipo;
 	}
 
@@ -33,14 +32,6 @@ public class FuncaoDeTransacao extends Funcao {
 			return Complexidade.MEDIA;
 		else
 			return CalculaComplexidade.calcula(this);
-	}
-
-	public Set<FuncaoDeDado> getArquivos() {
-		return Collections.unmodifiableSet(arquivos);
-	}
-	
-	public boolean adicionaArquivo(FuncaoDeDado arquivo){
-		return arquivos.add(arquivo);
 	}
 
 	public TipoFuncaoTransacao getTipo() {
@@ -59,5 +50,42 @@ public class FuncaoDeTransacao extends Funcao {
 	public void setArquivosReferenciados(int arquivosReferenciados) {
 		this.arquivosReferenciados = arquivosReferenciados;
 	}
+
+	public int getTiposDeDados() {
+		return tiposDeDados;
+	}
+
+	public void setTiposDeDados(int tiposDeDados) {
+		this.tiposDeDados = tiposDeDados;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + arquivosReferenciados;
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		result = prime * result + tiposDeDados;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FuncaoDeTransacao other = (FuncaoDeTransacao) obj;
+		if (arquivosReferenciados != other.arquivosReferenciados)
+			return false;
+		if (tipo != other.tipo)
+			return false;
+		if (tiposDeDados != other.tiposDeDados)
+			return false;
+		return true;
+	}
+	
 	
 }
