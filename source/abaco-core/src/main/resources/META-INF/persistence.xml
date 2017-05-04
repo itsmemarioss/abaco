@@ -3,7 +3,7 @@
 	<persistence-unit name="abaco" transaction-type="RESOURCE_LOCAL">
 		<description>persistence de teste com banco h2</description>
 		
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
 		
 		<properties>

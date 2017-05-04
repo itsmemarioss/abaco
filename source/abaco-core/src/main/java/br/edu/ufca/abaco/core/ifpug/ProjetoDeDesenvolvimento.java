@@ -18,6 +18,7 @@ public class ProjetoDeDesenvolvimento implements Projeto{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@OneToOne
 	private Contagem pontosDeFuncaoIncluidos;
 	
 	@OneToOne
