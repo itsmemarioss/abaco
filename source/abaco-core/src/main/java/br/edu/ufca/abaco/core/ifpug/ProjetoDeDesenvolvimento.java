@@ -13,32 +13,29 @@ import br.edu.ufca.abaco.core.FuncaoDeTransacao;
 import br.edu.ufca.abaco.core.Projeto;
 
 @Entity(name="projeto_desenvolvimento")
-public class ProjetoDeDesenvolvimento implements Projeto{
+public class ProjetoDeDesenvolvimento extends Projeto{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne
-	private Contagem pontosDeFuncaoIncluidos;
-	
-	@OneToOne
-	private DetalheAnalise detalhes;
+	private Contagem pfIncluidos;
 	
 	public ProjetoDeDesenvolvimento() {
-		pontosDeFuncaoIncluidos = new Contagem();
+		pfIncluidos = new Contagem();
 	}
 	
 	public void incluiFuncaoDeDado(FuncaoDeDado funcao){
-		pontosDeFuncaoIncluidos.addFuncaoDeDado(funcao);
+		pfIncluidos.addFuncaoDeDado(funcao);
 	}
 	
 	public void incluiFuncaoDeTransacao(FuncaoDeTransacao funcao){
-		pontosDeFuncaoIncluidos.addFuncaoDeTransacao(funcao);
+		pfIncluidos.addFuncaoDeTransacao(funcao);
 	}
 	
 	@Override
 	public double calculaTotal() {
-		return pontosDeFuncaoIncluidos.total();
+		return pfIncluidos.total();
 	}
 
 }
