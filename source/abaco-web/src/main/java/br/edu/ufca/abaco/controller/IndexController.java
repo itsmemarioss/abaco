@@ -1,4 +1,4 @@
-package br.com.caelum.vraptor.controller;
+package br.edu.ufca.abaco.controller;
 
 import javax.inject.Inject;
 
