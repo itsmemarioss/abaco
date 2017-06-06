@@ -3,11 +3,11 @@
 	<persistence-unit name="abaco-web" transaction-type="JTA">
 		<jta-data-source>java:/AbacoDS</jta-data-source>
 		
-		<jar-file>abaco-core-0.0.1-SNAPSHOT.jar</jar-file>
+		<jar-file>lib/abaco-core-0.0.1-Entities.jar</jar-file>
 		
 		<properties>
 			<property name="hibernate.show_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 		</properties>
 		

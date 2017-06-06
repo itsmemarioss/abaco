@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.edu.ufca</groupId>
 	<artifactId>abaco-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-Entities</version>
 	<packaging>jar</packaging>
 
 	<properties>

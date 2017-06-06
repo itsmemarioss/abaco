@@ -1,8 +1,10 @@
 package br.edu.ufca.abaco.core;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="funcao_transacao")
 public class FuncaoDeTransacao extends Funcao {
 	
 	//remover e usar tamanho do Set

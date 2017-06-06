@@ -1,8 +1,10 @@
 package br.edu.ufca.abaco.core;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="funcao_dado")
 public class FuncaoDeDado extends Funcao {
 
 	private int tiposDeRegistros;
