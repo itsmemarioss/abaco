@@ -1,17 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>Abaco Web</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Detalhe Analise</title>
 
 <%@ include file="../../../header.jsp"%>
 
@@ -30,13 +24,19 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Dashboard <small>Statistics Overview</small>
+						Detalhe Análise
 					</h1>
 					<ol class="breadcrumb">
-						<li class="active"><i class="fa fa-dashboard"></i> Dashboard
+						<li class="active"><i class="fa fa-dashboard"></i> Novo
 						</li>
 					</ol>
 				</div>
+				
+				<h2>Registro salvo com sucesso!!</h2>
+
+				<p>
+					Veja aqui a <a href="${linkTo[DetalheAnaliseController].listar}"> lista de todas as análises </a>
+				</p>
 			</div>
 			<!-- /.row -->
 

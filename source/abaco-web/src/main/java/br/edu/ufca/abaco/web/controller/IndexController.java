@@ -1,4 +1,4 @@
-package br.edu.ufca.abaco.controller;
+package br.edu.ufca.abaco.web.controller;
 
 import javax.inject.Inject;
 

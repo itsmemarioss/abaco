@@ -235,11 +235,12 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        <li><a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-bar-chart-o fa-fw"></i> Cadastros<span class="fa arrow"></span></a>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-bar-chart-o fa-fw"></i>SISP<span class="fa arrow"></span></a>
                             <ul id="demo" class="collapse nav nav-second-level">
                                 <li>
-                                    <a href="#">Projeto</a>
+                                    <a href="${linkTo[DetalheAnaliseController].formulario}">Detalhe Analise</a>
                                 </li>
                                 <li>
                                     <a href="#">Analise</a>

@@ -1,5 +1,7 @@
 package br.edu.ufca.abaco.core.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,7 +12,7 @@ import javax.persistence.PersistenceContext;
  * @param <E> Tipo da Entidade
  * @param <K> Tipo da chave primária
  */
-public class DAOGenerico<E, K> {
+public abstract class DAOGenerico<E, K> {
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -27,6 +29,19 @@ public class DAOGenerico<E, K> {
 	
 	public void salvar(E e){
 		em.persist(e);
+	}
+	
+	public void excluir(K key) {
+        E entityToBeRemoved = em.getReference(clazz, key);
+        em.remove(entityToBeRemoved);
+    }
+
+    public E buscarPorId(K key) {
+        return em.find(clazz, key);
+    }
+
+	public List<E> listar(){
+		return em.createQuery("from "+ clazz.getName(), clazz).getResultList();
 	}
 	
 	public void setEntityManager(EntityManager entityManager){

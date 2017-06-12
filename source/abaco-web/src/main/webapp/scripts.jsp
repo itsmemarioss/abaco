@@ -1,5 +1,5 @@
 <!-- jQuery Version 1.11.0 -->
-<script src="<c:url value="/resources/js/jquery-1.11.0.js"/>"></script>
+<script src="<c:url value="/resources/js/jquery-3.2.1.min.js"/>"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>

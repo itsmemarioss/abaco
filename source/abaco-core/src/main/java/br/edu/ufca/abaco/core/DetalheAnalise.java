@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name="detalhe_analise")
 public class DetalheAnalise {
 	
 	@Id
