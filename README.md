@@ -12,7 +12,7 @@ Para a primeira versão está previsto o desenvolvimento das seguintes funcional
 - abaco-core
 > entidades JPA e Regras de negócio definidas
 - abaco-web
-> projeto web (vRaptor 4 ) que usa o core
+> projeto web (JSF ) que usa o core
 
 ### Versão
 
@@ -31,6 +31,7 @@ Para a primeira versão está previsto o desenvolvimento das seguintes funcional
 ### Tecnologias utilizadas
 
 - Java 8
-- vRaptor 4
+- JSF 2.2
+- CDI
 - PostgreSQL
 
