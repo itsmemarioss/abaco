@@ -22,5 +22,9 @@
 			<artifactId>abaco-core</artifactId>
 			<version>0.0.1-Entities</version>
 		</dependency>
-	</dependencies> 
+	</dependencies>
+
+	<build>
+		<finalName>abacoweb</finalName>
+	</build>
 </project>
