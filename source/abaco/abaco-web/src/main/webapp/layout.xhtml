@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="sticky-footer-navbar.css" />
+	
+	<title>
+		<ui:insert name="titulo">Cactus ERP</ui:insert>
+	</title>
+	
+</h:head>
+
+<h:body>
+
+	<!-- navbar -->
+	<ui:include src="nav.xhtml" />
+
+	<div class="container">
+			<ui:insert name="page-header" />
+			<ui:insert name="body" />
+  </div>
+
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">powered by Cactus Solutions .</p>
+		</div>
+	</footer>
+
+	<h:outputScript library="js" name="jquery-3.1.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+
+</h:body>
+</html>
