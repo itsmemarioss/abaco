@@ -1,3 +1,4 @@
+before_install: cd source/abaco
 language: java
 script:
 - mvn test
