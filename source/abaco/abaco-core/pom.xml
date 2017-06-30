@@ -1,15 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>br.edu.ufca</groupId>
-	<artifactId>abaco-core</artifactId>
-	<version>0.0.1-Entities</version>
-	<packaging>jar</packaging>
-	
+
 	<parent>
 		<groupId>br.edu.ufca</groupId>
 		<artifactId>abaco</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
+	<artifactId>abaco-core</artifactId>
+	<packaging>jar</packaging>
+	
+	<name>Abaco Core</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>
