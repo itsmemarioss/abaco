@@ -1,4 +1,4 @@
-Abaco [![Build Status](https://travis-ci.org/sharpmario/abaco.svg?branch=master)](https://travis-ci.org/sharpmario/abaco)
+Abaco [![Build Status](https://travis-ci.org/sharpmario/abaco.svg?branch=develop)](https://travis-ci.org/sharpmario/abaco)
 ===
 
 Sistema para auxiliar na análise de pontos de função no serviço público.
