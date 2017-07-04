@@ -18,6 +18,7 @@ public abstract class Funcao implements BaseEntity<Long>{
 	private Long id;
 	private String descricao;
 	private String observacao;
+	private float fatorImpacto = 1;
 	
 	/**
 	 * Calcula a complexidade da função baseado nos valores dos tipos de dados e no 
@@ -28,7 +29,7 @@ public abstract class Funcao implements BaseEntity<Long>{
 	 * @return {@link Complexidade}
 	 */
 	public abstract Complexidade getComplexidade();
-	public abstract int getContribuicao();
+	public abstract float getContribuicao();
 	
 	public String getDescricao() {
 		return descricao;
@@ -49,6 +50,14 @@ public abstract class Funcao implements BaseEntity<Long>{
 	@Override
 	public Long getId() {
 		return id;
+	}
+	
+	public float getFatorImpacto() {
+		return fatorImpacto;
+	}
+	
+	public void setFatorImpacto(float fatorImpacto) {
+		this.fatorImpacto = fatorImpacto;
 	}
 
 }

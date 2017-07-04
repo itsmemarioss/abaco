@@ -31,8 +31,8 @@ public class FuncaoDeDado extends Funcao {
 			return CalculaComplexidade.calcula(this);
 	}
 
-	public int getContribuicao(){
-		return CalculaContribuicao.calcula(this);
+	public final float getContribuicao(){
+		return CalculaContribuicao.calcula(this) * getFatorImpacto();
 	}
 
 	public int getTiposDeRegistros() {

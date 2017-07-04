@@ -36,23 +36,16 @@ public class Contagem implements BaseEntity<Long>{
 	@JoinColumn(name="contagem_id")
 	private Set<FuncaoDeTransacao> funcoesDeTransacao;
 	
-	private float fatorDeImpacto;
-	
 	public Contagem() {
-		this(1);//cria com fator de impacto 1
-	}
-	
-	public Contagem(float fatorDeImpacto) {
-		this.fatorDeImpacto = fatorDeImpacto;
 		funcoesDeDado = new HashSet<>();
 		funcoesDeTransacao = new HashSet<>();
 	}
 	
 	public double total(){
-		int result = 0;
+		double result = 0;
 		Stream<Funcao> funcoes = Stream.concat(funcoesDeDado.stream(), funcoesDeTransacao.stream());
-		result = funcoes.mapToInt(Funcao::getContribuicao).sum();
-		return result*fatorDeImpacto;
+		result = funcoes.mapToDouble(Funcao::getContribuicao).sum();
+		return result;
 	}
 
 	@Override
@@ -80,9 +73,6 @@ public class Contagem implements BaseEntity<Long>{
 
 	public boolean addFuncaoDeTransacao(FuncaoDeTransacao funcao){
 		return funcoesDeTransacao.add(funcao);
-	}
-	public float getFatorDeImpacto() {
-		return fatorDeImpacto;
 	}
 
 	public int totalFuncoesDeDado() {

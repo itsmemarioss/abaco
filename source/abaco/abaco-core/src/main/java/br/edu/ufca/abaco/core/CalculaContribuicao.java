@@ -1,7 +1,8 @@
 package br.edu.ufca.abaco.core;
 
 public class CalculaContribuicao {
-
+	
+	private CalculaContribuicao() {}
 
 	public static int calcula(FuncaoDeTransacao funcao) {
 		int contribuicao = 0;

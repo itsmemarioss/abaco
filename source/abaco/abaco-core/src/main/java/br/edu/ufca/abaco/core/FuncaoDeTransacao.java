@@ -45,8 +45,8 @@ public class FuncaoDeTransacao extends Funcao {
 	}
 
 	@Override
-	public int getContribuicao() {
-		return CalculaContribuicao.calcula(this);
+	public final float getContribuicao() {
+		return CalculaContribuicao.calcula(this) * getFatorImpacto();
 	}
 
 	public void setArquivosReferenciados(int arquivosReferenciados) {
