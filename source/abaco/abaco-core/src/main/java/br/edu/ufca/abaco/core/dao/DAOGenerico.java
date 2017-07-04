@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
  * @param <E> Tipo da Entidade
  * @param <K> Tipo da chave primária
  */
-public abstract class DAOGenerico<E, K> {
+public abstract class DAOGenerico<E extends BaseEntity<K>, K> {
 	
 	@PersistenceContext
 	private EntityManager em;

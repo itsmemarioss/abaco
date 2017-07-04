@@ -15,9 +15,6 @@ import br.edu.ufca.abaco.core.Projeto;
 @Entity(name="projeto_desenvolvimento")
 public class ProjetoDeDesenvolvimento extends Projeto{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
 	@OneToOne
 	private Contagem pfIncluidos;
 	

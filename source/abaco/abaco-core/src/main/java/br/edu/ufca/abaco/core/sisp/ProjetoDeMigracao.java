@@ -8,9 +8,9 @@ import javax.persistence.OneToOne;
 
 import br.edu.ufca.abaco.core.Contagem;
 import br.edu.ufca.abaco.core.FuncaoDeDado;
+import br.edu.ufca.abaco.core.FuncaoDeTransacao;
 import br.edu.ufca.abaco.core.Projeto;
 import br.edu.ufca.abaco.core.TipoFuncaoDado;
-import br.edu.ufca.abaco.core.ifpug.ProjetoDeDesenvolvimento;
 
 /**
  * Projeto de migração definida pelo SISP 2.2.
@@ -33,13 +33,35 @@ public class ProjetoDeMigracao extends Projeto {
 	@OneToOne
 	private Contagem pfIncluidos;
 	
-	public void incluiFuncaoDeDado(FuncaoDeDado funcao) {
+	public ProjetoDeMigracao() {
+		pfIncluidos = new Contagem();
+	}
+	
+	public boolean incluiFuncaoDeDado(FuncaoDeDado funcao) {
 		if(funcao.getTipo() == TipoFuncaoDado.ALI )
-			pfIncluidos.addFuncaoDeDado(funcao);
+			return pfIncluidos.addFuncaoDeDado(funcao);
 		else
 			throw new IllegalArgumentException("Projetos de migração não podem conter Arquivos Interface Externa.");
 	}
+	
+	public boolean incluiFuncaoDeTransacao(FuncaoDeTransacao funcao){
+		return pfIncluidos.addFuncaoDeTransacao(funcao);
+	}
+	
+	public boolean removeFuncaoDeDado(FuncaoDeDado funcao){
+		return pfIncluidos.removeFuncaoDeDado(funcao);
+	}
+	
+	public boolean removeFuncaoDeTransacao(FuncaoDeTransacao funcao){
+		return pfIncluidos.removeFuncaoDeTransacao(funcao);
+	}
+	
+	@Override
+	public double calculaTotal() {
+		return pfIncluidos.total();
+	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -48,16 +70,12 @@ public class ProjetoDeMigracao extends Projeto {
 		this.id = id;
 	}
 
-	public Contagem getPfIncluidos() {
-		return pfIncluidos;
+	public int totalFuncoesDeDado() {
+		return pfIncluidos.totalFuncoesDeDado();
 	}
 
-	public void setPfIncluidos(Contagem pfIncluidos) {
-		this.pfIncluidos = pfIncluidos;
+	public int totalFuncoesDeTransacao() {
+		return pfIncluidos.totalFuncoesDeTransacao();
 	}
 
-	@Override
-	public double calculaTotal() {
-		return pfIncluidos.total();
-	}
 }

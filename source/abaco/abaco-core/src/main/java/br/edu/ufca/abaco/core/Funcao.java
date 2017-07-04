@@ -7,9 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import br.edu.ufca.abaco.core.dao.BaseEntity;
+
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Funcao {
+public abstract class Funcao implements BaseEntity<Long>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
@@ -44,12 +46,9 @@ public abstract class Funcao {
 		this.observacao = observacao;
 	}
 	
+	@Override
 	public Long getId() {
 		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 }

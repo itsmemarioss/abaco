@@ -13,8 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import br.edu.ufca.abaco.core.dao.BaseEntity;
+
 @Entity(name="detalhe_analise")
-public class DetalheAnalise {
+public class DetalheAnalise implements BaseEntity<Long>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,13 +37,10 @@ public class DetalheAnalise {
 		escopo = builder.escopo;
 		data = builder.data;
 	}
-	
+
+	@Override
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getProposito() {

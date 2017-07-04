@@ -1,9 +1,7 @@
 package br.edu.ufca.abaco.core;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -14,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import br.edu.ufca.abaco.core.dao.BaseEntity;
+
 /**
  * Classe que representa o agrupamento de funções medidas,como pontos de função incluídos, excluídos ou alterados.
  * Cada {@link Projeto} define uma ou mais contagens.
@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
-public class Contagem {
+public class Contagem implements BaseEntity<Long>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,12 +36,17 @@ public class Contagem {
 	@JoinColumn(name="contagem_id")
 	private Set<FuncaoDeTransacao> funcoesDeTransacao;
 	
+	private float fatorDeImpacto;
+	
 	public Contagem() {
+		this(1);//cria com fator de impacto 1
+	}
+	
+	public Contagem(float fatorDeImpacto) {
+		this.fatorDeImpacto = fatorDeImpacto;
 		funcoesDeDado = new HashSet<>();
 		funcoesDeTransacao = new HashSet<>();
 	}
-	
-	private float fatorDeImpacto = 1;
 	
 	public double total(){
 		int result = 0;
@@ -50,6 +55,7 @@ public class Contagem {
 		return result*fatorDeImpacto;
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -79,16 +85,20 @@ public class Contagem {
 		return fatorDeImpacto;
 	}
 
-	public void setFatorDeImpacto(float fatorDeImpacto) {
-		this.fatorDeImpacto = fatorDeImpacto;
-	}
-
 	public int totalFuncoesDeDado() {
 		return funcoesDeDado.size();
 	}
 
 	public int totalFuncoesDeTransacao() {
 		return funcoesDeTransacao.size();
+	}
+
+	public boolean removeFuncaoDeDado(FuncaoDeDado funcao) {
+		return funcoesDeDado.remove(funcao);
+	}
+
+	public boolean removeFuncaoDeTransacao(FuncaoDeTransacao funcao) {
+		return funcoesDeTransacao.remove(funcao);
 	}
 	
 	
