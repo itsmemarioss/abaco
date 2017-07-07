@@ -1,9 +1,6 @@
 package br.edu.ufca.abaco.core.ifpug;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import br.edu.ufca.abaco.core.Contagem;
@@ -12,13 +9,14 @@ import br.edu.ufca.abaco.core.FuncaoDeDado;
 import br.edu.ufca.abaco.core.FuncaoDeTransacao;
 import br.edu.ufca.abaco.core.Projeto;
 
-@Entity(name="projeto_desenvolvimento")
+@Entity(name="projeto_desenvolvimento_ifpug")
 public class ProjetoDeDesenvolvimento extends Projeto{
 	
 	@OneToOne
 	private Contagem pfIncluidos;
 	
-	public ProjetoDeDesenvolvimento() {
+	public ProjetoDeDesenvolvimento(DetalheAnalise detalhe) {
+		super(detalhe);
 		pfIncluidos = new Contagem();
 	}
 	

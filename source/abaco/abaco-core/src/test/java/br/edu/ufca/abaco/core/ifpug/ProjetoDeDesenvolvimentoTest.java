@@ -11,7 +11,7 @@ public class ProjetoDeDesenvolvimentoTest {
 	
 	@Before
 	public void setup(){
-		projeto = new ProjetoDeDesenvolvimento();
+		projeto = new ProjetoDeDesenvolvimento(null);
 	}
 	
 	@Test

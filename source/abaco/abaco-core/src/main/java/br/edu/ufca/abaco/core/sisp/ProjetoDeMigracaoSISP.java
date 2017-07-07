@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import br.edu.ufca.abaco.core.Contagem;
+import br.edu.ufca.abaco.core.DetalheAnalise;
 import br.edu.ufca.abaco.core.FuncaoDeDado;
 import br.edu.ufca.abaco.core.FuncaoDeTransacao;
 import br.edu.ufca.abaco.core.Projeto;
@@ -23,8 +25,9 @@ import br.edu.ufca.abaco.core.TipoFuncaoDado;
  * @author mario
  *
  */
-@Entity(name="projeto_migracao")
-public class ProjetoDeMigracao extends Projeto {
+@Entity
+@Table(name="projeto_migracao_sisp")
+public class ProjetoDeMigracaoSISP extends Projeto {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,7 +36,8 @@ public class ProjetoDeMigracao extends Projeto {
 	@OneToOne
 	private Contagem pfIncluidos;
 	
-	public ProjetoDeMigracao() {
+	public ProjetoDeMigracaoSISP(DetalheAnalise detalhe) {
+		super(detalhe);
 		pfIncluidos = new Contagem();
 	}
 	

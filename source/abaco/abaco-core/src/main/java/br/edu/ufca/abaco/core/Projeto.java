@@ -37,5 +37,11 @@ public abstract class Projeto implements BaseEntity<Long>{
 	public Long getId() {
 		return id;
 	}
+
+	public Projeto(DetalheAnalise detalhes) {
+		super();
+		this.detalhes = detalhes;
+	}
+	
 	
 }

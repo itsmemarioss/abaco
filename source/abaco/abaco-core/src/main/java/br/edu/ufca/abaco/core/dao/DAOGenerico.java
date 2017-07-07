@@ -1,5 +1,6 @@
 package br.edu.ufca.abaco.core.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,7 +13,7 @@ import javax.persistence.PersistenceContext;
  * @param <E> Tipo da Entidade
  * @param <K> Tipo da chave primária
  */
-public abstract class DAOGenerico<E extends BaseEntity<K>, K> {
+public abstract class DAOGenerico<E extends BaseEntity<K>, K> implements Serializable{
 	
 	@PersistenceContext
 	private EntityManager em;

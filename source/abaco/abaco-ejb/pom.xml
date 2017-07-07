@@ -1,22 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>br.edu.ufca</groupId>
 		<artifactId>abaco</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>abaco-web</artifactId>
-	<packaging>war</packaging>
-	
-	<name>Abaco Web</name>
-
-	<properties>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-	</properties>
+	<artifactId>abaco-ejb</artifactId>
+	<packaging>ejb</packaging>
+	<name>Abaco EJB</name>
 
 	<dependencies>
 		<dependency>
@@ -28,23 +21,23 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>abaco-core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>abaco-ejb</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>abacoweb</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<!-- http://maven.apache.org/plugins/maven-ejb-plugin/ -->
+					<ejbVersion>3.1</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
-	
 </project>

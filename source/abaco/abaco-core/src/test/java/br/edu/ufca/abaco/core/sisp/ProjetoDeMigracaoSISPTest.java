@@ -9,13 +9,13 @@ import br.edu.ufca.abaco.core.FuncaoDeTransacao;
 import br.edu.ufca.abaco.core.TipoFuncaoDado;
 import br.edu.ufca.abaco.core.TipoFuncaoTransacao;
 
-public class ProjetoDeMigracaoTest {
+public class ProjetoDeMigracaoSISPTest {
 
-	ProjetoDeMigracao projeto; 
+	ProjetoDeMigracaoSISP projeto;
 	
 	@Before
 	public void setup(){
-		projeto = new ProjetoDeMigracao();
+		projeto = new ProjetoDeMigracaoSISP(null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
