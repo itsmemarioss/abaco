@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>br.edu.ufca</groupId>
+		<artifactId>abaco</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>abaco-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>Abaco EAR</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>abaco-web</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<!-- http://maven.apache.org/plugins/maven-ear-plugin/ -->
+					<version>6</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<!-- <generateApplicationXml>false</generateApplicationXml> <earSourceDirectory>EarContent</earSourceDirectory> 
+						<applicationXml>EarContent/META-INF/application.xml</applicationXml> <modules> 
+						<webModule> <groupId>org.foo2</groupId> <artifactId>test-war</artifactId> 
+						<contextRoot>/custom-context-root</contextRoot> </webModule> <ejbModule> 
+						<groupId>org.foo2</groupId> <artifactId>test-ejb</artifactId> <bundleFileName>anothername.jar</bundleFileName> 
+						</ejbModule> <jarModule> <groupId>org.foo2</groupId> <artifactId>test-jar</artifactId> 
+						</jarModule> </modules> -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -16,6 +16,7 @@
 		<module>abaco-core</module>
 		<module>abaco-ejb</module>
 		<module>abaco-web</module>
+		<module>abaco-ear</module>
 	</modules>
 
 	<properties>

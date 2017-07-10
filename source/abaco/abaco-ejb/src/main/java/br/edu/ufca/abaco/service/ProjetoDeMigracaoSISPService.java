@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.edu.ufca.abaco.core.sisp.ProjetoDeMigracaoSISP;
 import br.edu.ufca.abaco.dao.ProjetoDeMigracaoSISPDAO;
