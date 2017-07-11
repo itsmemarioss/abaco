@@ -1,0 +1,3 @@
+<jboss-deployment-structure>
+	<ear-subdeployments-isolated>false</ear-subdeployments-isolated>
+</jboss-deployment-structure>

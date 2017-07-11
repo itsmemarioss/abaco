@@ -1,36 +1,68 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:body>
 
-	<ui:composition template="../../layout.xhtml">
+    <ui:composition template="../../layout.xhtml">
 
-		<ui:define name="page-header">
-			<h1>Projeto de Migração do SISP</h1>
-		</ui:define>
+        <ui:define name="page-header">
+            <h1>Projeto de Migração do SISP</h1>
+        </ui:define>
 
-		<ui:define name="body">
-			<h:form>
-				<div class="form-group">
-					<h:outputLabel value="Propósito" for="proposito" />
-					<h:inputText value="#{projetoDeMigracaoSISPBean.detalhe.proposito}" styleClass="form-control" id="proposito"/>
-				</div>
-				<div class="form-group">
-					<h:outputLabel value="Fronteira" for="fronteira" />
-					<h:inputText value="#{projetoDeMigracaoSISPBean.detalhe.fronteira}" styleClass="form-control" id="fronteira"/>
-				</div>
-				<div class="form-group">
-					<h:outputLabel value="Escopo" for="escopo" />
-					<h:inputText value="#{projetoDeMigracaoSISPBean.detalhe.escopo}" styleClass="form-control" id="escopo"/>
-				</div>
-				
-			</h:form>
-		</ui:define>
+        <ui:define name="body">
 
-	</ui:composition>
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href="#detalhes">Detalhes</a></li>
+                <li><a data-toggle="pill" href="#contagem">Contagem</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="detalhes" class="tab-pane fade in active">
+                    <h3>Detalhes</h3>
+                    <h:form>
+
+                        <div class="form-group">
+                            <h:outputLabel value="Propósito" for="proposito"/>
+                            <h:inputText value="#{projetoDeMigracaoSISPBean.detalhe.proposito}"
+                                         styleClass="form-control" id="proposito"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Fronteira" for="fronteira"/>
+                            <h:inputText value="#{projetoDeMigracaoSISPBean.detalhe.fronteira}"
+                                         styleClass="form-control" id="fronteira"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Escopo" for="escopo"/>
+                            <h:inputText id="escopo" styleClass="form-control"
+                                         value="#{projetoDeMigracaoSISPBean.detalhe.escopo}" />
+                        </div>
+
+                    </h:form>
+                </div>
+                <div id="contagem" class="tab-pane fade">
+                    <h3>Contagem</h3>
+                    <h:form styleClass="form-inline">
+                        <div class="form-group">
+                            <h:outputLabel value="Função"/>
+                            <h:inputText styleClass="form-control"
+                                         value="#{projetoDeMigracaoSISPBean.detalhe.proposito}"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Função"/>
+                            <h:inputText styleClass="form-control"
+                                         value="#{projetoDeMigracaoSISPBean.detalhe.proposito}"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
 
 </h:body>
 </html>
