@@ -39,7 +39,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>abacoweb</finalName>
+		<finalName>abaco-web</finalName>
 	</build>
 	
 </project>

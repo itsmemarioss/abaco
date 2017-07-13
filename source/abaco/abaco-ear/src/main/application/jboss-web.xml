@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>abaco-web</context-root>
+</jboss-web>
