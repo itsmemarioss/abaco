@@ -1,16 +1,18 @@
 package br.edu.ufca.abaco.core;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 import br.edu.ufca.abaco.core.dao.BaseEntity;
 
-@Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+/**
+ * Classe base das Funções de Dados e Transação, define atributos comuns e comportamentos padrão.
+ *
+ * @author mario
+ *
+ * @see FuncaoDeDado
+ * @see FuncaoDeTransacao
+ */
+@MappedSuperclass
 public abstract class Funcao implements BaseEntity<Long>{
 	
 	@Id
@@ -19,7 +21,16 @@ public abstract class Funcao implements BaseEntity<Long>{
 	private String descricao;
 	private String observacao;
 	private float fatorImpacto = 1;
-	
+
+	/**
+	 * @deprecated usado apenas para JPA
+	 */
+	Funcao() {}
+
+	public Funcao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	/**
 	 * Calcula a complexidade da função baseado nos valores dos tipos de dados e no 
 	 * tipo de registro/arquivos referenciados.
@@ -29,7 +40,16 @@ public abstract class Funcao implements BaseEntity<Long>{
 	 * @return {@link Complexidade}
 	 */
 	public abstract Complexidade getComplexidade();
-	public abstract float getContribuicao();
+
+	/**
+	 * Calcula a contribuição em pontos de função baseado nos valores dos tipos de dados e no
+	 * tipo de registro/arquivos referenciados e complexidade.
+	 * Usa internamente a função {@code getComplexidade}
+	 * 
+	 */
+	public float getContribuicao(){
+		return CalculadoraDeContribuicao.calcula(this) * getFatorImpacto();
+	}
 	
 	public String getDescricao() {
 		return descricao;

@@ -17,8 +17,8 @@ public class ContagemTest {
 	@Test
 	public void naoDeveAdicionarFuncoesJaExistentes(){
 		//FuncaoDeDado
-		FuncaoDeDado aie = new FuncaoDeDado(2,3,TipoFuncaoDado.AIE);
-		FuncaoDeTransacao ee = new FuncaoDeTransacao(2,3,TipoFuncaoTransacao.EE);
+		FuncaoDeDado aie = new FuncaoDeDado(2,3,TipoFuncaoDado.AIE,"");
+		FuncaoDeTransacao ee = new FuncaoDeTransacao(2,3,TipoFuncaoTransacao.EE,"");
 		
 		contagem.addFuncaoDeDado(aie);
 		contagem.addFuncaoDeDado(aie);

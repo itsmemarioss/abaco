@@ -16,4 +16,8 @@ public enum TipoFuncaoTransacao {
 		return descricao;
 	}
 
+	@Override
+	public String toString() {
+		return descricao;
+	}
 }

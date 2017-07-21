@@ -1,6 +1,8 @@
 package br.edu.ufca.abaco.core;
 
-public class CalculaComplexidade {
+public class CalculadoraDeComplexidade {
+
+	private CalculadoraDeComplexidade() {}
 
 	public static Complexidade calcula(FuncaoDeDado funcao) {
 		int tiposDeDados = funcao.getTiposDeDados();

@@ -20,13 +20,13 @@ public class ProjetoDeMigracaoSISPTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void naoDevePermitirInclusaoDeAIE(){
-		projeto.incluiFuncaoDeDado(new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE));
+		projeto.incluiFuncaoDeDado(new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE,""));
 	}
 	
 	@Test
 	public void deveExcluirFuncoes(){
-		FuncaoDeDado dado = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI);
-		FuncaoDeTransacao transacao = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.EE); 
+		FuncaoDeDado dado = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI,"");
+		FuncaoDeTransacao transacao = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.EE,"");
 		
 		projeto.incluiFuncaoDeDado(dado);
 		projeto.removeFuncaoDeDado(dado);

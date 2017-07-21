@@ -22,15 +22,15 @@ public class ProjetoDeMelhoriaTest {
 
     @Test
     public void deveExcluirFuncoes(){
-        FuncaoDeDado funcaoDeDadoAlterado = new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE);
-        FuncaoDeDado funcaoDeDadoExcluido = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI);
-        FuncaoDeDado funcaoDeDadoIncluido = new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE);
-        FuncaoDeDado funcaoDeDadoConversao = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI);
+        FuncaoDeDado funcaoDeDadoAlterado = new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE,"");
+        FuncaoDeDado funcaoDeDadoExcluido = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI,"");
+        FuncaoDeDado funcaoDeDadoIncluido = new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE,"");
+        FuncaoDeDado funcaoDeDadoConversao = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI,"");
 
-        FuncaoDeTransacao funcaoDeTransacaoAlterado = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE);
-        FuncaoDeTransacao funcaoDeTransacaoExcluido = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE);
-        FuncaoDeTransacao funcaoDeTransacaoIncluido = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE);
-        FuncaoDeTransacao funcaoDeTransacaoConversao = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE);
+        FuncaoDeTransacao funcaoDeTransacaoAlterado = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
+        FuncaoDeTransacao funcaoDeTransacaoExcluido = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
+        FuncaoDeTransacao funcaoDeTransacaoIncluido = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
+        FuncaoDeTransacao funcaoDeTransacaoConversao = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
 
 
         projetoDeMelhoriaSISP.incluiFuncaoDeDadoPfAlterado(funcaoDeDadoAlterado);

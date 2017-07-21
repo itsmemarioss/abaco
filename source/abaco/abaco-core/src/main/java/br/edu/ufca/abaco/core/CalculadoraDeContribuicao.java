@@ -1,10 +1,18 @@
 package br.edu.ufca.abaco.core;
 
-public class CalculaContribuicao {
+public class CalculadoraDeContribuicao {
 	
-	private CalculaContribuicao() {}
+	private CalculadoraDeContribuicao() {}
 
-	public static int calcula(FuncaoDeTransacao funcao) {
+	public static int calcula(Funcao funcao){
+		if(funcao instanceof FuncaoDeDado){
+			return calculaFuncaoDado((FuncaoDeDado) funcao);
+		}else{
+			return calculaFuncaoTransacao((FuncaoDeTransacao) funcao);
+		}
+	}
+
+	public static int calculaFuncaoTransacao(FuncaoDeTransacao funcao) {
 		int contribuicao = 0;
 		if (funcao.getTipo().equals(TipoFuncaoTransacao.SE)) {
 			switch (funcao.getComplexidade()) {
@@ -34,7 +42,7 @@ public class CalculaContribuicao {
 		return contribuicao;
 	}
 
-	public static int calcula(FuncaoDeDado funcao) {
+	public static int calculaFuncaoDado(FuncaoDeDado funcao) {
 		int contribuicao = 0;
 		if (funcao.getTipo().equals(TipoFuncaoDado.ALI)) {
 			switch (funcao.getComplexidade()) {

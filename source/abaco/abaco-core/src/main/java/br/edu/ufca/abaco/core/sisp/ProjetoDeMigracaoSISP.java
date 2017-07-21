@@ -14,6 +14,8 @@ import br.edu.ufca.abaco.core.FuncaoDeTransacao;
 import br.edu.ufca.abaco.core.Projeto;
 import br.edu.ufca.abaco.core.TipoFuncaoDado;
 
+import java.util.Set;
+
 /**
  * Projeto de migração definida pelo SISP 2.2.
  * 
@@ -58,6 +60,14 @@ public class ProjetoDeMigracaoSISP extends Projeto {
 	
 	public boolean removeFuncaoDeTransacao(FuncaoDeTransacao funcao){
 		return pfIncluidos.removeFuncaoDeTransacao(funcao);
+	}
+
+	public Set<FuncaoDeDado> getFuncoesDeDados(){
+		return pfIncluidos.getFuncoesDeDado();
+	}
+
+	public Set<FuncaoDeTransacao> getFuncoesDeTransacao(){
+		return pfIncluidos.getFuncoesDeTransacao();
 	}
 	
 	@Override

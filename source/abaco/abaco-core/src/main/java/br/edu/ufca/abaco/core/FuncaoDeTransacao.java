@@ -17,8 +17,8 @@ public class FuncaoDeTransacao extends Funcao {
 	 */
 	FuncaoDeTransacao(){}
 
-	public FuncaoDeTransacao(int arquivosReferenciados, int tiposDeDados, TipoFuncaoTransacao tipo) {
-		super();
+	public FuncaoDeTransacao(int arquivosReferenciados, int tiposDeDados, TipoFuncaoTransacao tipo, String descricao) {
+		super(descricao);
 		this.arquivosReferenciados = arquivosReferenciados;
 		this.tiposDeDados = tiposDeDados;
 		this.tipo = tipo;
@@ -33,7 +33,7 @@ public class FuncaoDeTransacao extends Funcao {
 		if(arquivosReferenciados == 0 && getTiposDeDados() == 0)
 			return Complexidade.MEDIA;
 		else
-			return CalculaComplexidade.calcula(this);
+			return CalculadoraDeComplexidade.calcula(this);
 	}
 
 	public TipoFuncaoTransacao getTipo() {
@@ -42,11 +42,6 @@ public class FuncaoDeTransacao extends Funcao {
 
 	public void setTipo(TipoFuncaoTransacao tipo) {
 		this.tipo = tipo;
-	}
-
-	@Override
-	public final float getContribuicao() {
-		return CalculaContribuicao.calcula(this) * getFatorImpacto();
 	}
 
 	public void setArquivosReferenciados(int arquivosReferenciados) {

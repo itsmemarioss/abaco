@@ -16,11 +16,37 @@ public class FuncaoDeDado extends Funcao {
 	 */
 	FuncaoDeDado(){}
 	
-	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados, TipoFuncaoDado tipo) {
-		super();
+	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados, TipoFuncaoDado tipo, String descricao) {
+		super(descricao);
 		this.tiposDeRegistros = tipoDeRegistros;
 		this.tiposDeDados = tipoDeDados;
 		this.tipo = tipo;
+	}
+
+	/**
+	 * Cria uma nova função de dado de tipo ALI {@link TipoFuncaoDado} com valores defaults;
+	 * <ul>
+	 *     <il>tipos de registros com valor 0 (zero)</il>
+	 *     <il>tipos de dados com valor 0 (zero</il>
+	 *     <il>decrição vazia</il>
+	 * </ul>
+	 * @return
+     */
+	public static FuncaoDeDado novoArquivoLogicoInterno(){
+		return new FuncaoDeDado(0,0,TipoFuncaoDado.ALI,"");
+	}
+
+	/**
+	 * Cria uma nova função de dado de tipo AIE {@link TipoFuncaoDado} com valores defaults;
+	 * <ul>
+	 *     <il>tipos de registros com valor 0 (zero)</il>
+	 *     <il>tipos de dados com valor 0 (zero</il>
+	 *     <il>decrição vazia</il>
+	 * </ul>
+	 * @return
+	 */
+	public static FuncaoDeDado novoArquivoDeInterfaceExterna(){
+		return new FuncaoDeDado(0,0,TipoFuncaoDado.AIE,"");
 	}
 
 	@Override
@@ -28,11 +54,7 @@ public class FuncaoDeDado extends Funcao {
 		if(tiposDeRegistros == 0 && tiposDeDados == 0)
 			return Complexidade.BAIXA;
 		else
-			return CalculaComplexidade.calcula(this);
-	}
-
-	public final float getContribuicao(){
-		return CalculaContribuicao.calcula(this) * getFatorImpacto();
+			return CalculadoraDeComplexidade.calcula(this);
 	}
 
 	public int getTiposDeRegistros() {
@@ -86,7 +108,6 @@ public class FuncaoDeDado extends Funcao {
 			return false;
 		return true;
 	}
-	
-	
+
 
 }
