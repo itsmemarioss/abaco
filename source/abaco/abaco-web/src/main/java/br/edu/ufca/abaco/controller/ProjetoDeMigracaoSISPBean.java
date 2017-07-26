@@ -42,4 +42,17 @@ public class ProjetoDeMigracaoSISPBean implements Serializable {
 	
 	public FuncaoDeTransacao getFuncaoDeTransacao(){return funcaoDeTransacao;}
 	public FuncaoDeDado getFuncaoDeDado(){return funcaoDeDado;}
+
+	public void novoALI(){
+		funcaoDeDado = FuncaoDeDado.novoArquivoLogicoInterno();
+	}
+
+	public void novoAIE(){
+		funcaoDeDado = FuncaoDeDado.novoArquivoDeInterfaceExterna();
+	}
+
+	public void addFuncaoDeDado(){
+		projetoDeMigracaoSISP.incluiFuncaoDeDado(funcaoDeDado);
+	}
+
 }

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:body>
 
@@ -61,8 +62,17 @@
 								<div id="fdados" class="tab-pane fade in active">
 									<br/>
 									<div class="btn-group pull-right" role="group">
-										<h:commandButton value="+ ALI" styleClass="btn btn-default"/>
-										<h:commandButton value="+ AIE" styleClass="btn btn-default"/>
+										<h:commandButton value="+ ALI" styleClass="btn btn-default"
+														 actionListener="#{projetoDeMigracaoSISPBean.novoALI()}" >
+											<f:passThroughAttribute name="data-toggle" value="modal" />
+											<f:passThroughAttribute name="data-target" value="#myModal" />
+											<f:ajax render="formFuncaoDado"/>
+										</h:commandButton>
+										<h:commandButton value="+ AIE" styleClass="btn btn-default"
+														 actionListener="#{projetoDeMigracaoSISPBean.novoAIE()}">
+											<f:passThroughAttribute name="data-toggle" value="modal" />
+											<f:passThroughAttribute name="data-target" value="#myModal" />
+										</h:commandButton>
 									</div>
 									<div class="clearfix"></div>
 
@@ -121,6 +131,38 @@
 						<div id="resumo" class="tab-pane fade">
 						</div>
 					</div><!-- tab content -->
+				</div>
+			</div><!-- row -->
+
+			<!-- modal funcao -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<h:form id="formFuncaoDado">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Nova Função de Dados - #{projetoDeMigracaoSISPBean.funcaoDeDado.tipo}</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<h:outputLabel value="Descrição" />
+									<h:inputText styleClass="form-control"  value="#{projetoDeMigracaoSISPBean.funcaoDeDado.descricao}"/>
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Tipos de Dados" />
+									<h:inputText styleClass="form-control"  value="#{projetoDeMigracaoSISPBean.funcaoDeDado.tiposDeDados}"/>
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Tipos de Registros" />
+									<h:inputText styleClass="form-control"  value="#{projetoDeMigracaoSISPBean.funcaoDeDado.tiposDeRegistros}"/>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<h:commandButton styleClass="btn btn-primary" value="Adicionar" actionListener="#{projetoDeMigracaoSISPBean.addFuncaoDeDado()}"></h:commandButton>
+							</div>
+						</h:form>
+					</div>
 				</div>
 			</div>
 
