@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import br.edu.ufca.abaco.core.dao.BaseEntity;
-
 /**
  * Classe que representa o agrupamento de funções medidas,como pontos de função incluídos, excluídos ou alterados.
  * Cada {@link Projeto} define uma ou mais contagens.

@@ -1,4 +1,4 @@
-package br.edu.ufca.abaco.core.dao;
+package br.edu.ufca.abaco.dao;
 
 import java.sql.Date;
 import java.time.LocalDate;

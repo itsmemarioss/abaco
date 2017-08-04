@@ -1,4 +1,4 @@
-package br.edu.ufca.abaco.core.dao;
+package br.edu.ufca.abaco.core;
 
 import java.io.Serializable;
 

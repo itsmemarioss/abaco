@@ -1,11 +1,6 @@
 package br.edu.ufca.abaco.core.sisp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import br.edu.ufca.abaco.core.Contagem;
 import br.edu.ufca.abaco.core.DetalheAnalise;
@@ -31,13 +26,14 @@ import java.util.Set;
 @Table(name="projeto_migracao_sisp")
 public class ProjetoDeMigracaoSISP extends Projeto {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Contagem pfIncluidos;
-	
+
+	/**
+	 * @deprecated apenas para usos de frameworks
+	 */
+	public ProjetoDeMigracaoSISP(){}
+
 	public ProjetoDeMigracaoSISP(DetalheAnalise detalhe) {
 		super(detalhe);
 		pfIncluidos = new Contagem();
@@ -73,15 +69,6 @@ public class ProjetoDeMigracaoSISP extends Projeto {
 	@Override
 	public double calculaTotal() {
 		return pfIncluidos.total();
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public int totalFuncoesDeDado() {

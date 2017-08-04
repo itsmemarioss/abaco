@@ -1,12 +1,6 @@
 package br.edu.ufca.abaco.core;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
-
-import br.edu.ufca.abaco.core.dao.BaseEntity;
+import javax.persistence.*;
 
 /**
  * Classe usada como base para os representação das análises de pontos de função.
@@ -21,7 +15,7 @@ public abstract class Projeto implements BaseEntity<Long>{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private DetalheAnalise detalhes;
 	
 	public abstract double calculaTotal();
@@ -37,6 +31,11 @@ public abstract class Projeto implements BaseEntity<Long>{
 	public Long getId() {
 		return id;
 	}
+
+	/**
+	 * @deprecated apenas para usos de frameworks
+	 */
+	public Projeto(){}
 
 	public Projeto(DetalheAnalise detalhes) {
 		super();

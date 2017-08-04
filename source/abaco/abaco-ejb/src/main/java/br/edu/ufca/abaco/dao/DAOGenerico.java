@@ -1,4 +1,6 @@
-package br.edu.ufca.abaco.core.dao;
+package br.edu.ufca.abaco.dao;
+
+import br.edu.ufca.abaco.core.BaseEntity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,13 +17,13 @@ import javax.persistence.PersistenceContext;
  */
 public abstract class DAOGenerico<E extends BaseEntity<K>, K> implements Serializable{
 	
-	@PersistenceContext
 	private EntityManager em;
 	
 	private Class<E> clazz;
 	
-	public DAOGenerico(Class<E> clazz){
+	public DAOGenerico(Class<E> clazz, EntityManager entityManager){
 		this.clazz = clazz;
+		this.em = entityManager;
 	}
 	
 	public void atualizar(E e){

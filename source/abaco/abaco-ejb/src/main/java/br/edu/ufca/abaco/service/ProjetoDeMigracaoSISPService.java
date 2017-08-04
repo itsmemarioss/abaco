@@ -2,21 +2,34 @@ package br.edu.ufca.abaco.service;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import br.edu.ufca.abaco.core.sisp.ProjetoDeMigracaoSISP;
 import br.edu.ufca.abaco.dao.ProjetoDeMigracaoSISPDAO;
 
 @Stateless
 public class ProjetoDeMigracaoSISPService implements Serializable{
-	
-	@Inject
+
+	@PersistenceContext(name = "abaco")
+	private EntityManager entityManager;
+
 	private ProjetoDeMigracaoSISPDAO dao;
 	
-	public void salvar(ProjetoDeMigracaoSISP projeto){
-		dao.salvar(projeto);
+	public void salvarOuAtualizar(ProjetoDeMigracaoSISP projeto){
+		if (projeto.getId()==null || projeto.getId() == 0)
+			dao.salvar(projeto);
+		else
+			dao.atualizar(projeto);
+	}
+
+	@PostConstruct
+	public void setup(){
+		dao = new ProjetoDeMigracaoSISPDAO(entityManager);
 	}
 
 }

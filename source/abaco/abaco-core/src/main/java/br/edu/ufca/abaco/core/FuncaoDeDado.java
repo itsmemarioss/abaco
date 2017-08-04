@@ -33,7 +33,7 @@ public class FuncaoDeDado extends Funcao {
 	 * @return
      */
 	public static FuncaoDeDado novoArquivoLogicoInterno(){
-		return new FuncaoDeDado(0,0,TipoFuncaoDado.ALI,"");
+		return new FuncaoDeDado(0,0,TipoFuncaoDado.ALI,"Novo ALI");
 	}
 
 	/**
@@ -46,11 +46,12 @@ public class FuncaoDeDado extends Funcao {
 	 * @return
 	 */
 	public static FuncaoDeDado novoArquivoDeInterfaceExterna(){
-		return new FuncaoDeDado(0,0,TipoFuncaoDado.AIE,"");
+		return new FuncaoDeDado(0,0,TipoFuncaoDado.AIE,"Novo AIE");
 	}
 
 	@Override
 	public Complexidade getComplexidade() {
+		//TODO refatorar remover teste da classe
 		if(tiposDeRegistros == 0 && tiposDeDados == 0)
 			return Complexidade.BAIXA;
 		else

@@ -4,10 +4,11 @@
 		<description>Dev persistence unit</description>
 		<!-- datasource already set in wildfly -->
 		<jta-data-source>java:/AbacoDS</jta-data-source>
-		<jar-file>abaco-core-0.0.1-SNAPSHOT.jar</jar-file>
+		<jar-file>../../../lib/abaco-core-0.0.1-SNAPSHOT.jar</jar-file>
 		
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="create-update" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 		</properties>
 		
 	</persistence-unit>

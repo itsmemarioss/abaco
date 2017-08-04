@@ -2,8 +2,6 @@ package br.edu.ufca.abaco.core;
 
 import javax.persistence.*;
 
-import br.edu.ufca.abaco.core.dao.BaseEntity;
-
 /**
  * Classe base das Funções de Dados e Transação, define atributos comuns e comportamentos padrão.
  *

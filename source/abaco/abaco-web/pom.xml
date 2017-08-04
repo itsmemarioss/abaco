@@ -36,6 +36,11 @@
 			<artifactId>abaco-ejb</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>5.5.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

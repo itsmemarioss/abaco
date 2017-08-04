@@ -21,8 +21,8 @@
 				<div class="col-md-3">
 					<ul class="nav nav-pills nav-stacked">
 						<li class="active"><a data-toggle="pill" href="#detalhes">Detalhes</a></li>
-						<li><a data-toggle="pill" href="#contagem">PF Incluído</a></li>
-						<li><a data-toggle="pill" href="#resumo">Resumo</a></li>
+						<li><a data-toggle="pill" id="tabContagem" href="#contagem">PF Incluído</a></li>
+						<li><a data-toggle="pill" id="tabResumo" href="#resumo">Resumo</a></li>
 					</ul>
 				</div>
 				
@@ -31,8 +31,8 @@
 				
 					<div class="tab-content">
 						<div id="detalhes" class="tab-pane fade in active">
-							<h:form>
 
+							<h:form>
 								<div class="form-group">
 									<h:outputLabel value="Propósito" for="proposito" />
 									<h:inputText
@@ -51,7 +51,10 @@
 										value="#{projetoDeMigracaoSISPBean.detalhe.escopo}" />
 								</div>
 
+								<h:commandButton actionListener="#{projetoDeMigracaoSISPBean.salvarEContinuar}"
+									styleClass="btn btn-default" value="Avançar" onclick="$('#tabContagem').click()"/>
 							</h:form>
+
 						</div>
 						<div id="contagem" class="tab-pane fade">
 							<ul class="nav nav-tabs">
@@ -129,6 +132,22 @@
 							</div>
 						</div>
 						<div id="resumo" class="tab-pane fade">
+							<h3>Projeto de migração do SISP</h3>
+
+							<p>#{projetoDeMigracaoSISPBean.detalhe.proposito}</p>
+							<p>#{projetoDeMigracaoSISPBean.detalhe.fronteira}</p>
+							<p>#{projetoDeMigracaoSISPBean.detalhe.escopo}</p>
+
+							<ul class="list-group">
+								<li class="list-group-item">
+									<span class="badge">#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.totalFuncoesDeDado()}</span>
+									Funções de Dados
+								</li>
+								<li class="list-group-item">
+									<span class="badge">#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.totalFuncoesDeTransacao()}</span>
+									Funções de Transaçao
+								</li>
+							</ul>
 						</div>
 					</div><!-- tab content -->
 				</div>

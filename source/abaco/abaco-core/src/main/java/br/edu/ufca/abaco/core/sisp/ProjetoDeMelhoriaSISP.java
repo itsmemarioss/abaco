@@ -19,7 +19,7 @@ import br.edu.ufca.abaco.core.*;
  */
 
 @Entity
-@Table(schema = "sisp", name = "projeto_melhoria_sisp")
+@Table(name = "projeto_melhoria_sisp")
 public class ProjetoDeMelhoriaSISP extends Projeto {
 
 	private final double PESO_FUNCAO_EXCLUIDA = 0.3;
@@ -36,6 +36,11 @@ public class ProjetoDeMelhoriaSISP extends Projeto {
 	private Contagem pfExcluido;
 	@OneToOne
 	private Contagem pfConversao;
+
+	/**
+	 * @deprecated  uso exclusivo de frameworks
+	 */
+	public ProjetoDeMelhoriaSISP(){}
 
 	public ProjetoDeMelhoriaSISP(DetalheAnalise detalheAnalise) {
 		super(detalheAnalise);
