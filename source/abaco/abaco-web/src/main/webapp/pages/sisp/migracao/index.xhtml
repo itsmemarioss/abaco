@@ -15,12 +15,15 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:dataTable value="#{projetoDeMigracaoSISPBean.lista}" var="projeto" >
+            <h:dataTable value="#{projetoDeMigracaoSISPBean.lista}" var="projeto"
+                styleClass="table">
                 <h:column>
-                    <f:facet name="header">Tipo</f:facet>
+                    <f:facet name="header">Escopo</f:facet>
+                    #{projeto.detalhes.escopo}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Propósito</f:facet>
+                    #{projeto.detalhes.proposito}
                 </h:column>
             </h:dataTable>
         </ui:define>
