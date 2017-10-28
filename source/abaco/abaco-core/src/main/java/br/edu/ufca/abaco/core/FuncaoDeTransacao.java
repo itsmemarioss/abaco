@@ -83,6 +83,17 @@ public class FuncaoDeTransacao extends Funcao {
 			return false;
 		return true;
 	}
-	
-	
+
+
+	public static FuncaoDeTransacao novaEntradaExterna() {
+		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.EE,"Nova EE");
+	}
+
+	public static FuncaoDeTransacao novaSaidaExterna() {
+		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.SE,"Nova SE");
+	}
+
+	public static FuncaoDeTransacao novaConsultaExterna() {
+		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.CE,"Nova CE");
+	}
 }

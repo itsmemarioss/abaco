@@ -20,6 +20,7 @@ import br.edu.ufca.abaco.core.*;
 
 @Entity
 @Table(name = "projeto_melhoria_sisp")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class ProjetoDeMelhoriaSISP extends Projeto {
 
 	private final double PESO_FUNCAO_EXCLUIDA = 0.3;
@@ -121,7 +122,6 @@ public class ProjetoDeMelhoriaSISP extends Projeto {
 		return pfAlterado.removeFuncaoDeTransacao(funcaoDeTransacao);
 	}
 
-	@Override
 	public Long getId() {
 		return id;
 	}

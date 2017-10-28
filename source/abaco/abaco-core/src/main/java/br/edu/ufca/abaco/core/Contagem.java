@@ -5,12 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 /**
  * Classe que representa o agrupamento de funções medidas,como pontos de função incluídos, excluídos ou alterados.
@@ -26,11 +21,11 @@ public class Contagem implements BaseEntity<Long>{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="contagem_id")
 	private Set<FuncaoDeDado> funcoesDeDado;
-	
-	@OneToMany
+
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="contagem_id")
 	private Set<FuncaoDeTransacao> funcoesDeTransacao;
 	

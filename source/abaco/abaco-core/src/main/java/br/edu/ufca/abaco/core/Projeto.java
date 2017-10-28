@@ -8,12 +8,7 @@ import javax.persistence.*;
  * @author mario
  *
  */
-@MappedSuperclass
 public abstract class Projeto implements BaseEntity<Long>{
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
 	private DetalheAnalise detalhes;
@@ -27,11 +22,6 @@ public abstract class Projeto implements BaseEntity<Long>{
 		this.detalhes = detalhes;
 	}	
 	
-	@Override
-	public Long getId() {
-		return id;
-	}
-
 	/**
 	 * @deprecated apenas para usos de frameworks
 	 */

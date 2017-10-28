@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:body>
@@ -15,6 +15,8 @@
 		</ui:define>
 		
 		<ui:define name="body">
+
+			<h:messages styleClass="alert" errorClass="alert-danger" infoClass="alert-info" warnClass="alert-warning" />
 
 			<div class="row">
 				<!-- pills -->
@@ -51,8 +53,10 @@
 										value="#{projetoDeMigracaoSISPBean.detalhe.escopo}" />
 								</div>
 
-								<h:commandButton actionListener="#{projetoDeMigracaoSISPBean.salvarEContinuar}"
-									styleClass="btn btn-default" value="Avançar" onclick="$('#tabContagem').click()"/>
+								<h:commandButton styleClass="btn btn-default pull-right" value="Avançar"
+												 onclick="$('#tabContagem').click()" >
+									<f:ajax execute="@form"  render="resumo"/>
+								</h:commandButton>
 							</h:form>
 
 						</div>
@@ -68,13 +72,8 @@
 										<h:commandButton value="+ ALI" styleClass="btn btn-default"
 														 actionListener="#{projetoDeMigracaoSISPBean.novoALI()}" >
 											<f:passThroughAttribute name="data-toggle" value="modal" />
-											<f:passThroughAttribute name="data-target" value="#myModal" />
+											<f:passThroughAttribute name="data-target" value="#modalFuncaoDado" />
 											<f:ajax render="formFuncaoDado"/>
-										</h:commandButton>
-										<h:commandButton value="+ AIE" styleClass="btn btn-default"
-														 actionListener="#{projetoDeMigracaoSISPBean.novoAIE()}">
-											<f:passThroughAttribute name="data-toggle" value="modal" />
-											<f:passThroughAttribute name="data-target" value="#myModal" />
 										</h:commandButton>
 									</div>
 									<div class="clearfix"></div>
@@ -103,9 +102,18 @@
 								<div id="ftransacao" class="tab-pane fade in">
 									<br/>
 									<div class="btn-group pull-right" role="group">
-										<h:commandButton value="+ CE" styleClass="btn btn-default"/>
-										<h:commandButton value="+ EE" styleClass="btn btn-default"/>
-										<h:commandButton value="+ SE" styleClass="btn btn-default"/>
+										<h:commandButton value="+ EE" styleClass="btn btn-default"
+														 actionListener="#{projetoDeMigracaoSISPBean.novaEE()}">
+											<f:passThroughAttribute name="data-toggle" value="modal" />
+											<f:passThroughAttribute name="data-target" value="#modalFuncaoTransacao" />
+											<f:ajax render="formFuncaoTransacao"/>
+										</h:commandButton>
+										<h:commandButton value="+ SE" styleClass="btn btn-default"
+														 actionListener="#{projetoDeMigracaoSISPBean.novaSE()}">
+											<f:passThroughAttribute name="data-toggle" value="modal" />
+											<f:passThroughAttribute name="data-target" value="#modalFuncaoTransacao" />
+											<f:ajax render="formFuncaoTransacao"/>
+										</h:commandButton>
 									</div>
 									<div class="clearfix"></div>
 									<h:dataTable value="#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.funcoesDeTransacao}"
@@ -130,31 +138,57 @@
 									</h:dataTable>
 								</div>
 							</div>
+							<h:commandButton styleClass="btn btn-default pull-right" value="Avançar"
+											 onclick="$('#tabResumo').click()"  >
+								<f:ajax render="resumo"/>
+							</h:commandButton>
 						</div>
 						<div id="resumo" class="tab-pane fade">
-							<h3>Projeto de migração do SISP</h3>
+							<h:form>
+								<div class="form-group">
+									<h:outputLabel value="Propósito" for="proposito" />
+									<h:inputText disabled="true"
+											value="#{projetoDeMigracaoSISPBean.detalhe.proposito}"
+											styleClass="form-control" id="resumoProposito" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Fronteira" for="fronteira" />
+									<h:inputText disabled="true"
+											value="#{projetoDeMigracaoSISPBean.detalhe.fronteira}"
+											styleClass="form-control" id="resumoFronteira" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Escopo" for="escopo" />
+									<h:inputText id="resumoEscopo" styleClass="form-control" disabled="true"
+												 value="#{projetoDeMigracaoSISPBean.detalhe.escopo}" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Total PF"/>
+									<h:inputText id="total" styleClass="form-control" disabled="true"
+												 value="#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.calculaTotal()}" />
+								</div>
+								<ul class="list-group">
+									<li class="list-group-item">
+										<span class="badge">#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.totalFuncoesDeDado()}</span>
+										Funções de Dados
+									</li>
+									<li class="list-group-item">
+										<span class="badge">#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.totalFuncoesDeTransacao()}</span>
+										Funções de Transaçao
+									</li>
+								</ul>
 
-							<p>#{projetoDeMigracaoSISPBean.detalhe.proposito}</p>
-							<p>#{projetoDeMigracaoSISPBean.detalhe.fronteira}</p>
-							<p>#{projetoDeMigracaoSISPBean.detalhe.escopo}</p>
+								<h:commandButton styleClass="btn btn-primary pull-right" value="Salvar"
+											 actionListener="#{projetoDeMigracaoSISPBean.salvar}"/>
 
-							<ul class="list-group">
-								<li class="list-group-item">
-									<span class="badge">#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.totalFuncoesDeDado()}</span>
-									Funções de Dados
-								</li>
-								<li class="list-group-item">
-									<span class="badge">#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.totalFuncoesDeTransacao()}</span>
-									Funções de Transaçao
-								</li>
-							</ul>
+							</h:form>
 						</div>
 					</div><!-- tab content -->
 				</div>
 			</div><!-- row -->
 
-			<!-- modal funcao -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<!-- modal funcao de dados -->
+			<div class="modal fade" id="modalFuncaoDado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<h:form id="formFuncaoDado">
@@ -179,6 +213,38 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								<h:commandButton styleClass="btn btn-primary" value="Adicionar" actionListener="#{projetoDeMigracaoSISPBean.addFuncaoDeDado()}"></h:commandButton>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+			<!-- modal funcao de transacao-->
+			<div class="modal fade" id="modalFuncaoTransacao" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<h:form id="formFuncaoTransacao">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="modalLabel">Nova Função de Transação - #{projetoDeMigracaoSISPBean.funcaoDeTransacao.tipo}</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<h:outputLabel value="Descrição" />
+									<h:inputText styleClass="form-control"  value="#{projetoDeMigracaoSISPBean.funcaoDeTransacao.descricao}"/>
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Tipos de Dados" />
+									<h:inputText styleClass="form-control"  value="#{projetoDeMigracaoSISPBean.funcaoDeTransacao.tiposDeDados}"/>
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Tipos de Registros" />
+									<h:inputText styleClass="form-control"  value="#{projetoDeMigracaoSISPBean.funcaoDeTransacao.arquivosReferenciados}"/>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<h:commandButton styleClass="btn btn-primary" value="Adicionar" actionListener="#{projetoDeMigracaoSISPBean.addFuncaoDeTransacao()}"></h:commandButton>
 							</div>
 						</h:form>
 					</div>

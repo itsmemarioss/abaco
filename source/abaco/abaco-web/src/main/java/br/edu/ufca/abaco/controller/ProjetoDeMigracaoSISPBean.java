@@ -1,6 +1,7 @@
 package br.edu.ufca.abaco.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -22,15 +23,15 @@ public class ProjetoDeMigracaoSISPBean implements Serializable {
 
 	@Inject
 	private ProjetoDeMigracaoSISPService service;
-
 	@Inject
 	private MessagesHelper messagesHelper;
 	
 	private DetalheAnalise detalhe;
 	private ProjetoDeMigracaoSISP projetoDeMigracaoSISP;
-
 	private FuncaoDeDado funcaoDeDado;
 	private FuncaoDeTransacao funcaoDeTransacao;
+
+	private List<ProjetoDeMigracaoSISP> lista;
 	
 	@PostConstruct
 	public void setup(){
@@ -56,14 +57,15 @@ public class ProjetoDeMigracaoSISPBean implements Serializable {
 		projetoDeMigracaoSISP.incluiFuncaoDeTransacao(funcaoDeTransacao);
 	}
 
-	public void novoALI(){
-		funcaoDeDado = FuncaoDeDado.novoArquivoLogicoInterno();
-	}
+	public void novoALI(){funcaoDeDado = FuncaoDeDado.novoArquivoLogicoInterno();}
 
-	public void novoAIE(){
-		funcaoDeDado = FuncaoDeDado.novoArquivoDeInterfaceExterna();
-	}
+	public void novoAIE(){funcaoDeDado = FuncaoDeDado.novoArquivoDeInterfaceExterna();}
 
+	public void novaEE(){funcaoDeTransacao = FuncaoDeTransacao.novaEntradaExterna();}
+
+	public void novaSE(){funcaoDeTransacao = FuncaoDeTransacao.novaSaidaExterna();}
+
+	public void novaCE(){funcaoDeTransacao = FuncaoDeTransacao.novaConsultaExterna();}
 	/**
 	 * salva a contagem como rascunho e prossegue
 	 */
@@ -73,8 +75,16 @@ public class ProjetoDeMigracaoSISPBean implements Serializable {
 	}
 
 	@Transactional
-	public void salvar(){
+	public String salvar(){
 		salvarEContinuar();
 		messagesHelper.addFlash(new FacesMessage("Info: ", "Dados salvos com sucesso"));
+		return "/pages/sisp/migracao/index.xhtml?faces-redirect=true";
+	}
+
+	public List<ProjetoDeMigracaoSISP> getLista() {
+		if(lista==null)
+			lista = service.buscarTodos();
+
+		return lista;
 	}
 }

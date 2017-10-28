@@ -24,8 +24,13 @@ import java.util.Set;
  */
 @Entity
 @Table(name="projeto_migracao_sisp")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class ProjetoDeMigracaoSISP extends Projeto {
-	
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+
 	@OneToOne(cascade = CascadeType.PERSIST)
 	private Contagem pfIncluidos;
 
@@ -79,4 +84,8 @@ public class ProjetoDeMigracaoSISP extends Projeto {
 		return pfIncluidos.totalFuncoesDeTransacao();
 	}
 
+	@Override
+	public Long getId() {
+		return id;
+	}
 }

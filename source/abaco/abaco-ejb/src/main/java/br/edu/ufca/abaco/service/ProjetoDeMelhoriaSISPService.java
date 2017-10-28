@@ -12,7 +12,6 @@ import javax.inject.Inject;
 @Stateless
 public class ProjetoDeMelhoriaSISPService {
 
-    @Inject
     ProjetoDeMelhoriaSISPDAO dao;
 
     public void salvar(ProjetoDeMelhoriaSISP projeto){

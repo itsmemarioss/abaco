@@ -1,6 +1,7 @@
 package br.edu.ufca.abaco.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -25,6 +26,10 @@ public class ProjetoDeMigracaoSISPService implements Serializable{
 			dao.salvar(projeto);
 		else
 			dao.atualizar(projeto);
+	}
+
+	public List<ProjetoDeMigracaoSISP> buscarTodos(){
+		return dao.listar();
 	}
 
 	@PostConstruct
