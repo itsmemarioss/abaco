@@ -25,6 +25,12 @@
 			<artifactId>abaco-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -44,6 +50,16 @@
 							<Dependencies>br.edu.ufca.abaco-core</Dependencies>
 						</manifestEntries> -->
 					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>4.2.0</version>
+				<configuration>
+					<url>${flyway.url}</url>
+					<user>${flyway.user}</user>
+					<password>${flyway.password}</password>
 				</configuration>
 			</plugin>
 		</plugins>
