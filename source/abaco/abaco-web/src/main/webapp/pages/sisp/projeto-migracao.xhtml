@@ -4,7 +4,9 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
 
@@ -21,7 +23,7 @@
 			<div class="row">
 				<!-- pills -->
 				<div class="col-md-3">
-					<ul class="nav nav-pills nav-stacked">
+					<ul class="nav nav-pills nav-stacked" id="myTab">
 						<li class="active"><a data-toggle="pill" href="#detalhes">Detalhes</a></li>
 						<li><a data-toggle="pill" id="tabContagem" href="#contagem">PF Incluído</a></li>
 						<li><a data-toggle="pill" id="tabResumo" href="#resumo">Resumo</a></li>
@@ -78,7 +80,7 @@
 									</div>
 									<div class="clearfix"></div>
 
-									<h:dataTable value="#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.funcoesDeDados}"
+									<h:dataTable id="tblDado" value="#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.funcoesDeDados}"
 												 styleClass="table table-striped" var="funcao">
 										<h:column>
 											<f:facet name="header" >Descrição</f:facet>
@@ -116,7 +118,7 @@
 										</h:commandButton>
 									</div>
 									<div class="clearfix"></div>
-									<h:dataTable value="#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.funcoesDeTransacao}"
+									<h:dataTable id="tblTransacao" value="#{projetoDeMigracaoSISPBean.projetoDeMigracaoSISP.funcoesDeTransacao}"
 												 styleClass="table table-striped" var="funcao">
 										<h:column>
 											<f:facet name="header" >Descrição</f:facet>
@@ -211,8 +213,11 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<h:commandButton styleClass="btn btn-primary" value="Adicionar" actionListener="#{projetoDeMigracaoSISPBean.addFuncaoDeDado()}"></h:commandButton>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+								<p:remoteCommand name="rcDado" update="tblDado" actionListener="#{projetoDeMigracaoSISPBean.addFuncaoDeDado()}" />
+								<h:commandButton styleClass="btn btn-primary" value="Adicionar" onclick="rcDado()">
+									<f:passThroughAttribute name="data-dismiss" value="modal"/>
+								</h:commandButton>
 							</div>
 						</h:form>
 					</div>
@@ -220,7 +225,7 @@
 			</div>
 
 			<!-- modal funcao de transacao-->
-			<div class="modal fade" id="modalFuncaoTransacao" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+			<div class="modal fade" id="modalFuncaoTransacao" role="dialog" aria-labelledby="modalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<h:form id="formFuncaoTransacao">
@@ -243,14 +248,36 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<h:commandButton styleClass="btn btn-primary" value="Adicionar" actionListener="#{projetoDeMigracaoSISPBean.addFuncaoDeTransacao()}"></h:commandButton>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+								<p:remoteCommand name="rcTransacao" update="tblTransacao" actionListener="#{projetoDeMigracaoSISPBean.addFuncaoDeTransacao()}" />
+								<h:commandButton type="button" onclick="rcTransacao()" styleClass="btn btn-primary" value="Adicionar" >
+									<f:passThroughAttribute name="data-dismiss" value="modal" />
+								</h:commandButton>
 							</div>
 						</h:form>
 					</div>
 				</div>
 			</div>
 
+		</ui:define>
+
+		<ui:define name="script">
+			<h:outputScript>
+				$('#myTab a').click(function(e) {
+					e.preventDefault();
+					$(this).tab('show');
+				});
+
+				// store the currently selected tab in the hash value
+				$("ul.nav-pills > li > a").on("shown.bs.tab", function(e) {
+					var id = $(e.target).attr("href").substr(1);
+					window.location.hash = id;
+				});
+
+				// on load of the page: switch to the currently selected tab
+				var hash = window.location.hash;
+				$('#myTab a[href="' + hash + '"]').tab('show');
+			</h:outputScript>
 		</ui:define>
 
 	</ui:composition>
