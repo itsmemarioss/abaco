@@ -6,8 +6,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="funcao_transacao")
 public class FuncaoDeTransacao extends Funcao {
-	
-	//remover e usar tamanho do Set
+
+	/*
+		TODO remover e usar tamanho do Set para detalhar contagem
+	 */
 	private int arquivosReferenciados;
 	private TipoFuncaoTransacao tipo;
 	private int tiposDeDados;
@@ -17,8 +19,24 @@ public class FuncaoDeTransacao extends Funcao {
 	 */
 	FuncaoDeTransacao(){}
 
+	/**
+	 * Construtor com {@link Situacao} padrao INCLUIDO
+	 *
+	 * @param arquivosReferenciados
+	 * @param tiposDeDados
+	 * @param tipo
+	 * @param descricao
+	 */
 	public FuncaoDeTransacao(int arquivosReferenciados, int tiposDeDados, TipoFuncaoTransacao tipo, String descricao) {
-		super(descricao);
+		super(descricao, Situacao.INCLUIDO);
+		this.arquivosReferenciados = arquivosReferenciados;
+		this.tiposDeDados = tiposDeDados;
+		this.tipo = tipo;
+	}
+
+
+	public FuncaoDeTransacao(int arquivosReferenciados, int tiposDeDados, TipoFuncaoTransacao tipo, String descricao, Situacao situacao) {
+		super(descricao, situacao);
 		this.arquivosReferenciados = arquivosReferenciados;
 		this.tiposDeDados = tiposDeDados;
 		this.tipo = tipo;
@@ -81,19 +99,21 @@ public class FuncaoDeTransacao extends Funcao {
 			return false;
 		if (tiposDeDados != other.tiposDeDados)
 			return false;
+		if (!getDescricao().equals(other.getDescricao()))
+			return false;
 		return true;
 	}
 
 
 	public static FuncaoDeTransacao novaEntradaExterna() {
-		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.EE,"Nova EE");
+		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.EE,"Nova EE", Situacao.INCLUIDO);
 	}
 
 	public static FuncaoDeTransacao novaSaidaExterna() {
-		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.SE,"Nova SE");
+		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.SE,"Nova SE", Situacao.INCLUIDO);
 	}
 
 	public static FuncaoDeTransacao novaConsultaExterna() {
-		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.CE,"Nova CE");
+		return new FuncaoDeTransacao(0,0,TipoFuncaoTransacao.CE,"Nova CE", Situacao.INCLUIDO);
 	}
 }

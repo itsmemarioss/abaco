@@ -68,7 +68,7 @@ public class ProjetoDeMigracaoSISP extends Projeto {
 	
 	@Override
 	public double calculaTotal() {
-		return pfIncluidos.total();
+		return pfIncluidos.totalizar();
 	}
 
 	public int totalFuncoesDeDado() {

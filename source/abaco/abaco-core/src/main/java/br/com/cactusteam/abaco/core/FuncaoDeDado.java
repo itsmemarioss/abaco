@@ -15,9 +15,24 @@ public class FuncaoDeDado extends Funcao {
 	 * @deprecated usado apenas para JPA
 	 */
 	FuncaoDeDado(){}
-	
+
+	/**
+	 * Construtor com {@link Situacao} padrao INCLUIDO
+	 *
+	 * @param tipoDeRegistros
+	 * @param tipoDeDados
+	 * @param tipo
+	 * @param descricao
+	 */
 	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados, TipoFuncaoDado tipo, String descricao) {
-		super(descricao);
+		super(descricao, Situacao.INCLUIDO);
+		this.tiposDeRegistros = tipoDeRegistros;
+		this.tiposDeDados = tipoDeDados;
+		this.tipo = tipo;
+	}
+
+	public FuncaoDeDado(int tipoDeRegistros, int tipoDeDados, TipoFuncaoDado tipo, String descricao, Situacao situacao) {
+		super(descricao, situacao);
 		this.tiposDeRegistros = tipoDeRegistros;
 		this.tiposDeDados = tipoDeDados;
 		this.tipo = tipo;
@@ -29,11 +44,12 @@ public class FuncaoDeDado extends Funcao {
 	 *     <il>tipos de registros com valor 0 (zero)</il>
 	 *     <il>tipos de dados com valor 0 (zero</il>
 	 *     <il>decrição vazia</il>
+	 *     <il>Situacao INCLUIDO</il>
 	 * </ul>
 	 * @return
      */
 	public static FuncaoDeDado novoArquivoLogicoInterno(){
-		return new FuncaoDeDado(0,0,TipoFuncaoDado.ALI,"Novo ALI");
+		return new FuncaoDeDado(0,0,TipoFuncaoDado.ALI,"Novo ALI", Situacao.INCLUIDO);
 	}
 
 	/**
@@ -42,11 +58,12 @@ public class FuncaoDeDado extends Funcao {
 	 *     <il>tipos de registros com valor 0 (zero)</il>
 	 *     <il>tipos de dados com valor 0 (zero</il>
 	 *     <il>decrição vazia</il>
+	 *     <il>situação INCLUIDO</il>
 	 * </ul>
 	 * @return
 	 */
 	public static FuncaoDeDado novoArquivoDeInterfaceExterna(){
-		return new FuncaoDeDado(0,0,TipoFuncaoDado.AIE,"Novo AIE");
+		return new FuncaoDeDado(0,0,TipoFuncaoDado.AIE,"Novo AIE", Situacao.INCLUIDO);
 	}
 
 	@Override
@@ -106,6 +123,8 @@ public class FuncaoDeDado extends Funcao {
 		if (tiposDeDados != other.tiposDeDados)
 			return false;
 		if (tiposDeRegistros != other.tiposDeRegistros)
+			return false;
+		if(!getDescricao().equals(other.getDescricao()))
 			return false;
 		return true;
 	}

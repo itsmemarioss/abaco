@@ -19,14 +19,17 @@ public abstract class Funcao implements BaseEntity<Long>{
 	private String descricao;
 	private String observacao;
 	private float fatorImpacto = 1;
+	private Situacao situacao;
+
 
 	/**
 	 * @deprecated usado apenas para JPA
 	 */
 	Funcao() {}
 
-	public Funcao(String descricao) {
+	public Funcao(String descricao, Situacao situacao) {
 		this.descricao = descricao;
+		this.situacao = situacao;
 	}
 
 	/**
@@ -78,4 +81,11 @@ public abstract class Funcao implements BaseEntity<Long>{
 		this.fatorImpacto = fatorImpacto;
 	}
 
+	public Situacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
+	}
 }

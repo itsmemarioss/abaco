@@ -33,12 +33,26 @@ public class Contagem implements BaseEntity<Long>{
 		funcoesDeDado = new HashSet<>();
 		funcoesDeTransacao = new HashSet<>();
 	}
-	
-	public double total(){
-		double result = 0;
+
+	/**
+	 * retorna o valor de todas as funções sem diferenciar {@link Situacao}
+	 * @return total
+	 * @see Situacao
+	 */
+	public double totalizar(){
 		Stream<Funcao> funcoes = Stream.concat(funcoesDeDado.stream(), funcoesDeTransacao.stream());
-		result = funcoes.mapToDouble(Funcao::getContribuicao).sum();
-		return result;
+		return funcoes.mapToDouble(Funcao::getContribuicao).sum();
+	}
+
+	/**
+	 * retorna o valor das funcões por situação
+	 * @param situacao
+	 * @return
+	 */
+	public double totalizarPorSituacao(Situacao situacao){
+		Stream<Funcao> funcoes = Stream.concat(funcoesDeDado.stream(), funcoesDeTransacao.stream());
+		return funcoes.filter(f -> f.getSituacao().equals(situacao))
+				.mapToDouble(Funcao::getContribuicao).sum();
 	}
 
 	@Override

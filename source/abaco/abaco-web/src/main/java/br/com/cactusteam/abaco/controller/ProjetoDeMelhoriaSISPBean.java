@@ -1,6 +1,8 @@
 package br.com.cactusteam.abaco.controller;
 
 import br.com.cactusteam.abaco.core.DetalheAnalise;
+import br.com.cactusteam.abaco.core.FuncaoDeDado;
+import br.com.cactusteam.abaco.core.FuncaoDeTransacao;
 import br.com.cactusteam.abaco.core.sisp.ProjetoDeMelhoriaSISP;
 import br.com.cactusteam.abaco.service.ProjetoDeMelhoriaSISPService;
 
@@ -23,6 +25,8 @@ public class ProjetoDeMelhoriaSISPBean implements Serializable{
 
     private DetalheAnalise detalheAnalise;
     private ProjetoDeMelhoriaSISP projeto;
+    private FuncaoDeDado funcaoDeDado;
+    private FuncaoDeTransacao funcaoDeTransacao;
 
     @PostConstruct
     public void setup(){
@@ -36,5 +40,13 @@ public class ProjetoDeMelhoriaSISPBean implements Serializable{
 
     public ProjetoDeMelhoriaSISP getProjetoDeMelhoriaSISP() {
         return projeto;
+    }
+
+    public FuncaoDeDado getFuncaoDeDado() {
+        return funcaoDeDado;
+    }
+
+    public FuncaoDeTransacao getFuncaoDeTransacao() {
+        return funcaoDeTransacao;
     }
 }

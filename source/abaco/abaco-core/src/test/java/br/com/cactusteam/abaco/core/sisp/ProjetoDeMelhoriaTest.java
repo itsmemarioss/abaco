@@ -1,9 +1,6 @@
 package br.com.cactusteam.abaco.core.sisp;
 
-import br.com.cactusteam.abaco.core.FuncaoDeDado;
-import br.com.cactusteam.abaco.core.FuncaoDeTransacao;
-import br.com.cactusteam.abaco.core.TipoFuncaoDado;
-import br.com.cactusteam.abaco.core.TipoFuncaoTransacao;
+import br.com.cactusteam.abaco.core.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,39 +18,24 @@ public class ProjetoDeMelhoriaTest {
     }
 
     @Test
-    public void deveExcluirFuncoes(){
-        FuncaoDeDado funcaoDeDadoAlterado = new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE,"");
-        FuncaoDeDado funcaoDeDadoExcluido = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI,"");
-        FuncaoDeDado funcaoDeDadoIncluido = new FuncaoDeDado(0, 0, TipoFuncaoDado.AIE,"");
-        FuncaoDeDado funcaoDeDadoConversao = new FuncaoDeDado(0, 0, TipoFuncaoDado.ALI,"");
+    public void deveCalcularTotalPorSituacao(){
+        FuncaoDeDado funcaoDeDadoIncluido = new FuncaoDeDado(0, 0,TipoFuncaoDado.ALI, "ALI Incluido");
+        FuncaoDeTransacao funcaoDeTransacaoIncluido = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"SE Incluido");
 
-        FuncaoDeTransacao funcaoDeTransacaoAlterado = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
-        FuncaoDeTransacao funcaoDeTransacaoExcluido = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
-        FuncaoDeTransacao funcaoDeTransacaoIncluido = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
-        FuncaoDeTransacao funcaoDeTransacaoConversao = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"");
+        FuncaoDeDado funcaoDeDadoAlterado = new FuncaoDeDado(0, 0,TipoFuncaoDado.ALI, "ALI Alterado", Situacao.ALTERADO);
+        funcaoDeDadoAlterado.setFatorImpacto(0.9f);
+        FuncaoDeTransacao funcaoDeTransacaoAlterado = new FuncaoDeTransacao(0, 0, TipoFuncaoTransacao.SE,"SE Alterado", Situacao.ALTERADO);
+        funcaoDeTransacaoAlterado.setFatorImpacto(0.9f);
+
+        projetoDeMelhoriaSISP.incluiFuncaoDeDado(funcaoDeDadoAlterado);
+        projetoDeMelhoriaSISP.incluiFuncaoDeDado(funcaoDeDadoIncluido);
+
+        projetoDeMelhoriaSISP.incluiFuncaoDeTransacao(funcaoDeTransacaoIncluido);
+        projetoDeMelhoriaSISP.incluiFuncaoDeTransacao(funcaoDeTransacaoAlterado);
 
 
-        projetoDeMelhoriaSISP.incluiFuncaoDeDadoPfAlterado(funcaoDeDadoAlterado);
-        projetoDeMelhoriaSISP.incluiFuncaoDeDadoPfConversao(funcaoDeDadoConversao);
-        projetoDeMelhoriaSISP.incluiFuncaoDeDadoPfIncluido(funcaoDeDadoIncluido);
-        projetoDeMelhoriaSISP.incluiFuncaoDeDadoPfExcluido(funcaoDeDadoExcluido);
 
-        projetoDeMelhoriaSISP.removeFuncaoDeDadoPfAlterado(funcaoDeDadoAlterado);
-        projetoDeMelhoriaSISP.removeFuncaoDeDadoPfConversao(funcaoDeDadoConversao);
-        projetoDeMelhoriaSISP.removeFuncaoDeDadoPfIncluido(funcaoDeDadoIncluido);
-        projetoDeMelhoriaSISP.removeFuncaoDeDadoPfExcluido(funcaoDeDadoExcluido);
-        Assert.assertEquals(0, projetoDeMelhoriaSISP.totalFuncaoDeDados());
-
-        projetoDeMelhoriaSISP.incluiFuncaoDeTransacaoPfAlterado(funcaoDeTransacaoAlterado);
-        projetoDeMelhoriaSISP.incluiFuncaoDeTransacaoPfConversao(funcaoDeTransacaoConversao);
-        projetoDeMelhoriaSISP.incluiFuncaoDeTransacaoPfIncluido(funcaoDeTransacaoIncluido);
-        projetoDeMelhoriaSISP.incluiFuncaoDeTransacaoPfExcluido(funcaoDeTransacaoExcluido);
-
-        projetoDeMelhoriaSISP.removeFuncaoDeTransacaoPfAlterado(funcaoDeTransacaoAlterado);
-        projetoDeMelhoriaSISP.removeFuncaoDeTransacaoPfConversao(funcaoDeTransacaoConversao);
-        projetoDeMelhoriaSISP.removeFuncaoDeTransacaoPfIncluido(funcaoDeTransacaoIncluido);
-        projetoDeMelhoriaSISP.removeFuncaoDeTransacaoPfExcluido(funcaoDeTransacaoExcluido);
-        Assert.assertEquals(0, projetoDeMelhoriaSISP.totalFuncaoDeTransacao());
+        Assert.assertEquals(22.8, projetoDeMelhoriaSISP.calculaTotal(), 0.01);
     }
 
 }
